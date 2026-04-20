@@ -20,9 +20,9 @@ export default function Header() {
   const { t } = useLanguage();
 
   useEffect(() => {
-  setMounted(true);
-  setIsLoggedIn(authAPI.isLoggedIn());
-}, []);
+    setMounted(true);
+    setIsLoggedIn(authAPI.isLoggedIn());
+  }, []);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/logo.avif"
+              src="/logo.svg"
               alt="Peptive Logo"
               width={64}
               height={64}
@@ -79,18 +79,18 @@ export default function Header() {
             <div className="md:hidden mr-2">
               <MobileLanguageToggle />
             </div>
-            
+
             {/* User Icon - Desktop Only */}
-            <Link 
+            <Link
               href={isLoggedIn ? '/account' : '/login'}
-              className="hidden md:block p-1 text-gray-700 hover:text-gray-900 transition-all duration-300 hover:animate-wiggle" 
+              className="hidden md:block p-1 text-gray-700 hover:text-gray-900 transition-all duration-300 hover:animate-wiggle"
               aria-label="User account"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </Link>
-            
+
             {/* Cart Button */}
             <button
               onClick={toggleCart}
@@ -110,7 +110,7 @@ export default function Header() {
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
-              {mounted && itemCount> 0 && (
+              {mounted && itemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-gray-900 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                   {itemCount}
                 </span>
@@ -152,10 +152,9 @@ export default function Header() {
         {/* Mobile Navigation Drawer */}
         <>
           {/* Drawer */}
-          <div 
-            className={`fixed right-0 top-0 h-full w-full sm:w-[90%] bg-white shadow-2xl z-60 flex flex-col transition-all duration-500 ease-in-out rounded-l-[2rem] md:hidden ${
-              isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-            }`}
+          <div
+            className={`fixed right-0 top-0 h-full w-full sm:w-[90%] bg-white shadow-2xl z-60 flex flex-col transition-all duration-500 ease-in-out rounded-l-[2rem] md:hidden ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+              }`}
           >
             {/* Header */}
             <div className="flex items-center justify-between p-8 border-b border-gray-100">
@@ -184,7 +183,7 @@ export default function Header() {
                     {item.name}
                   </Link>
                 ))}
-                
+
                 {/* User Account Link */}
                 <Link
                   href={mounted && isLoggedIn ? '/account' : '/login'}
