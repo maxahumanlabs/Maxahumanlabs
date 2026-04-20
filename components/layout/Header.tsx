@@ -42,7 +42,7 @@ export default function Header() {
     { name: t('header.oral_peptides'), href: '/oral-peptides' },
     // { name: t('stack.title'), href: '/stack' },
     { name: t('header.dosage_calculator'), href: '/pages/dosage-calculator' },
-    { name: t('header.peptive_ai'), href: 'https://ai.peptivepeptides.com/' },
+
   ];
 
   return (
