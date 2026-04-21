@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class Peptive_Bundle_API {
+class Maxa_Bundle_API {
     
     public function __construct() {
         add_action('rest_api_init', array($this, 'register_rest_fields'));
@@ -30,7 +30,7 @@ class Peptive_Bundle_API {
         woocommerce_store_api_register_endpoint_data(
             array(
                 'endpoint'        => 'product',
-                'namespace'       => 'peptive-bundles',
+                'namespace'       => 'maxa-bundles',
                 'data_callback'   => array($this, 'add_bundle_data_to_store_api_callback'),
                 'schema_callback' => array($this, 'get_store_api_schema'),
                 'schema_type'     => ARRAY_A,
@@ -142,7 +142,7 @@ class Peptive_Bundle_API {
         register_rest_field('product', 'bundle_items', array(
             'get_callback' => array($this, 'get_bundle_items_field'),
             'schema'       => array(
-                'description' => __('Bundle product items', 'peptive-bundles'),
+                'description' => __('Bundle product items', 'maxa-bundles'),
                 'type'        => 'array',
                 'context'     => array('view', 'edit'),
                 'items'       => array(
@@ -165,7 +165,7 @@ class Peptive_Bundle_API {
         register_rest_field('product', 'is_bundle', array(
             'get_callback' => array($this, 'get_is_bundle_field'),
             'schema'       => array(
-                'description' => __('Whether product is a bundle', 'peptive-bundles'),
+                'description' => __('Whether product is a bundle', 'maxa-bundles'),
                 'type'        => 'boolean',
                 'context'     => array('view', 'edit'),
             ),
@@ -175,7 +175,7 @@ class Peptive_Bundle_API {
         register_rest_field('product', 'arabic_name', array(
             'get_callback' => array($this, 'get_arabic_name_field'),
             'schema'       => array(
-                'description' => __('Product name in Arabic', 'peptive-bundles'),
+                'description' => __('Product name in Arabic', 'maxa-bundles'),
                 'type'        => 'string',
                 'context'     => array('view', 'edit'),
             ),
@@ -184,7 +184,7 @@ class Peptive_Bundle_API {
         register_rest_field('product', 'arabic_description', array(
             'get_callback' => array($this, 'get_arabic_description_field'),
             'schema'       => array(
-                'description' => __('Product description in Arabic', 'peptive-bundles'),
+                'description' => __('Product description in Arabic', 'maxa-bundles'),
                 'type'        => 'string',
                 'context'     => array('view', 'edit'),
             ),
@@ -193,7 +193,7 @@ class Peptive_Bundle_API {
         register_rest_field('product', 'arabic_short_description', array(
             'get_callback' => array($this, 'get_arabic_short_description_field'),
             'schema'       => array(
-                'description' => __('Product short description in Arabic', 'peptive-bundles'),
+                'description' => __('Product short description in Arabic', 'maxa-bundles'),
                 'type'        => 'string',
                 'context'     => array('view', 'edit'),
             ),
@@ -202,7 +202,7 @@ class Peptive_Bundle_API {
         register_rest_field('product', 'arabic_tags', array(
             'get_callback' => array($this, 'get_arabic_tags_field'),
             'schema'       => array(
-                'description' => __('Product tags in Arabic', 'peptive-bundles'),
+                'description' => __('Product tags in Arabic', 'maxa-bundles'),
                 'type'        => 'string',
                 'context'     => array('view', 'edit'),
             ),
@@ -212,7 +212,7 @@ class Peptive_Bundle_API {
         register_rest_field('product', 'bundle_pricing', array(
             'get_callback' => array($this, 'get_bundle_pricing_field'),
             'schema'       => array(
-                'description' => __('Bundle pricing for 3-month and 6-month options', 'peptive-bundles'),
+                'description' => __('Bundle pricing for 3-month and 6-month options', 'maxa-bundles'),
                 'type'        => 'object',
                 'context'     => array('view', 'edit'),
                 'properties' => array(

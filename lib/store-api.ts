@@ -26,7 +26,7 @@ class StoreAPI {
       baseURL: `${baseURL}/wp-json/wc/store/v1`,
       headers: {
         'Content-Type': 'application/json',
-        'Host': 'peptivepeptides.local', // Required for Local by Flywheel virtual host routing
+        'Host': 'maxahuman.local', // Required for Local by Flywheel virtual host routing
       },
       withCredentials: true, // CRITICAL: Enables session cookies
       timeout: 5000, // 5 second timeout

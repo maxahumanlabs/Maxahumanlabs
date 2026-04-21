@@ -68,9 +68,9 @@ After deploying, update the allowed origins in your WordPress `functions.php`:
 ```php
 $allowed_origins = [
     'http://localhost:3000',           // Local development
-    'https://peptivepeptides.com',     // Your production domain
-    'https://www.peptivepeptides.com', // www variant
-    'https://peptive.vercel.app',      // Vercel preview
+    'https://maxahumanpeptides.com',     // Your production domain
+    'https://www.maxahumanpeptides.com', // www variant
+    'https://maxahuman.vercel.app',      // Vercel preview
 ];
 ```
 
@@ -148,7 +148,7 @@ POST /api/webhooks/stripe
 ### Connecting Custom Domain to Vercel
 
 1. In Vercel: **Settings → Domains → Add Domain**
-2. Add `peptivepeptides.com` (or your domain)
+2. Add `maxahumanpeptides.com` (or your domain)
 3. Vercel will show DNS records to add
 4. In your domain registrar (GoDaddy, Namecheap, etc.):
    - Add an **A record** pointing to `76.76.21.21`
@@ -367,7 +367,7 @@ export const translations = {
   en: { ... },
   ar: { ... },
   fr: {  // New: French
-    announcement_bar: "Bienvenue chez Peptive",
+    announcement_bar: "Bienvenue chez Maxa Human",
     header: {
       home: "Accueil",
       all_peptides: "Tous les Peptides",
@@ -412,7 +412,7 @@ In `includes/class-bundle-product-type.php`, inside the Arabic translation tab (
 
 ```php
 <p class="form-field">
-    <label for="research_notes"><?php _e('Research Notes', 'peptive-bundles'); ?></label>
+    <label for="research_notes"><?php _e('Research Notes', 'maxahuman-bundles'); ?></label>
     <textarea name="research_notes" id="research_notes" rows="4" style="width: 100%;"><?php echo esc_textarea(get_post_meta($post->ID, '_research_notes', true)); ?></textarea>
 </p>
 ```
@@ -623,7 +623,7 @@ RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
 **Debug:**
 1. Check product has Arabic fields filled in WP admin
 2. Visit `https://your-wp-site.com/wp-json/wc/store/v1/products?slug=your-product`
-3. Look for `extensions.peptive-bundles` in the response
+3. Look for `extensions.maxahuman-bundles` in the response
 4. If empty, the plugin might not be activated
 
 ### "Build Fails on Vercel"
@@ -680,4 +680,4 @@ Product pages use `useEffect` + `useState` instead of server-side data fetching.
 
 ---
 
-*This is the advanced technical reference for the Peptive Peptides project. For basics, see the [Beginner's Guide](03-BEGINNERS-GUIDE.md).*
+*This is the advanced technical reference for the Maxa Human project. For basics, see the [Beginner's Guide](03-BEGINNERS-GUIDE.md).*

@@ -12,8 +12,8 @@ add_action('rest_api_init', function() {
         
         $allowed_origins = [
             'http://localhost:3000',
-            'https://peptive.vercel.app',
-            'https://www.peptive.vercel.app'
+            'https://maxahuman.vercel.app',
+            'https://www.maxahuman.vercel.app'
         ];
         
         if (in_array($origin, $allowed_origins)) {
@@ -44,8 +44,8 @@ add_action('init', function() {
     
     $allowed_origins = [
         'http://localhost:3000',
-        'https://peptive.vercel.app',
-        'https://www.peptive.vercel.app'
+        'https://maxahuman.vercel.app',
+        'https://www.maxahuman.vercel.app'
     ];
     
     if (in_array($origin, $allowed_origins)) {

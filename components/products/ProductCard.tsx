@@ -66,7 +66,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="flex items-start justify-between mb-2">
           <div className="flex-1">
             <p className="text-gray-500 text-xs lg:text-sm xl:text-sm mb-1 uppercase tracking-wide">
-              Peptive
+              Maxa Human
             </p>
             <h3 className="text-gray-900 text-base lg:text-lg xl:text-xl font-medium">{productName}</h3>
           </div>

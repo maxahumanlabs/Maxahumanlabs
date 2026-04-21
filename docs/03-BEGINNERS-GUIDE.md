@@ -1,4 +1,4 @@
-# Beginner's Guide — Getting Started with Peptive Peptides
+# Beginner's Guide — Getting Started with Maxa Human
 
 This guide is for someone who has **basic computer knowledge** but is new to web development. It will walk you through everything step by step.
 
@@ -88,9 +88,9 @@ Go to **Plugins → Add New** and install:
 
 ### Step 3: Install the Custom Plugin
 
-The custom plugin is in the repository under `wordpress-plugin/peptive-bundles/`.
+The custom plugin is in the repository under `wordpress-plugin/maxahuman-bundles/`.
 
-1. Zip the `peptive-bundles` folder
+1. Zip the `maxahuman-bundles` folder
 2. Go to **Plugins → Add New → Upload Plugin**
 3. Upload the zip file and click **Activate**
 
@@ -153,7 +153,7 @@ Open a terminal (Command Prompt on Windows, Terminal on Mac) and run:
 ```bash
 cd /path/to/where/you/want/the/project
 git clone <your-repository-url>
-cd peptive
+cd maxahuman
 ```
 
 ### Step 2: Install Dependencies
@@ -191,7 +191,7 @@ STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret
 
 # Site
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
-NEXT_PUBLIC_SITE_NAME=Peptive Peptides
+NEXT_PUBLIC_SITE_NAME=Maxa Human
 ```
 
 Replace the placeholder values with your actual keys.
@@ -209,7 +209,7 @@ You should see:
   - Local:        http://localhost:3000
 ```
 
-Open `http://localhost:3000` in your browser. You should see the Peptive website!
+Open `http://localhost:3000` in your browser. You should see the Maxa Human website!
 
 ---
 
@@ -220,7 +220,7 @@ Open `http://localhost:3000` in your browser. You should see the Peptive website
 Every time you want to work on or preview the site:
 
 ```bash
-cd /path/to/peptive
+cd /path/to/maxahuman
 pnpm dev
 ```
 
@@ -281,7 +281,7 @@ Customers can enter the coupon code on the checkout page.
 
 ### Updating Product Verification Codes
 
-The verification system uses an Excel file (`peptiveverificationcode.xlsx`) in the project root:
+The verification system uses an Excel file (`maxahumanverificationcode.xlsx`) in the project root:
 - Column A: Verification code
 - Column B: Status ("used" or blank)
 
@@ -330,8 +330,8 @@ To add new codes, add rows to this spreadsheet.
 ### "Arabic isn't showing on product pages"
 
 - Make sure you filled in the Arabic Translation tab in the WooCommerce product editor
-- Make sure the Peptive Bundles plugin is activated
-- The frontend reads Arabic from the `extensions['peptive-bundles']` field in the Store API
+- Make sure the Maxa Human Bundles plugin is activated
+- The frontend reads Arabic from the `extensions['maxahuman-bundles']` field in the Store API
 
 ### "User login isn't working"
 

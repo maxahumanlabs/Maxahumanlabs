@@ -1,4 +1,4 @@
-# Peptive Product Bundles Plugin
+# Maxa Human Product Bundles Plugin
 
 All-in-one WordPress/WooCommerce plugin for product bundles, Arabic translations, and bundle pricing.
 
@@ -23,21 +23,21 @@ All-in-one WordPress/WooCommerce plugin for product bundles, Arabic translations
 # Option A: Via WordPress Admin
 1. Go to WordPress Admin → Plugins → Add New
 2. Click "Upload Plugin"
-3. Upload the peptive-bundles folder as a ZIP file
+3. Upload the maxahuman-bundles folder as a ZIP file
 4. Click "Activate"
 
 # Option B: Via FTP/File Manager
-1. Upload the entire peptive-bundles folder to:
+1. Upload the entire maxahuman-bundles folder to:
    /wp-content/plugins/
 2. Go to WordPress Admin → Plugins
-3. Find "Peptive Product Bundles" and click "Activate"
+3. Find "Maxa Human Product Bundles" and click "Activate"
 ```
 
 ### 2. Activate Plugin
 
 Once uploaded, activate the plugin from the WordPress admin panel:
 - Navigate to **Plugins** → **Installed Plugins**
-- Find **Peptive Product Bundles**
+- Find **Maxa Human Product Bundles**
 - Click **Activate**
 
 ## Usage
@@ -195,8 +195,8 @@ function ProductPage({ product }) {
 ## File Structure
 
 ```
-peptive-bundles/
-├── peptive-bundles.php          # Main plugin file
+maxahuman-bundles/
+├── maxahuman-bundles.php          # Main plugin file
 ├── README.md                     # This file
 └── includes/
     ├── class-bundle-product-type.php  # Registers bundle product type
@@ -245,7 +245,7 @@ peptive-bundles/
 
 ## Support
 
-For issues or questions, contact the Peptive development team.
+For issues or questions, contact the Maxa Human development team.
 
 ## Version
 

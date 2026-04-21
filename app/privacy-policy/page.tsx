@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
         <div className="prose prose-lg max-w-none">
           <div className="space-y-8 text-gray-700 leading-relaxed">
             <p>
-              Peptive Pept operates this store and website, including all related information, content, features, tools, products and services, in order to provide you, the customer, with a curated shopping experience (the &quot;Services&quot;). Peptive Pept is powered by Shopify, which enables us to provide the Services to you. This Privacy Policy describes how we collect, use, and disclose your personal information when you visit, use, or make a purchase or other transaction using the Services or otherwise communicate with us. If there is a conflict between our Terms of Service and this Privacy Policy, this Privacy Policy controls with respect to the collection, processing, and disclosure of your personal information.
+              Maxa Human operates this store and website, including all related information, content, features, tools, products and services, in order to provide you, the customer, with a curated shopping experience (the &quot;Services&quot;). Maxa Human is powered by Shopify, which enables us to provide the Services to you. This Privacy Policy describes how we collect, use, and disclose your personal information when you visit, use, or make a purchase or other transaction using the Services or otherwise communicate with us. If there is a conflict between our Terms of Service and this Privacy Policy, this Privacy Policy controls with respect to the collection, processing, and disclosure of your personal information.
             </p>
 
             <p>
@@ -183,7 +183,7 @@ export default function PrivacyPolicyPage() {
               Contact
             </h2>
             <p>
-              Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, please call or email us at <a href="mailto:peptivepeptides@gmail.com" className="text-gray-900 underline hover:text-gray-700">peptivepeptides@gmail.com</a> or contact us at Dubai, Dubai, DU, AE. For the purpose of applicable data protection laws, we are the data controller of your personal information.
+              Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, please call or email us at <a href="mailto:info@maxahuman.com" className="text-gray-900 underline hover:text-gray-700">info@maxahuman.com</a> or contact us at Dubai, Dubai, DU, AE. For the purpose of applicable data protection laws, we are the data controller of your personal information.
             </p>
           </div>
         </div>

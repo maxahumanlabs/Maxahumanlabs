@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class Peptive_Bundle_Cart {
+class Maxa_Bundle_Cart {
     
     public function __construct() {
         add_filter('woocommerce_add_cart_item_data', array($this, 'add_bundle_cart_item_data'), 10, 3);
@@ -50,7 +50,7 @@ class Peptive_Bundle_Cart {
     public function bundle_cart_item_name($name, $cart_item, $cart_item_key) {
         if (isset($cart_item['bundle_items']) && !empty($cart_item['bundle_items'])) {
             $bundle_html = '<div class="bundle-contents" style="margin-top: 5px; font-size: 0.9em; color: #666;">';
-            $bundle_html .= '<strong>' . __('Includes:', 'peptive-bundles') . '</strong><br>';
+            $bundle_html .= '<strong>' . __('Includes:', 'maxa-bundles') . '</strong><br>';
             
             foreach ($cart_item['bundle_items'] as $item) {
                 $bundled_product = wc_get_product($item['product_id']);

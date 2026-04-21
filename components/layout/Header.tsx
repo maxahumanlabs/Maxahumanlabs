@@ -53,7 +53,7 @@ export default function Header() {
           <Link href="/" className="flex items-center">
             <Image
               src="/logo.svg"
-              alt="Peptive Logo"
+              alt="Maxa Human Logo"
               width={64}
               height={64}
               className="w-16 h-16 rounded-xl"

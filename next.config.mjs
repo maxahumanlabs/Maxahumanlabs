@@ -8,11 +8,11 @@ const nextConfig = {
       },
       {
         protocol: 'http',
-        hostname: 'peptivepeptides.local',
+        hostname: 'maxahuman.local',
       },
       {
         protocol: 'https',
-        hostname: 'peptivepeptides.local',
+        hostname: 'maxahuman.local',
       },
     ],
   },

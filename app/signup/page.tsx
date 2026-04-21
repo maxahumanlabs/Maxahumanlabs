@@ -80,7 +80,7 @@ export default function SignupPage() {
           <h1 className="text-2xl text-gray-900 mb-2">
             Create Account
           </h1>
-          <p className="text-sm text-gray-600">Join Peptive today</p>
+          <p className="text-sm text-gray-600">Join Maxa Human today</p>
         </div>
 
         <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6">

@@ -1,4 +1,4 @@
-# Peptive Peptides — Project Introduction
+# Maxa Human — Project Introduction
 
 ## Dear Client,
 
@@ -8,7 +8,7 @@ Thank you for trusting us with your project. This document explains **what we bu
 
 ## What Is This Project?
 
-Peptive Peptides is a **headless e-commerce website** for selling research peptides, primarily targeting the UAE and GCC market. It is a fully custom storefront with bilingual support (English & Arabic), Stripe payment processing, product authentication, and a dosage calculator.
+Maxa Human is a **headless e-commerce website** for selling research peptides, primarily targeting the UAE and GCC market. It is a fully custom storefront with bilingual support (English & Arabic), Stripe payment processing, product authentication, and a dosage calculator.
 
 ---
 
@@ -55,7 +55,7 @@ In a **headless** architecture, we split these two concerns:
 | **State Management** | Zustand | Lightweight cart state, persisted to localStorage |
 | **Payments** | Stripe Checkout | Secure payment processing (AED currency) |
 | **Backend CMS** | WordPress + WooCommerce | Product management, orders, customers, inventory |
-| **Custom Plugin** | Peptive Product Bundles | Arabic translations, bundle pricing, custom product types |
+| **Custom Plugin** | Maxa Human Product Bundles | Arabic translations, bundle pricing, custom product types |
 | **Language** | TypeScript | Type-safe JavaScript for fewer bugs |
 | **Authentication** | JWT (JSON Web Tokens) | Secure user login via WordPress REST API |
 | **Analytics** | Google Analytics 4 + Meta Pixel | Visitor tracking and e-commerce event logging |
@@ -78,8 +78,8 @@ The frontend needs the following environment variables to connect to your WordPr
 | `STRIPE_SECRET_KEY` | Stripe Dashboard → Developers → API Keys | Server-side Stripe operations |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe Dashboard → Developers → API Keys | Client-side Stripe initialization |
 | `STRIPE_WEBHOOK_SECRET` | Stripe Dashboard → Developers → Webhooks → Signing secret | Verify webhook signatures |
-| `NEXT_PUBLIC_SITE_URL` | Your frontend URL (e.g., `https://peptivepeptides.com`) | Redirect URLs for Stripe checkout |
-| `NEXT_PUBLIC_SITE_NAME` | `Peptive Peptides` | Brand name used in payment descriptions |
+| `NEXT_PUBLIC_SITE_URL` | Your frontend URL (e.g., `https://maxahumanpeptides.com`) | Redirect URLs for Stripe checkout |
+| `NEXT_PUBLIC_SITE_NAME` | `Maxa Human` | Brand name used in payment descriptions |
 
 ### Optional Keys (Analytics)
 
@@ -102,8 +102,8 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_your_stripe_publishable_key_here
 STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
 
 # Site
-NEXT_PUBLIC_SITE_URL=https://peptivepeptides.com
-NEXT_PUBLIC_SITE_NAME=Peptive Peptides
+NEXT_PUBLIC_SITE_URL=https://maxahumanpeptides.com
+NEXT_PUBLIC_SITE_NAME=Maxa Human
 
 # Analytics (optional)
 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
@@ -122,7 +122,7 @@ For the headless frontend to work, your WordPress installation needs:
 |--------|---------|
 | **WooCommerce** | E-commerce engine (products, orders, cart) |
 | **JWT Authentication for WP REST API** | Enables user login from the frontend |
-| **Peptive Product Bundles** (custom, included in repo) | Arabic translations, bundle pricing, custom product type |
+| **Maxa Human Product Bundles** (custom, included in repo) | Arabic translations, bundle pricing, custom product type |
 
 ### 2. WordPress Configuration
 
@@ -153,7 +153,7 @@ define('JWT_AUTH_CORS_ENABLE', true);
 ## How the Two Systems Communicate
 
 ```
-User visits peptivepeptides.com
+User visits maxahumanpeptides.com
          │
          ▼
    Next.js Frontend (Vercel)
@@ -207,4 +207,4 @@ Everything is built with modern, industry-standard technologies that are maintai
 
 ---
 
-*Document prepared as part of the Peptive Peptides freelance project handoff.*
+*Document prepared as part of the Maxa Human freelance project handoff.*

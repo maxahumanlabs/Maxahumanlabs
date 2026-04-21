@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class Peptive_Bundle_Admin {
+class Maxa_Bundle_Admin {
     
     public function __construct() {
         add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));

@@ -1,4 +1,4 @@
-# WordPress Admin Panel Guide — Managing Your Peptive Store
+# WordPress Admin Panel Guide — Managing Your Maxa Human Store
 
 This guide is for **non-developers** who need to manage products, categories, orders, and settings through the WordPress admin panel. No coding knowledge required.
 
@@ -71,7 +71,7 @@ Once logged in, you will see a dark sidebar on the left. Here are the sections y
 | **Products** | ⭐ **Your main workspace** — add, edit, and manage all products |
 | **WooCommerce** | Orders, customers, coupons, reports, and settings |
 | **Appearance** | Themes and site appearance (no need to change — our frontend is custom) |
-| **Plugins** | Installed plugins — make sure **WooCommerce**, **JWT Authentication**, and **Peptive Product Bundles** are active |
+| **Plugins** | Installed plugins — make sure **WooCommerce**, **JWT Authentication**, and **Maxa Human Product Bundles** are active |
 | **Users** | User accounts for the admin panel |
 | **Settings** | WordPress general settings |
 
@@ -155,14 +155,14 @@ The homepage also has a **Featured Products** section. This does NOT use a categ
       - **Stock quantity** — How many units you have (e.g., `100`)
       - **Allow backorders** — Usually set to "Do not allow"
    
-   d. **Arabic Translation Tab** *(from Peptive Bundles plugin):*
+   d. **Arabic Translation Tab** *(from Maxa Human Bundles plugin):*
       - Arabic Product Name
       - Arabic Short Description
       - Arabic Full Description
       - Arabic Tags
       - *(See [Section 8](#8-adding-arabic-translations-to-products) for details)*
    
-   e. **Bundle Pricing Tab** *(from Peptive Bundles plugin):*
+   e. **Bundle Pricing Tab** *(from Maxa Human Bundles plugin):*
       - 3-Month Regular Price & Sale Price
       - 6-Month Regular Price & Sale Price
       - *(See [Section 7](#7-setting-up-bundle-pricing-3-month--6-month) for details)*
@@ -271,7 +271,7 @@ Our website shows customers three purchasing options on each product page:
 ### How to Set Bundle Prices:
 
 1. Edit a product (or create a new one)
-2. In the **Product Data** box, click the **"Bundle Pricing"** tab (added by the Peptive Bundles plugin)
+2. In the **Product Data** box, click the **"Bundle Pricing"** tab (added by the Maxa Human Bundles plugin)
 3. Fill in:
    - **3-Month Regular Price** — The "original" price for 3 months (e.g., `147`)
    - **3-Month Sale Price** — The discounted 3-month price (e.g., `127`)
@@ -551,7 +551,7 @@ These settings have been set up during development. **Please do not change them*
 | **Currency** | AED (United Arab Emirates Dirham) | The entire checkout and pricing system uses AED |
 | **REST API Keys** | Consumer Key + Secret | The website uses these to communicate with WooCommerce |
 | **JWT Authentication** | Enabled via plugin | Required for user login functionality |
-| **Peptive Bundles Plugin** | Activated | Provides Arabic translations, bundle pricing, and bundle product type |
+| **Maxa Human Bundles Plugin** | Activated | Provides Arabic translations, bundle pricing, and bundle product type |
 | **CORS Headers** | Configured in functions.php | Allows the frontend website to communicate with WordPress |
 | **Permalink Structure** | Post name (`/%postname%/`) | Required for the REST API to work properly |
 
@@ -561,7 +561,7 @@ These settings have been set up during development. **Please do not change them*
 |--------|---------------------------|
 | **WooCommerce** | Entire store stops working — no products, no orders |
 | **JWT Authentication for WP REST API** | Customer login stops working |
-| **Peptive Product Bundles** | Arabic translations disappear, bundle pricing disappears |
+| **Maxa Human Product Bundles** | Arabic translations disappear, bundle pricing disappears |
 
 ---
 
@@ -673,20 +673,20 @@ A single product can appear on multiple pages. Just check multiple category boxe
 
 ### "Bundle pricing isn't showing on the product page"
 
-- Make sure the **Peptive Product Bundles** plugin is activated (**Plugins** page)
+- Make sure the **Maxa Human Product Bundles** plugin is activated (**Plugins** page)
 - Check that you filled in the **Bundle Pricing** tab in the product editor
 - Both regular and sale prices should be filled for best results
 
 ### "Arabic text isn't appearing when language is switched"
 
 - Make sure the **Arabic Translation** tab is filled in for that product
-- Make sure the **Peptive Product Bundles** plugin is activated
+- Make sure the **Maxa Human Product Bundles** plugin is activated
 - If left empty, the website will show the English text as fallback
 
 ### "I can't see the Arabic Translation or Bundle Pricing tabs"
 
-- The **Peptive Product Bundles** plugin might be deactivated
-- Go to **Plugins** → Find "Peptive Product Bundles" → Click **Activate**
+- The **Maxa Human Product Bundles** plugin might be deactivated
+- Go to **Plugins** → Find "Maxa Human Product Bundles" → Click **Activate**
 
 ### "Orders aren't appearing in WooCommerce"
 
@@ -720,4 +720,4 @@ If you encounter something not covered in this guide:
 
 ---
 
-*This guide covers the day-to-day management of your Peptive store through WordPress. For technical setup, deployment, and code changes, please refer to the other documentation files.*
+*This guide covers the day-to-day management of your Maxa Human store through WordPress. For technical setup, deployment, and code changes, please refer to the other documentation files.*

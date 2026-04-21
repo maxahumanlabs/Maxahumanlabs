@@ -6,7 +6,7 @@ export const translations = {
       all_peptides: "All Peptides",
       oral_peptides: "Oral Peptides Supplements",
       dosage_calculator: "Dosage Calculator",
-      peptive_ai: "Peptive Ai",
+      maxa_ai: "Maxa Ai",
       login: "Login",
       account: "Account",
       menu: "Menu",
@@ -22,7 +22,7 @@ export const translations = {
     brand: {
       research: "Research",
       starts_with: "Starts with",
-      peptive: "Peptive"
+      maxa: "Maxa Human"
     },
     trending: {
       title: "Trending Research"
@@ -37,8 +37,8 @@ export const translations = {
       total: "Total",
       add_to_cart: "Add to cart"
     },
-    why_peptive: {
-      title: "Why Peptive Peptides?",
+    why_maxa: {
+      title: "Why Maxa Human?",
       precision: {
         title: "Precision-Focused",
         description: "Small-batch synthesis with exact amino-acid sequencing."
@@ -57,7 +57,7 @@ export const translations = {
       questions: [
         {
           question: "Where can I buy research peptides online?",
-          answer: "You can purchase research peptides directly from Peptive Peptides. We offer high-quality, lab-verified peptides shipped directly from our Swiss facility to your location."
+          answer: "You can purchase research peptides directly from Maxa Human. We offer high-quality, lab-verified peptides shipped directly from our Swiss facility to your location."
         },
         {
           question: "What are research peptides?",
@@ -65,7 +65,7 @@ export const translations = {
         },
         {
           question: "How do I know if a peptide supplier is trustworthy?",
-          answer: "Look for suppliers who provide third-party lab testing, transparent sourcing, and detailed product information. At Peptive Peptides, we provide independent lab verification for all our products."
+          answer: "Look for suppliers who provide third-party lab testing, transparent sourcing, and detailed product information. At Maxa Human, we provide independent lab verification for all our products."
         },
         {
           question: "What should I look for when buying peptides online?",
@@ -159,9 +159,9 @@ export const translations = {
       quick_links: "Quick Links",
       search: "Search",
       contact: "Get in touch",
-      join: "Join the future of biology and get 15% off + a free copy of our 'Peptive Playbook'.",
+      join: "Join the future of biology and get 15% off + a free copy of our 'Maxa Human Playbook'.",
       email_placeholder: "Enter your email",
-      copyright: "© 2026 Peptive Pept. Powered by Shopify",
+      copyright: "© 2026 Maxa Human. Powered by Shopify",
       privacy_policy: "Privacy policy"
     },
     authentication: {
@@ -204,7 +204,7 @@ export const translations = {
     },
     instant_authentication: {
       title: "Instant Authentication",
-      subtitle: "The Mark of True Peptive."
+      subtitle: "The Mark of True Maxa."
     },
     cart: {
       title: "Cart",
@@ -271,7 +271,7 @@ export const translations = {
       all_peptides: "جميع الببتيدات",
       oral_peptides: "مكملات الببتيدات الفموية",
       dosage_calculator: "حاسبة الجرعات",
-      peptive_ai: "بيبتف أي",
+      maxa_ai: "ماكسا أي",
       login: "تسجيل الدخول",
       account: "الحساب",
       menu: "القائمة",
@@ -285,9 +285,9 @@ export const translations = {
       cta: "تسوق الكل"
     },
     brand: {
-      research: "البحث",
-      starts_with: "يبدأ بـ",
-      peptive: "الببتيدية"
+      research: "الأبحاث",
+      starts_with: "تبدأ بـ",
+      maxa: "ماكسا هيومان"
     },
     trending: {
       title: "الأبحاث الرائجة"
@@ -302,8 +302,8 @@ export const translations = {
       total: "المجموع",
       add_to_cart: "أضف إلى السلة"
     },
-    why_peptive: {
-      title: "لماذا ببتيدات الببتيدية؟",
+    why_maxa: {
+      title: "لماذا ماكسا هيومان؟",
       precision: {
         title: "التركيز على الدقة",
         description: "التخليق بكميات صغيرة مع تسلسل دقيق للأحماض الأمينية."
@@ -322,7 +322,7 @@ export const translations = {
       questions: [
         {
           question: "أين يمكنني شراء ببتيدات الأبحاث عبر الإنترنت؟",
-          answer: "يمكنك شراء ببتيدات الأبحاث مباشرة من ببتيدات الببتيدية. نحن نقدم ببتيدات عالية الجودة تم التحقق منها من قبل المختبر ويتم شحنها مباشرة من منشأتنا السويسرية إلى موقعك."
+          answer: "يمكنك شراء ببتيدات الأبحاث مباشرة من ماكسا هيومان. نحن نقدم ببتيدات عالية الجودة تم التحقق منها من قبل المختبر ويتم شحنها مباشرة من منشأتنا السويسرية إلى موقعك."
         },
         {
           question: "ما هي ببتيدات الأبحاث؟",
@@ -330,7 +330,7 @@ export const translations = {
         },
         {
           question: "كيف أعرف ما إذا كان مورد الببتيد جدير بالثقة؟",
-          answer: "ابحث عن الموردين الذين يقدمون اختبارات معملية من طرف ثالث ومصادر شفافة ومعلومات مفصلة عن المنتج. في ببتيدات الببتيدية، نحن نقدم التحقق المستقل من المختبر لجميع منتجاتنا."
+          answer: "ابحث عن الموردين الذين يقدمون اختبارات معملية من طرف ثالث ومصادر شفافة ومعلومات مفصلة عن المنتج. في ماكسا هيومان، نحن نقدم التحقق المستقل من المختبر لجميع منتجاتنا."
         },
         {
           question: "ما الذي يجب أن أبحث عنه عند شراء الببتيدات عبر الإنترنت؟",
@@ -424,9 +424,9 @@ export const translations = {
       quick_links: "روابط سريعة",
       search: "يبحث",
       contact: "تواصل معنا على",
-      join: "انضم إلى مستقبل علم الأحياء واحصل على خصم 15% + نسخة مجانية من 'دليل الببتيدات الببتيدية' الخاص بنا.",
+      join: "انضم إلى مستقبل علم الأحياء واحصل على خصم 15% + نسخة مجانية من 'دليل ببتيدات ماكسا هيومان' الخاص بنا.",
       email_placeholder: "أدخل بريدك الإلكتروني",
-      copyright: "© 2026 Peptive Pept. مدعوم من Shopify",
+      copyright: "© 2026 Maxa Human. مدعوم من Shopify",
       privacy_policy: "سياسة الخصوصية"
     },
     authentication: {
@@ -469,7 +469,7 @@ export const translations = {
     },
     instant_authentication: {
       title: "المصادقة الفورية",
-      subtitle: "علامة الببتيدية الحقيقية."
+      subtitle: "علامة ماكسا هيومان الحقيقية."
     },
     cart: {
       title: "السلة",

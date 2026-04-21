@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class Peptive_Bundle_Order {
+class Maxa_Bundle_Order {
     
     public function __construct() {
         add_action('woocommerce_order_item_meta_end', array($this, 'display_bundle_items_in_order'), 10, 4);
@@ -33,7 +33,7 @@ class Peptive_Bundle_Order {
         }
         
         if ($plain_text) {
-            echo "\n" . __('Bundle Contents:', 'peptive-bundles') . "\n";
+            echo "\n" . __('Bundle Contents:', 'maxa-bundles') . "\n";
             foreach ($bundle_items as $bundle_item) {
                 $bundled_product = wc_get_product($bundle_item['product_id']);
                 if ($bundled_product) {
@@ -46,7 +46,7 @@ class Peptive_Bundle_Order {
             }
         } else {
             echo '<div class="bundle-contents" style="margin-top: 10px; padding-left: 20px; font-size: 0.9em; color: #666;">';
-            echo '<strong>' . __('Bundle Contents:', 'peptive-bundles') . '</strong><br>';
+            echo '<strong>' . __('Bundle Contents:', 'maxa-bundles') . '</strong><br>';
             echo '<ul style="margin: 5px 0; padding-left: 20px;">';
             
             foreach ($bundle_items as $bundle_item) {
@@ -72,7 +72,7 @@ class Peptive_Bundle_Order {
         $product = $item->get_product();
         
         if ($product && $product->get_type() === 'bundle') {
-            $name .= ' <span style="color: #999; font-size: 0.85em;">(' . __('Bundle', 'peptive-bundles') . ')</span>';
+            $name .= ' <span style="color: #999; font-size: 0.85em;">(' . __('Bundle', 'maxa-bundles') . ')</span>';
         }
         
         return $name;

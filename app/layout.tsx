@@ -15,9 +15,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Peptive - Precision Crafted Research Peptides',
+  title: 'Maxa Human - Precision Crafted Research Peptides',
   description: 'High-purity compounds. Independent lab verification. Trusted by researchers seeking uncompromised quality.',
-  keywords: 'research peptides, high purity peptides, lab verified compounds, scientific research',
+  keywords: 'research peptides, high purity peptides, lab verified compounds, scientific research, Maxa Human',
   icons: {
     icon: '/logo.avif',
     shortcut: '/logo.avif',

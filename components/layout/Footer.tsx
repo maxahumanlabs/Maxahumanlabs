@@ -42,8 +42,8 @@ export default function Footer() {
                   <a href="tel:+971558225919" className="block underline text-white hover:text-gray-300 transition-colors text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
                     +971 55 822 5919
                   </a>
-                  <a href="mailto:peptivepeptides@gmail.com" className="block underline text-white hover:text-gray-300 transition-colors text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
-                    peptivepeptides@gmail.com
+                  <a href="mailto:info@maxahuman.com" className="block underline text-white hover:text-gray-300 transition-colors text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
+                    info@maxahuman.com
                   </a>
                 </div>
               </div>
@@ -81,7 +81,7 @@ export default function Footer() {
       <div className="bg-[#1f1f1f] py-4">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-4 text-gray-600 text-sm">
-            <span>©{currentYear} Peptive Pept.</span>
+            <span>©{currentYear} Maxa Human.</span>
             <Link href="/privacy-policy" className="hover:text-gray-900 transition-colors">
               {t('footer.privacy_policy')}
             </Link>

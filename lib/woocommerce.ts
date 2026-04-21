@@ -146,7 +146,7 @@ class WooCommerceAPI {
     const salePrice = (parseInt(storeProduct.prices.sale_price) / 100).toFixed(2);
 
     // Extract custom fields from extensions namespace
-    const extensions = (storeProduct as any).extensions?.['peptive-bundles'] || {};
+    const extensions = (storeProduct as any).extensions?.['maxa-bundles'] || {};
 
     return {
       id: storeProduct.id,

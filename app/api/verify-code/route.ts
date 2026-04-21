@@ -3,7 +3,7 @@ import * as XLSX from 'xlsx';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
-const EXCEL_FILE_PATH = join(process.cwd(), 'peptiveverificationcode.xlsx');
+const EXCEL_FILE_PATH = join(process.cwd(), 'maxahumanverificationcode.xlsx');
 
 export async function POST(request: NextRequest) {
   try {

@@ -7,7 +7,7 @@ This document explains **every folder, file, and module** in the repository and 
 ## Repository Structure at a Glance
 
 ```
-peptive/
+maxahuman/
 ├── app/                        # Next.js App Router (pages & API routes)
 │   ├── layout.tsx              # Root layout (header, footer, providers)
 │   ├── page.tsx                # Homepage
@@ -67,7 +67,7 @@ peptive/
 ├── types/                      # TypeScript type definitions
 │   └── index.ts                # All interfaces (Product, Cart, StoreCart, etc.)
 ├── wordpress-plugin/           # Custom WordPress plugin (deploy to WP)
-│   └── peptive-bundles/        # The plugin folder
+│   └── maxahuman-bundles/        # The plugin folder
 ├── UPDATED-FUNCTIONS.php       # WordPress functions.php additions for CORS
 ├── next.config.mjs             # Next.js configuration
 ├── tailwind.config.ts          # Tailwind CSS configuration
@@ -168,7 +168,7 @@ Key methods:
 - `getFeaturedProducts()` — Featured products for homepage
 - `getProductReviews()` — Reviews via REST API v3 (requires auth)
 
-The `transformStoreProduct()` method converts WooCommerce's Store API format (prices in cents) to a clean frontend `Product` type. It also extracts custom plugin data from `extensions['peptive-bundles']`.
+The `transformStoreProduct()` method converts WooCommerce's Store API format (prices in cents) to a clean frontend `Product` type. It also extracts custom plugin data from `extensions['maxahuman-bundles']`.
 
 ### `lib/wordpress.ts` — CMS Content
 
@@ -229,7 +229,7 @@ Receives Stripe webhook events. On `checkout.session.completed`:
 Validates WooCommerce coupons: checks existence, usage limits, minimum/maximum amounts, and calculates discount (percent or fixed).
 
 ### `/api/verify-code` (POST)
-Product authentication system. Reads an Excel file (`peptiveverificationcode.xlsx`) to verify scratch codes. Once verified, marks the code as "used" in the spreadsheet. One-time use only.
+Product authentication system. Reads an Excel file (`maxahumanverificationcode.xlsx`) to verify scratch codes. Once verified, marks the code as "used" in the spreadsheet. One-time use only.
 
 ### `/api/calculate-shipping-tax` (POST)
 Simple shipping calculator: free for UAE, AED 25 for GCC, AED 50 international. Tax is 5% calculated on the frontend.
@@ -285,11 +285,11 @@ Debug endpoints to test API connectivity. Not for production use.
 
 ---
 
-## Custom WordPress Plugin: `peptive-bundles`
+## Custom WordPress Plugin: `maxahuman-bundles`
 
 ### Location in Repo
 ```
-wordpress-plugin/peptive-bundles/
+wordpress-plugin/maxahuman-bundles/
 ```
 
 ### What It Does
@@ -329,10 +329,10 @@ Registers a custom **"Product Bundle"** type in WooCommerce:
 
 | File | Purpose |
 |------|---------|
-| `peptive-bundles.php` | Main plugin file. Defines `WC_Product_Bundle` class, loads all includes. |
+| `maxahuman-bundles.php` | Main plugin file. Defines `WC_Product_Bundle` class, loads all includes. |
 | `includes/class-bundle-product-type.php` | Registers "Product Bundle" type, adds admin tabs (Arabic, Pricing, Bundle Products), saves custom fields. |
 | `includes/class-bundle-admin.php` | Enqueues admin scripts for product search. |
-| `includes/class-bundle-api.php` | Extends both REST API and **Store API** with custom fields. Registers `peptive-bundles` namespace in Store API. |
+| `includes/class-bundle-api.php` | Extends both REST API and **Store API** with custom fields. Registers `maxahuman-bundles` namespace in Store API. |
 | `includes/class-bundle-cart.php` | Shows bundle contents in WooCommerce cart. |
 | `includes/class-bundle-order.php` | Shows bundle contents in order details and emails. |
 | `includes/class-bundle-inventory.php` | Auto-deducts component stock on order, restores on cancel. Updates bundle stock status when components change. |
@@ -345,8 +345,8 @@ WordPress Admin → Saves post meta (_arabic_name, _bundle_3_month_sale_price, e
        ▼
 Store API Extension (class-bundle-api.php)
        │
-       ├── Registers 'peptive-bundles' namespace via woocommerce_store_api_register_endpoint_data
-       └── Returns custom data in product.extensions['peptive-bundles']
+       ├── Registers 'maxahuman-bundles' namespace via woocommerce_store_api_register_endpoint_data
+       └── Returns custom data in product.extensions['maxahuman-bundles']
               │
               ▼
 Frontend (lib/woocommerce.ts → transformStoreProduct())
@@ -366,7 +366,7 @@ This file contains PHP code that must be added to the active WordPress theme's `
 ### 1. CORS Configuration
 Allows the Next.js frontend (on a different domain) to make API requests to WordPress. Supports:
 - `http://localhost:3000` (development)
-- `https://peptive.vercel.app` (production)
+- `https://maxahuman.vercel.app` (production)
 
 ### 2. Store API Nonce Bypass
 Disables the WooCommerce Store API nonce check, which is required for headless setups where the frontend is on a different domain.
@@ -393,4 +393,4 @@ When Arabic is selected:
 
 ---
 
-*This document covers the complete technical structure of the Peptive Peptides codebase.*
+*This document covers the complete technical structure of the Maxa Human codebase.*

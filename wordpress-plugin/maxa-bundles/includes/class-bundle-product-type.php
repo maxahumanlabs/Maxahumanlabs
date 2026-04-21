@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class Peptive_Bundle_Product_Type {
+class Maxa_Bundle_Product_Type {
     
     public function __construct() {
         add_filter('product_type_selector', array($this, 'add_bundle_product_type'));
@@ -31,7 +31,7 @@ class Peptive_Bundle_Product_Type {
      * Add Bundle to product type dropdown
      */
     public function add_bundle_product_type($types) {
-        $types['bundle'] = __('Product Bundle', 'peptive-bundles');
+        $types['bundle'] = __('Product Bundle', 'maxa-bundles');
         return $types;
     }
     
@@ -56,24 +56,24 @@ class Peptive_Bundle_Product_Type {
         
         // Add Bundle Products tab (only for bundle type)
         $tabs['bundle'] = array(
-            'label'    => __('Bundle Products', 'peptive-bundles'),
+            'label'    => __('Bundle Products', 'maxa-bundles'),
             'target'   => 'bundle_product_data',
             'class'    => array('show_if_bundle'),
             'priority' => 11,
         );
         
         // Add Arabic Translation tab (for all product types)
-        $tabs['peptive_arabic'] = array(
-            'label'    => __('Arabic Translation', 'peptive-bundles'),
-            'target'   => 'peptive_arabic_data',
+        $tabs['maxa_arabic'] = array(
+            'label'    => __('Arabic Translation', 'maxa-bundles'),
+            'target'   => 'maxa_arabic_data',
             'class'    => array('show_if_simple', 'show_if_bundle'),
             'priority' => 12,
         );
         
         // Add Monthly Pricing tab (for simple and bundle products)
-        $tabs['peptive_bundle_pricing'] = array(
-            'label'    => __('Monthly Pricing', 'peptive-bundles'),
-            'target'   => 'peptive_bundle_pricing_data',
+        $tabs['maxa_bundle_pricing'] = array(
+            'label'    => __('Monthly Pricing', 'maxa-bundles'),
+            'target'   => 'maxa_bundle_pricing_data',
             'class'    => array('show_if_simple', 'show_if_bundle'),
             'priority' => 13,
         );
@@ -92,28 +92,28 @@ class Peptive_Bundle_Product_Type {
         $arabic_short_description = get_post_meta($post->ID, '_arabic_short_description', true);
         $arabic_tags = get_post_meta($post->ID, '_arabic_tags', true);
         ?>
-        <div id="peptive_arabic_data" class="panel woocommerce_options_panel">
+        <div id="maxa_arabic_data" class="panel woocommerce_options_panel">
             <div class="options_group">
                 <p class="form-field">
-                    <label for="arabic_name"><?php _e('Arabic Product Name', 'peptive-bundles'); ?></label>
+                    <label for="arabic_name"><?php _e('Arabic Product Name', 'maxa-bundles'); ?></label>
                     <input type="text" class="short" name="arabic_name" id="arabic_name" value="<?php echo esc_attr($arabic_name); ?>" style="width: 100%;" dir="rtl">
                 </p>
                 
                 <p class="form-field">
-                    <label for="arabic_short_description"><?php _e('Arabic Short Description', 'peptive-bundles'); ?></label>
+                    <label for="arabic_short_description"><?php _e('Arabic Short Description', 'maxa-bundles'); ?></label>
                     <textarea name="arabic_short_description" id="arabic_short_description" rows="3" style="width: 100%;" dir="rtl"><?php echo esc_textarea($arabic_short_description); ?></textarea>
                 </p>
                 
                 <p class="form-field">
-                    <label for="arabic_description"><?php _e('Arabic Description', 'peptive-bundles'); ?></label>
+                    <label for="arabic_description"><?php _e('Arabic Description', 'maxa-bundles'); ?></label>
                     <textarea name="arabic_description" id="arabic_description" rows="6" style="width: 100%;" dir="rtl"><?php echo esc_textarea($arabic_description); ?></textarea>
-                    <span class="description"><?php _e('Full product description in Arabic', 'peptive-bundles'); ?></span>
+                    <span class="description"><?php _e('Full product description in Arabic', 'maxa-bundles'); ?></span>
                 </p>
                 
                 <p class="form-field">
-                    <label for="arabic_tags"><?php _e('Arabic Tags (comma separated)', 'peptive-bundles'); ?></label>
+                    <label for="arabic_tags"><?php _e('Arabic Tags (comma separated)', 'maxa-bundles'); ?></label>
                     <input type="text" class="short" name="arabic_tags" id="arabic_tags" value="<?php echo esc_attr($arabic_tags); ?>" style="width: 100%;" dir="rtl">
-                    <span class="description"><?php _e('Enter tags separated by commas', 'peptive-bundles'); ?></span>
+                    <span class="description"><?php _e('Enter tags separated by commas', 'maxa-bundles'); ?></span>
                 </p>
             </div>
         </div>
@@ -133,22 +133,22 @@ class Peptive_Bundle_Product_Type {
         $six_month_sale_price = get_post_meta($post->ID, '_bundle_6_month_sale_price', true);
         
         ?>
-        <div id="peptive_bundle_pricing_data" class="panel woocommerce_options_panel">
+        <div id="maxa_bundle_pricing_data" class="panel woocommerce_options_panel">
             <div class="options_group">
                 <p class="form-field">
-                    <strong><?php _e('3-Month Pricing', 'peptive-bundles'); ?></strong>
+                    <strong><?php _e('3-Month Pricing', 'maxa-bundles'); ?></strong>
                     <span class="description" style="display: block; margin-top: 5px;">
-                        <?php _e('Set pricing for 3-month supply (3 units). Leave empty to auto-calculate from single unit price.', 'peptive-bundles'); ?>
+                        <?php _e('Set pricing for 3-month supply (3 units). Leave empty to auto-calculate from single unit price.', 'maxa-bundles'); ?>
                     </span>
                 </p>
                 
                 <?php
                 woocommerce_wp_text_input(array(
                     'id'                => '_bundle_3_month_regular_price',
-                    'label'             => __('Regular Price (3 months)', 'peptive-bundles'),
-                    'placeholder'       => __('Auto-calculated if empty', 'peptive-bundles'),
+                    'label'             => __('Regular Price (3 months)', 'maxa-bundles'),
+                    'placeholder'       => __('Auto-calculated if empty', 'maxa-bundles'),
                     'desc_tip'          => true,
-                    'description'       => __('Regular price for 3-month supply', 'peptive-bundles'),
+                    'description'       => __('Regular price for 3-month supply', 'maxa-bundles'),
                     'type'              => 'number',
                     'custom_attributes' => array(
                         'step' => '0.01',
@@ -158,10 +158,10 @@ class Peptive_Bundle_Product_Type {
                 
                 woocommerce_wp_text_input(array(
                     'id'                => '_bundle_3_month_sale_price',
-                    'label'             => __('Sale Price (3 months)', 'peptive-bundles'),
-                    'placeholder'       => __('Optional', 'peptive-bundles'),
+                    'label'             => __('Sale Price (3 months)', 'maxa-bundles'),
+                    'placeholder'       => __('Optional', 'maxa-bundles'),
                     'desc_tip'          => true,
-                    'description'       => __('Sale price for 3-month supply', 'peptive-bundles'),
+                    'description'       => __('Sale price for 3-month supply', 'maxa-bundles'),
                     'type'              => 'number',
                     'custom_attributes' => array(
                         'step' => '0.01',
@@ -173,19 +173,19 @@ class Peptive_Bundle_Product_Type {
             
             <div class="options_group">
                 <p class="form-field">
-                    <strong><?php _e('6-Month Pricing', 'peptive-bundles'); ?></strong>
+                    <strong><?php _e('6-Month Pricing', 'maxa-bundles'); ?></strong>
                     <span class="description" style="display: block; margin-top: 5px;">
-                        <?php _e('Set pricing for 6-month supply (6 units). Leave empty to auto-calculate from single unit price.', 'peptive-bundles'); ?>
+                        <?php _e('Set pricing for 6-month supply (6 units). Leave empty to auto-calculate from single unit price.', 'maxa-bundles'); ?>
                     </span>
                 </p>
                 
                 <?php
                 woocommerce_wp_text_input(array(
                     'id'                => '_bundle_6_month_regular_price',
-                    'label'             => __('Regular Price (6 months)', 'peptive-bundles'),
-                    'placeholder'       => __('Auto-calculated if empty', 'peptive-bundles'),
+                    'label'             => __('Regular Price (6 months)', 'maxa-bundles'),
+                    'placeholder'       => __('Auto-calculated if empty', 'maxa-bundles'),
                     'desc_tip'          => true,
-                    'description'       => __('Regular price for 6-month supply', 'peptive-bundles'),
+                    'description'       => __('Regular price for 6-month supply', 'maxa-bundles'),
                     'type'              => 'number',
                     'custom_attributes' => array(
                         'step' => '0.01',
@@ -195,10 +195,10 @@ class Peptive_Bundle_Product_Type {
                 
                 woocommerce_wp_text_input(array(
                     'id'                => '_bundle_6_month_sale_price',
-                    'label'             => __('Sale Price (6 months)', 'peptive-bundles'),
-                    'placeholder'       => __('Optional', 'peptive-bundles'),
+                    'label'             => __('Sale Price (6 months)', 'maxa-bundles'),
+                    'placeholder'       => __('Optional', 'maxa-bundles'),
                     'desc_tip'          => true,
-                    'description'       => __('Sale price for 6-month supply', 'peptive-bundles'),
+                    'description'       => __('Sale price for 6-month supply', 'maxa-bundles'),
                     'type'              => 'number',
                     'custom_attributes' => array(
                         'step' => '0.01',
@@ -210,11 +210,11 @@ class Peptive_Bundle_Product_Type {
             
             <div class="options_group">
                 <p class="form-field" style="padding: 10px 12px; background: #f0f0f1; border-left: 4px solid #2271b1;">
-                    <strong><?php _e('How it works:', 'peptive-bundles'); ?></strong><br>
+                    <strong><?php _e('How it works:', 'maxa-bundles'); ?></strong><br>
                     <span class="description">
-                        • <?php _e('If monthly prices are empty, they will be auto-calculated (unit price × quantity)', 'peptive-bundles'); ?><br>
-                        • <?php _e('Set custom prices to offer monthly supply discounts', 'peptive-bundles'); ?><br>
-                        • <?php _e('Sale prices override regular prices when set', 'peptive-bundles'); ?>
+                        • <?php _e('If monthly prices are empty, they will be auto-calculated (unit price × quantity)', 'maxa-bundles'); ?><br>
+                        • <?php _e('Set custom prices to offer monthly supply discounts', 'maxa-bundles'); ?><br>
+                        • <?php _e('Sale prices override regular prices when set', 'maxa-bundles'); ?>
                     </span>
                 </p>
             </div>
@@ -264,8 +264,8 @@ class Peptive_Bundle_Product_Type {
         <div id="bundle_product_data" class="panel woocommerce_options_panel">
             <div class="options_group">
                 <p class="form-field">
-                    <label><?php _e('Bundle Products', 'peptive-bundles'); ?></label>
-                    <span class="description"><?php _e('Select products to include in this bundle', 'peptive-bundles'); ?></span>
+                    <label><?php _e('Bundle Products', 'maxa-bundles'); ?></label>
+                    <span class="description"><?php _e('Select products to include in this bundle', 'maxa-bundles'); ?></span>
                 </p>
                 
                 <div id="bundle-items-container">
@@ -280,7 +280,7 @@ class Peptive_Bundle_Product_Type {
                 </div>
                 
                 <p class="form-field">
-                    <button type="button" class="button add-bundle-item"><?php _e('Add Product', 'peptive-bundles'); ?></button>
+                    <button type="button" class="button add-bundle-item"><?php _e('Add Product', 'maxa-bundles'); ?></button>
                 </p>
             </div>
             
@@ -288,8 +288,8 @@ class Peptive_Bundle_Product_Type {
                 <?php
                 woocommerce_wp_checkbox(array(
                     'id'          => '_bundle_virtual_price',
-                    'label'       => __('Virtual Pricing', 'peptive-bundles'),
-                    'description' => __('Calculate price from bundled products', 'peptive-bundles'),
+                    'label'       => __('Virtual Pricing', 'maxa-bundles'),
+                    'description' => __('Calculate price from bundled products', 'maxa-bundles'),
                     'desc_tip'    => true,
                 ));
                 ?>
@@ -367,9 +367,9 @@ class Peptive_Bundle_Product_Type {
         ?>
         <div class="bundle-item-row">
             <p class="form-field">
-                <label><?php _e('Product', 'peptive-bundles'); ?></label>
+                <label><?php _e('Product', 'maxa-bundles'); ?></label>
                 <select name="bundle_items[<?php echo $index; ?>][product_id]" class="bundle-product-select" style="width: 60%;" required>
-                    <option value=""><?php _e('Select a product...', 'peptive-bundles'); ?></option>
+                    <option value=""><?php _e('Select a product...', 'maxa-bundles'); ?></option>
                     <?php foreach ($products as $prod) {
                         $product_obj = wc_get_product($prod->ID);
                         if ($product_obj) {
@@ -380,10 +380,10 @@ class Peptive_Bundle_Product_Type {
                 </select>
             </p>
             <p class="form-field">
-                <label><?php _e('Quantity', 'peptive-bundles'); ?></label>
+                <label><?php _e('Quantity', 'maxa-bundles'); ?></label>
                 <input type="number" name="bundle_items[<?php echo $index; ?>][quantity]" value="<?php echo esc_attr($quantity); ?>" min="1" step="1" style="width: 100px;">
             </p>
-            <button type="button" class="button remove-bundle-item"><?php _e('Remove', 'peptive-bundles'); ?></button>
+            <button type="button" class="button remove-bundle-item"><?php _e('Remove', 'maxa-bundles'); ?></button>
         </div>
         <?php
     }

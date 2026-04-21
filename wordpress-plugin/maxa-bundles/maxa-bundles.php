@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: Peptive Product Bundles
- * Plugin URI: https://peptive.com
+ * Plugin Name: Maxa Product Bundles
+ * Plugin URI: https://maxahuman.com
  * Description: Custom product bundles with automatic inventory management and order tracking
  * Version: 1.0.0
- * Author: Peptive
- * Author URI: https://peptive.com
- * Text Domain: peptive-bundles
+ * Author: Maxa Human
+ * Author URI: https://maxahuman.com
+ * Text Domain: maxa-bundles
  * Domain Path: /languages
  * Requires at least: 5.8
  * Requires PHP: 7.4
@@ -19,17 +19,17 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('PEPTIVE_BUNDLES_VERSION', '1.0.0');
-define('PEPTIVE_BUNDLES_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('PEPTIVE_BUNDLES_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('PEPTIVE_BUNDLES_PLUGIN_BASENAME', plugin_basename(__FILE__));
+define('MAXA_BUNDLES_VERSION', '1.0.0');
+define('MAXA_BUNDLES_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('MAXA_BUNDLES_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('MAXA_BUNDLES_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
 /**
  * Check if WooCommerce is active
  */
 if (!in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
     add_action('admin_notices', function() {
-        echo '<div class="error"><p><strong>Peptive Product Bundles</strong> requires WooCommerce to be installed and active.</p></div>';
+        echo '<div class="error"><p><strong>Maxa Product Bundles</strong> requires WooCommerce to be installed and active.</p></div>';
     });
     return;
 }
@@ -55,7 +55,7 @@ add_action('woocommerce_loaded', function() {
 /**
  * Main Plugin Class
  */
-class Peptive_Bundles {
+class Maxa_Bundles {
     
     private static $instance = null;
     
@@ -79,12 +79,12 @@ class Peptive_Bundles {
     }
     
     private function includes() {
-        require_once PEPTIVE_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-product-type.php';
-        require_once PEPTIVE_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-admin.php';
-        require_once PEPTIVE_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-cart.php';
-        require_once PEPTIVE_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-order.php';
-        require_once PEPTIVE_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-inventory.php';
-        require_once PEPTIVE_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-api.php';
+        require_once MAXA_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-product-type.php';
+        require_once MAXA_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-admin.php';
+        require_once MAXA_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-cart.php';
+        require_once MAXA_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-order.php';
+        require_once MAXA_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-inventory.php';
+        require_once MAXA_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-api.php';
     }
     
     /**
@@ -99,15 +99,15 @@ class Peptive_Bundles {
     
     public function init() {
         // Initialize plugin components
-        new Peptive_Bundle_Product_Type();
-        new Peptive_Bundle_Admin();
-        new Peptive_Bundle_Cart();
-        new Peptive_Bundle_Order();
-        new Peptive_Bundle_Inventory();
-        new Peptive_Bundle_API();
+        new Maxa_Bundle_Product_Type();
+        new Maxa_Bundle_Admin();
+        new Maxa_Bundle_Cart();
+        new Maxa_Bundle_Order();
+        new Maxa_Bundle_Inventory();
+        new Maxa_Bundle_API();
         
         // Load text domain
-        load_plugin_textdomain('peptive-bundles', false, dirname(PEPTIVE_BUNDLES_PLUGIN_BASENAME) . '/languages');
+        load_plugin_textdomain('maxa-bundles', false, dirname(MAXA_BUNDLES_PLUGIN_BASENAME) . '/languages');
     }
     
     public function activate() {
@@ -116,7 +116,7 @@ class Peptive_Bundles {
         
         // Create custom database table for bundle items if needed
         global $wpdb;
-        $table_name = $wpdb->prefix . 'peptive_bundle_items';
+        $table_name = $wpdb->prefix . 'maxa_bundle_items';
         $charset_collate = $wpdb->get_charset_collate();
         
         $sql = "CREATE TABLE IF NOT EXISTS $table_name (
@@ -141,8 +141,8 @@ class Peptive_Bundles {
 /**
  * Initialize the plugin
  */
-function peptive_bundles() {
-    return Peptive_Bundles::instance();
+function maxa_bundles() {
+    return Maxa_Bundles::instance();
 }
 
-peptive_bundles();
+maxa_bundles();

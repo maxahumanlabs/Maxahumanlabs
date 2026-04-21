@@ -4,7 +4,7 @@
 
 const axios = require('axios');
 
-const baseURL = 'http://peptivepeptides.local';
+const baseURL = 'http://maxahuman.local';
 const consumerKey = 'ck_82d0a2ddc33cf5c6c7469feb8201dd00057f7c94';
 const consumerSecret = 'cs_793677472a2d0acd46a18ea7f7c9f62106ad8401';
 

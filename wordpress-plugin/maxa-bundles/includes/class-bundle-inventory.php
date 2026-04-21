@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class Peptive_Bundle_Inventory {
+class Maxa_Bundle_Inventory {
     
     public function __construct() {
         add_action('woocommerce_reduce_order_stock', array($this, 'reduce_bundle_stock'));
@@ -53,7 +53,7 @@ class Peptive_Bundle_Inventory {
                             // Add order note
                             $order->add_order_note(
                                 sprintf(
-                                    __('Stock reduced for bundled product: %s (-%d)', 'peptive-bundles'),
+                                    __('Stock reduced for bundled product: %s (-%d)', 'maxa-bundles'),
                                     $bundled_product->get_name(),
                                     $qty_to_reduce
                                 )
@@ -93,7 +93,7 @@ class Peptive_Bundle_Inventory {
                             
                             $order->add_order_note(
                                 sprintf(
-                                    __('Stock restored for bundled product: %s (+%d)', 'peptive-bundles'),
+                                    __('Stock restored for bundled product: %s (+%d)', 'maxa-bundles'),
                                     $bundled_product->get_name(),
                                     $qty_to_restore
                                 )

@@ -15,7 +15,7 @@ export default function StackPage() {
 
   useEffect(() => {
     // Load stack from localStorage
-    const savedStack = localStorage.getItem('peptive-stack');
+    const savedStack = localStorage.getItem('maxa-stack');
     if (savedStack) {
       try {
         setStackItems(JSON.parse(savedStack));
@@ -43,13 +43,13 @@ export default function StackPage() {
   const addToStack = (product: Product) => {
     const updatedStack = [...stackItems, product];
     setStackItems(updatedStack);
-    localStorage.setItem('peptive-stack', JSON.stringify(updatedStack));
+    localStorage.setItem('maxa-stack', JSON.stringify(updatedStack));
   };
 
   const removeFromStack = (productId: number) => {
     const updatedStack = stackItems.filter((item) => item.id !== productId);
     setStackItems(updatedStack);
-    localStorage.setItem('peptive-stack', JSON.stringify(updatedStack));
+    localStorage.setItem('maxa-stack', JSON.stringify(updatedStack));
   };
 
   const handleAddStackToCart = () => {
@@ -58,7 +58,7 @@ export default function StackPage() {
     });
     // Clear stack
     setStackItems([]);
-    localStorage.setItem('peptive-stack', JSON.stringify([]));
+    localStorage.setItem('maxa-stack', JSON.stringify([]));
   };
 
   const stackTotal = stackItems.reduce((total, item) => total + parseFloat(item.price), 0);
@@ -229,7 +229,7 @@ export default function StackPage() {
                         <div className="flex items-start justify-between mb-4">
                           <div>
                             <p className="text-gray-500 text-xs lg:text-xs xl:text-sm 2xl:text-sm mb-1 uppercase tracking-wide">
-                              Peptive
+                              Maxa Human
                             </p>
                             <h3 className="text-gray-900 text-base lg:text-base xl:text-lg 2xl:text-xl font-medium">{language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name}</h3>
                           </div>

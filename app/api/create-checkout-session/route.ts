@@ -102,12 +102,12 @@ export async function POST(request: NextRequest) {
       },
       // Add business branding
       payment_intent_data: {
-        description: `Order from ${process.env.NEXT_PUBLIC_SITE_NAME || 'Peptive Peptides'}`,
+        description: `Order from ${process.env.NEXT_PUBLIC_SITE_NAME || 'Maxa Human'}`,
       },
       metadata: {
         billingDetails: JSON.stringify(billingDetails),
         shippingDetails: JSON.stringify(shippingDetails),
-        site_name: process.env.NEXT_PUBLIC_SITE_NAME || 'Peptive Peptides',
+        site_name: process.env.NEXT_PUBLIC_SITE_NAME || 'Maxa Human',
       },
     };
 

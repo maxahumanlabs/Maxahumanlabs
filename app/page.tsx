@@ -23,9 +23,9 @@ export default function HomePage() {
       setScrollY(window.scrollY);
     };
     window.addEventListener('scroll', handleScroll);
-    
+
     // Load stack from localStorage
-    const savedStack = localStorage.getItem('peptive-stack');
+    const savedStack = localStorage.getItem('maxa-stack');
     if (savedStack) {
       try {
         setStackItems(JSON.parse(savedStack));
@@ -33,7 +33,7 @@ export default function HomePage() {
         console.error('Error loading stack:', error);
       }
     }
-    
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -44,11 +44,11 @@ export default function HomePage() {
         const { woocommerce } = await import('@/lib/woocommerce');
         const products = await woocommerce.getFeaturedProducts(4);
         setFeaturedProducts(products);
-        
+
         // Fetch trending products from "trending" category
         const trending = await woocommerce.getProducts({ category: 'trending', perPage: 10 });
         setTrendingProducts(trending);
-        
+
         // Fetch stack products from "stack" category - only first 3
         const stack = await woocommerce.getProducts({ category: 'stack', perPage: 3 });
         setStackProducts(stack);
@@ -106,14 +106,14 @@ export default function HomePage() {
   const addToStack = (product: Product) => {
     const updatedStack = [...stackItems, product];
     setStackItems(updatedStack);
-    localStorage.setItem('peptive-stack', JSON.stringify(updatedStack));
+    localStorage.setItem('maxa-stack', JSON.stringify(updatedStack));
   };
 
   // Remove product from stack
   const removeFromStack = (productId: number) => {
     const updatedStack = stackItems.filter(item => item.id !== productId);
     setStackItems(updatedStack);
-    localStorage.setItem('peptive-stack', JSON.stringify(updatedStack));
+    localStorage.setItem('maxa-stack', JSON.stringify(updatedStack));
   };
 
   // Calculate stack total
@@ -124,11 +124,11 @@ export default function HomePage() {
   // Add all stack items to cart
   const addStackToCart = async () => {
     if (stackItems.length === 0) return;
-    
+
     try {
       const { useCartStore } = await import('@/store/cartStore');
       const addItem = useCartStore.getState().addItem;
-      
+
       stackItems.forEach(product => {
         addItem({
           id: product.id,
@@ -138,11 +138,11 @@ export default function HomePage() {
           image: product.image,
         });
       });
-      
+
       // Clear stack after adding to cart
       setStackItems([]);
-      localStorage.removeItem('peptive-stack');
-      
+      localStorage.removeItem('maxa-stack');
+
       // Show success message or toggle cart
       const toggleCart = useCartStore.getState().toggleCart;
       toggleCart();
@@ -157,7 +157,7 @@ export default function HomePage() {
       <section className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pb-0">
         <div className="relative  text-white overflow-hidden rounded-3xl">
           {/* Background Image with Parallax Effect */}
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center opacity-40"
             style={{
               backgroundImage: "url('/banner.png')",
@@ -165,10 +165,10 @@ export default function HomePage() {
               transition: 'transform 0.1s ease-out'
             }}
           />
-          
+
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/75" />
-          
+
           {/* Content */}
           <div className="relative px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-32 pb-12 md:pb-16 pt-12 md:pt-52">
             <div className="max-w-2xl pb-4">
@@ -185,7 +185,7 @@ export default function HomePage() {
                 <button className="relative inline-flex items-center bg-white text-gray-900 px-12 py-3.5 text-sm lg:text-sm xl:text-base 2xl:text-lg font-semibold rounded-full overflow-hidden group transition-colors">
                   {/* Liquid fill animation background */}
                   <span className="absolute inset-0 bg-black origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] rounded-full"></span>
-                  
+
                   {/* Button content */}
                   <span className="relative z-10 group-hover:text-white transition-colors duration-400">{t('hero.cta')}</span>
                   <svg className="relative z-10 w-4 h-4 ml-2 group-hover:stroke-white transition-colors duration-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -198,15 +198,15 @@ export default function HomePage() {
         </div>
       </section>
 
-    {/* Brand Statement Section */}
+      {/* Brand Statement Section */}
       <section className="py-12 bg-white">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 text-center">
           <h2 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold text-gray-900 inline-flex items-center justify-center flex-wrap gap-x-3">
             <span>{t('brand.research')}</span>
             <span className="inline-flex items-center justify-center w-14 h-14 lg:w-24 xl:w-24 2xl:w-24 lg:h-24 xl:h-24 2xl:h-24">
               <Image
-                src="/logo.avif"
-                alt="Peptive Logo"
+                src="/logo.svg"
+                alt="Maxa Human Logo"
                 width={80}
                 height={80}
                 className="w-full h-full rounded-lg object-cover"
@@ -214,14 +214,14 @@ export default function HomePage() {
             </span>
             <span>{t('brand.starts_with')}</span>
             <span className="relative inline-block">
-              {t('brand.peptive')}
+              {t('brand.maxa')}
               <span className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-yellow-500 to-transparent w-full animate-underline-slide"></span>
             </span>
           </h2>
         </div>
       </section>
-    
-    
+
+
       {/* Trending Research Section */}
       <section className="py-8 bg-white">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48">
@@ -231,7 +231,7 @@ export default function HomePage() {
               {t('trending.title')}
             </h2>
             <div className="flex gap-3">
-              <button 
+              <button
                 onClick={() => {
                   const container = document.querySelector('#trending-carousel');
                   if (container) container.scrollBy({ left: -400, behavior: 'smooth' });
@@ -241,12 +241,12 @@ export default function HomePage() {
               >
                 {/* Liquid fill animation background */}
                 <span className="absolute inset-0 bg-gray-900 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] rounded-full"></span>
-                
+
                 <svg className="relative z-10 w-6 h-6 text-gray-900 group-hover:text-white transition-colors duration-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-              <button 
+              <button
                 onClick={() => {
                   const container = document.querySelector('#trending-carousel');
                   if (container) container.scrollBy({ left: 400, behavior: 'smooth' });
@@ -256,7 +256,7 @@ export default function HomePage() {
               >
                 {/* Liquid fill animation background */}
                 <span className="absolute inset-0 bg-gray-900 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] rounded-full"></span>
-                
+
                 <svg className="relative z-10 w-6 h-6 text-gray-900 group-hover:text-white transition-colors duration-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -291,16 +291,16 @@ export default function HomePage() {
                       {product.images && product.images.length > 0 ? (
                         <>
                           {/* First Image */}
-                          <img 
-                            src={product.images[0] || '/placeholder.jpg'} 
-                            alt={product.name} 
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:-translate-x-full" 
+                          <img
+                            src={product.images[0] || '/placeholder.jpg'}
+                            alt={product.name}
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:-translate-x-full"
                           />
                           {/* Second Image - slides in from right */}
-                          <img 
-                            src={product.images[1] || product.images[0] || '/placeholder.jpg'} 
-                            alt={product.name} 
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out translate-x-full group-hover:translate-x-0" 
+                          <img
+                            src={product.images[1] || product.images[0] || '/placeholder.jpg'}
+                            alt={product.name}
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out translate-x-full group-hover:translate-x-0"
                           />
                         </>
                       ) : (
@@ -313,7 +313,7 @@ export default function HomePage() {
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <p className="text-gray-500 text-xs lg:text-xs xl:text-sm 2xl:text-sm mb-1 uppercase tracking-wide">
-                            Peptive
+                            Maxa Human
                           </p>
                           <h3 className="text-gray-900 text-base lg:text-base xl:text-lg 2xl:text-xl font-medium">{language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name}</h3>
                         </div>
@@ -343,7 +343,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      
+
 
       {/* Build Your Stack Section */}
       <section className="py-16 bg-white">
@@ -382,10 +382,10 @@ export default function HomePage() {
                     {/* Product Image */}
                     <div className="relative bg-gray-100 aspect-square flex items-center justify-center overflow-hidden">
                       {product.images && product.images.length > 0 ? (
-                        <img 
-                          src={product.images[0] || '/placeholder.jpg'} 
-                          alt={product.name} 
-                          className="w-full h-full object-cover" 
+                        <img
+                          src={product.images[0] || '/placeholder.jpg'}
+                          alt={product.name}
+                          className="w-full h-full object-cover"
                         />
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300" />
@@ -397,7 +397,7 @@ export default function HomePage() {
                       <div className="flex items-start justify-between mb-4">
                         <div>
                           <p className="text-gray-500 text-xs lg:text-xs xl:text-sm 2xl:text-sm mb-1 uppercase tracking-wide">
-                            Peptive
+                            Maxa Human
                           </p>
                           <h3 className="text-gray-900 text-base lg:text-base xl:text-lg 2xl:text-xl font-medium">{language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name}</h3>
                         </div>
@@ -412,18 +412,18 @@ export default function HomePage() {
                           )}
                         </div>
                       </div>
-                      
+
                       {/* Add to Stack or Sold Out Button */}
                       {product.stockStatus === 'instock' ? (
-                        <button 
+                        <button
                           onClick={() => addToStack(product)}
                           className="w-full bg-gray-900 text-white font-semibold py-3 text-base lg:text-base xl:text-base 2xl:text-lg rounded-full hover:bg-gray-800 transition-colors"
                         >
                           {t('stack.add_button')}
                         </button>
                       ) : (
-                        <button 
-                          className="w-full bg-gray-600 text-white font-semibold py-3 text-base lg:text-base xl:text-base 2xl:text-lg rounded-full cursor-not-allowed" 
+                        <button
+                          className="w-full bg-gray-600 text-white font-semibold py-3 text-base lg:text-base xl:text-base 2xl:text-lg rounded-full cursor-not-allowed"
                           disabled
                         >
                           {t('stack.sold_out')}
@@ -451,7 +451,7 @@ export default function HomePage() {
             <div className="lg:col-span-1">
               <div className="bg-white border-4 border-gray-900 rounded-3xl p-8 sticky top-24 min-h-[400px] flex flex-col">
                 <h3 className="text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-extrabold text-gray-900 mb-4">{t('stack.your_stack')}</h3>
-                
+
                 {/* Stack Items */}
                 <div className="flex-grow overflow-y-auto max-h-[300px] mb-4">
                   {stackItems.length > 0 ? (
@@ -461,8 +461,8 @@ export default function HomePage() {
                           {/* Product Image */}
                           <div className="w-16 h-16 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden">
                             {item.image || (item.images && item.images.length > 0) ? (
-                              <img 
-                                src={item.image || item.images[0]} 
+                              <img
+                                src={item.image || item.images[0]}
                                 alt={item.name}
                                 className="w-full h-full object-cover"
                               />
@@ -470,13 +470,13 @@ export default function HomePage() {
                               <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300" />
                             )}
                           </div>
-                          
+
                           {/* Product Info */}
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-gray-900 line-clamp-1">{item.name}</p>
                             <p className="text-xs text-gray-500">Dhs. {parseFloat(item.price).toFixed(2)}</p>
                           </div>
-                          
+
                           {/* Remove Button */}
                           <button
                             onClick={() => removeFromStack(item.id)}
@@ -496,7 +496,7 @@ export default function HomePage() {
                     </div>
                   )}
                 </div>
-                
+
                 {/* Total Section */}
                 <div className="flex justify-between items-center mb-6 pt-4 border-t-2 border-gray-200">
                   <span className="text-gray-900 font-semibold text-lg lg:text-lg xl:text-xl 2xl:text-2xl">{t('stack.total')}</span>
@@ -506,13 +506,12 @@ export default function HomePage() {
                 </div>
 
                 {/* Add to Cart Button */}
-                <button 
+                <button
                   onClick={addStackToCart}
-                  className={`w-full font-semibold py-4 text-base lg:text-base xl:text-base 2xl:text-lg rounded-full transition-colors ${
-                    stackItems.length > 0
+                  className={`w-full font-semibold py-4 text-base lg:text-base xl:text-base 2xl:text-lg rounded-full transition-colors ${stackItems.length > 0
                       ? 'bg-gray-900 text-white hover:bg-gray-800'
                       : 'bg-gray-600 text-white cursor-not-allowed'
-                  }`}
+                    }`}
                   disabled={stackItems.length === 0}
                 >
                   {t('stack.add_to_cart')} ({stackItems.length})
@@ -523,12 +522,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Peptive Peptides Section */}
+      {/* Why Maxa Human Section */}
       <section className="py-16 bg-white">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48">
           {/* Section Title */}
           <h2 className="text-4xl md:text-5xl lg:text-5xl xl:text-5xl 2xl:text-7xl font-bold text-center text-gray-900 mb-12">
-            {t('why_peptive.title')}
+            {t('why_maxa.title')}
           </h2>
 
           {/* Feature Cards */}
@@ -542,9 +541,9 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-base lg:text-lg xl:text-xl font-bold text-gray-900 mb-2">{t('why_peptive.precision.title')}</h3>
+                  <h3 className="text-base lg:text-lg xl:text-xl font-bold text-gray-900 mb-2">{t('why_maxa.precision.title')}</h3>
                   <p className="text-sm lg:text-base text-gray-600 leading-relaxed font-normal">
-                    {t('why_peptive.precision.description')}
+                    {t('why_maxa.precision.description')}
                   </p>
                 </div>
               </div>
@@ -559,9 +558,9 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-base lg:text-lg xl:text-xl font-bold text-gray-900 mb-2">{t('why_peptive.middlemen.title')}</h3>
+                  <h3 className="text-base lg:text-lg xl:text-xl font-bold text-gray-900 mb-2">{t('why_maxa.middlemen.title')}</h3>
                   <p className="text-sm lg:text-base text-gray-600 leading-relaxed font-normal">
-                    {t('why_peptive.middlemen.description')}
+                    {t('why_maxa.middlemen.description')}
                   </p>
                 </div>
               </div>
@@ -576,9 +575,9 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-base lg:text-lg xl:text-xl font-bold text-gray-900 mb-2">{t('why_peptive.disruptive.title')}</h3>
+                  <h3 className="text-base lg:text-lg xl:text-xl font-bold text-gray-900 mb-2">{t('why_maxa.disruptive.title')}</h3>
                   <p className="text-sm lg:text-base text-gray-600 leading-relaxed font-normal">
-                    {t('why_peptive.disruptive.description')}
+                    {t('why_maxa.disruptive.description')}
                   </p>
                 </div>
               </div>
@@ -646,9 +645,9 @@ export default function HomePage() {
             <h2 className="text-5xl lg:text-5xl xl:text-5xl 2xl:text-7xl font-bold text-gray-900 mb-8">
               {t('faqs.title')}
             </h2>
-            
+
             {faqs.map((faq, index) => (
-              <div 
+              <div
                 key={index}
                 className="bg-[#f6f6f6] rounded-xl overflow-hidden transition-all duration-300"
               >
@@ -663,7 +662,7 @@ export default function HomePage() {
                     {openFaqIndex === index ? '−' : '+'}
                   </span>
                 </button>
-                
+
                 {openFaqIndex === index && (
                   <div className="px-5 pb-4">
                     <p className="text-gray-600 text-sm lg:text-sm xl:text-base 2xl:text-lg leading-relaxed">
@@ -678,8 +677,8 @@ export default function HomePage() {
       </section>
 
       {/* ...existing code... */}
-      
-      </div>
-    
+
+    </div>
+
   );
 }

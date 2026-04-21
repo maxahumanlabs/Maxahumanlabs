@@ -1,4 +1,4 @@
-# Peptive Product Bundles - Complete Feature List
+# Maxa Human Product Bundles - Complete Feature List
 
 ## 🎯 All-In-One WordPress/WooCommerce Plugin
 
@@ -224,7 +224,7 @@ When 1 bundle is sold:
 
 ## 📦 Installation
 
-1. Upload `peptive-bundles/` folder to `/wp-content/plugins/`
+1. Upload `maxahuman-bundles/` folder to `/wp-content/plugins/`
 2. Activate plugin in WordPress admin
 3. Start using the new tabs in product editor!
 
@@ -281,7 +281,7 @@ Order: Shows all 4 items individually
 For issues or questions:
 - Check README.md for documentation
 - Review HOW-TO-INSTALL.md for setup
-- Contact Peptive development team
+- Contact Maxa Human development team
 
 ---
 
