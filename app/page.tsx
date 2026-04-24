@@ -154,7 +154,7 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="w-full bg-[#a855f7] py-24 md:py-32">
+      <section className="w-full bg-[#3b2760] py-24 md:py-32">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 max-w-4xl mx-auto text-center">
           <p className="text-purple-100 text-xs md:text-sm font-semibold tracking-[0.2em] mb-6 uppercase">
             {t('hero.tagline')}
@@ -167,7 +167,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/products">
-              <button className="bg-white text-[#a855f7] px-8 py-3.5 text-sm font-semibold tracking-wide uppercase transition-colors hover:bg-gray-50 w-full sm:w-auto shadow-sm">
+              <button className="bg-white text-[#3b2760] px-8 py-3.5 text-sm font-semibold tracking-wide uppercase transition-colors hover:bg-gray-50 w-full sm:w-auto shadow-sm">
                 {t('hero.cta')}
               </button>
             </Link>
@@ -491,8 +491,8 @@ export default function HomePage() {
                 <button
                   onClick={addStackToCart}
                   className={`w-full font-semibold py-4 text-base lg:text-base xl:text-base 2xl:text-lg rounded-full transition-colors ${stackItems.length > 0
-                      ? 'bg-gray-900 text-white hover:bg-gray-800'
-                      : 'bg-gray-600 text-white cursor-not-allowed'
+                    ? 'bg-gray-900 text-white hover:bg-gray-800'
+                    : 'bg-gray-600 text-white cursor-not-allowed'
                     }`}
                   disabled={stackItems.length === 0}
                 >
