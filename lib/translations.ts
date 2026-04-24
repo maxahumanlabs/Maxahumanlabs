@@ -284,7 +284,7 @@ export const translations = {
     header: {
       home: "بيتبيت",
       all_peptides: "جميع الببتيدات",
-      oral_peptides: "Peptides Ex-supplements",
+      peptides_ex_supplements: "مكملات الببتيدات",
       dosage_calculator: "حاسبة الجرعات",
       maxa_ai: "ماكسا أي",
       login: "تسجيل الدخول",
@@ -385,8 +385,8 @@ export const translations = {
       no_products_message: "تحقق مرة أخرى قريبًا للمنتجات الجديدة."
     },
     peptides_ex_supplements: {
-      title: "Peptides Ex-supplements",
-      loading: "جاري تحميل Peptides Ex-supplements...",
+      title: "جميع المكملات المدعمة بالببتيدات",
+      loading: "جاري تحميل المكملات...",
       showing: "عرض",
       product: "منتج",
       products: "منتجات",
