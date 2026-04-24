@@ -7,7 +7,7 @@ import ProductGrid from '@/components/products/ProductGrid';
 import { wordpress } from '@/lib/wordpress';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-export default function OralPeptidesPage() {
+export default function PeptidesExSupplementsPage() {
   const { t } = useLanguage();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -16,10 +16,10 @@ export default function OralPeptidesPage() {
     async function loadProducts() {
       try {
         const { woocommerce } = await import('@/lib/woocommerce');
-        const data = await woocommerce.getProducts({ category: 'oral', perPage: 24 });
+        const data = await woocommerce.getProducts({ category: 'peptides-ex-supplements', perPage: 24 });
         setProducts(data);
       } catch (error) {
-        console.error('Error fetching oral peptides:', error);
+        console.error('Error fetching Peptides Ex-supplements:', error);
       } finally {
         setLoading(false);
       }
@@ -54,13 +54,13 @@ export default function OralPeptidesPage() {
                   </Link>
                 </li>
                 <li className="text-gray-500">/</li>
-                <li className="text-white font-medium">{t('oral_peptides.title')}</li>
+                <li className="text-white font-medium">{t('peptides_ex_supplements.title')}</li>
               </ol>
             </nav>
             
             {/* Heading */}
             <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold text-white">
-              {t('oral_peptides.title')}
+              {t('peptides_ex_supplements.title')}
             </h1>
             
           </div>
@@ -72,7 +72,7 @@ export default function OralPeptidesPage() {
         {loading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
-            <p className="text-gray-500 mt-4">{t('oral_peptides.loading')}</p>
+            <p className="text-gray-500 mt-4">{t('peptides_ex_supplements.loading')}</p>
           </div>
         ) : products.length > 0 ? (
           <>
@@ -81,7 +81,7 @@ export default function OralPeptidesPage() {
             
             {/* Results Count */}
             <div className="mt-12 text-center text-gray-600">
-              {t('oral_peptides.showing')} {products.length} {products.length === 1 ? t('oral_peptides.product') : t('oral_peptides.products')}
+              {t('peptides_ex_supplements.showing')} {products.length} {products.length === 1 ? t('peptides_ex_supplements.product') : t('peptides_ex_supplements.products')}
             </div>
           </>
         ) : (
@@ -99,9 +99,9 @@ export default function OralPeptidesPage() {
                 d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
               />
             </svg>
-            <h2 className="text-2xl font-semibold text-gray-700 mb-2">{t('oral_peptides.no_products_title')}</h2>
+            <h2 className="text-2xl font-semibold text-gray-700 mb-2">{t('peptides_ex_supplements.no_products_title')}</h2>
             <p className="text-gray-500">
-              {t('oral_peptides.no_products_message')}
+              {t('peptides_ex_supplements.no_products_message')}
             </p>
           </div>
         )}

@@ -20,10 +20,10 @@ export default function DosageCalculator() {
   // Calculate required dose (matching liquid file logic)
   const calculateDose = () => {
     if (!peptideQuantity || !waterVolume || !desiredDose) return null;
-    
+
     // Calculate concentration (mg/ml)
     const concentration = peptideQuantity / waterVolume;
-    
+
     // Convert desired dose to mg if in mcg
     let standardizedDose;
     if (doseUnit === 'mcg') {
@@ -31,13 +31,13 @@ export default function DosageCalculator() {
     } else {
       standardizedDose = desiredDose;
     }
-    
+
     // Calculate volume needed (ml)
     const volume = standardizedDose / concentration;
-    
+
     // Calculate units on U-100 syringe
     const syringeUnits = Math.round(volume * 100);
-    
+
     return {
       volume: volume,
       volumeFormatted: volume.toFixed(2),
@@ -66,22 +66,20 @@ export default function DosageCalculator() {
               <div className="flex gap-3 sm:gap-6 md:gap-8 lg:gap-12 items-end justify-center w-full max-w-full px-2">
                 <button
                   onClick={() => setSelectedSyringe(0.3)}
-                  className={`border-2 rounded-2xl p-2 sm:p-3 md:p-4 w-24 h-56 sm:w-32 sm:h-64 md:w-36 md:h-72 flex flex-col items-center justify-between transition-all flex-shrink-0 ${
-                    selectedSyringe === 0.3
-                      ? 'border-gray-900 bg-gray-50'
-                      : 'border-gray-200 hover:border-gray-400'
-                  }`}
+                  className={`border-2 rounded-2xl p-2 sm:p-3 md:p-4 w-24 h-56 sm:w-32 sm:h-64 md:w-36 md:h-72 flex flex-col items-center justify-between transition-all flex-shrink-0 ${selectedSyringe === 0.3
+                    ? 'border-gray-900 bg-gray-50'
+                    : 'border-gray-200 hover:border-gray-400'
+                    }`}
                 >
                   <img src="/0.3ml.webp" alt="0.3 ml syringe" className="w-16 h-44 sm:w-24 sm:h-52 md:h-56 object-contain mb-2" />
                   <span className="text-xs sm:text-sm md:text-base font-semibold text-gray-900">0.3 ml</span>
                 </button>
                 <button
                   onClick={() => setSelectedSyringe(0.5)}
-                  className={`border-2 rounded-2xl p-2 sm:p-3 md:p-4 w-24 h-56 sm:w-32 sm:h-64 md:w-36 md:h-72 flex flex-col items-center justify-between transition-all flex-shrink-0 ${
-                    selectedSyringe === 0.5
-                      ? 'border-gray-900 bg-gray-50'
-                      : 'border-gray-200 hover:border-gray-400'
-                  }`}
+                  className={`border-2 rounded-2xl p-2 sm:p-3 md:p-4 w-24 h-56 sm:w-32 sm:h-64 md:w-36 md:h-72 flex flex-col items-center justify-between transition-all flex-shrink-0 ${selectedSyringe === 0.5
+                    ? 'border-gray-900 bg-gray-50'
+                    : 'border-gray-200 hover:border-gray-400'
+                    }`}
                 >
                   <img src="/0.5ml.webp" alt="0.5 ml syringe" className="w-16 h-44 sm:w-24 sm:h-52 md:h-56 object-contain mb-2" />
                   <span className="text-xs sm:text-sm md:text-base font-semibold text-gray-900">0.5 ml</span>
@@ -91,11 +89,10 @@ export default function DosageCalculator() {
               <div className="flex justify-center w-full">
                 <button
                   onClick={() => setSelectedSyringe(1.0)}
-                  className={`border-2 rounded-2xl p-2 sm:p-3 md:p-4 w-24 h-56 sm:w-32 sm:h-64 md:w-36 md:h-72 flex flex-col items-center justify-between transition-all flex-shrink-0 ${
-                    selectedSyringe === 1.0
-                      ? 'border-gray-900 bg-gray-50'
-                      : 'border-gray-200 hover:border-gray-400'
-                  }`}
+                  className={`border-2 rounded-2xl p-2 sm:p-3 md:p-4 w-24 h-56 sm:w-32 sm:h-64 md:w-36 md:h-72 flex flex-col items-center justify-between transition-all flex-shrink-0 ${selectedSyringe === 1.0
+                    ? 'border-gray-900 bg-gray-50'
+                    : 'border-gray-200 hover:border-gray-400'
+                    }`}
                 >
                   <img src="/1ml.webp" alt="1.0 ml syringe" className="w-16 h-44 sm:w-24 sm:h-52 md:h-56 object-contain mb-2" />
                   <span className="text-xs sm:text-sm md:text-base font-semibold text-gray-900">1.0 ml</span>
@@ -123,11 +120,10 @@ export default function DosageCalculator() {
                       setCustomPeptide('');
                       setShowPeptideOther(false);
                     }}
-                    className={`relative px-6 py-2.5 border-2 rounded-lg text-sm font-medium overflow-hidden group transition-all ${
-                      peptideQuantity === mg
-                        ? 'border-gray-900 bg-gray-900 text-white'
-                        : 'border-gray-900 text-gray-900'
-                    }`}
+                    className={`relative px-6 py-2.5 border-2 rounded-lg text-sm font-medium overflow-hidden group transition-all ${peptideQuantity === mg
+                      ? 'border-gray-900 bg-gray-900 text-white'
+                      : 'border-gray-900 text-gray-900'
+                      }`}
                   >
                     <span className="absolute inset-0 bg-gray-900 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] rounded-lg"></span>
                     <span className="relative z-10 group-hover:text-white transition-colors duration-400">{mg} mg</span>
@@ -135,11 +131,10 @@ export default function DosageCalculator() {
                 ))}
                 <button
                   onClick={() => setShowPeptideOther(!showPeptideOther)}
-                  className={`relative px-6 py-2.5 border-2 rounded-lg text-sm font-medium overflow-hidden group transition-all ${
-                    showPeptideOther
-                      ? 'border-gray-900 bg-gray-900 text-white'
-                      : 'border-gray-900 text-gray-900'
-                  }`}
+                  className={`relative px-6 py-2.5 border-2 rounded-lg text-sm font-medium overflow-hidden group transition-all ${showPeptideOther
+                    ? 'border-gray-900 bg-gray-900 text-white'
+                    : 'border-gray-900 text-gray-900'
+                    }`}
                 >
                   <span className="absolute inset-0 bg-gray-900 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] rounded-lg"></span>
                   <span className="relative z-10 group-hover:text-white transition-colors duration-400">{t('calculator.other')}</span>
@@ -177,11 +172,10 @@ export default function DosageCalculator() {
                       setCustomWater('');
                       setShowWaterOther(false);
                     }}
-                    className={`relative px-6 py-2.5 border-2 rounded-lg text-sm font-medium overflow-hidden group transition-all ${
-                      waterVolume === ml
-                        ? 'border-gray-900 bg-gray-900 text-white'
-                        : 'border-gray-900 text-gray-900'
-                    }`}
+                    className={`relative px-6 py-2.5 border-2 rounded-lg text-sm font-medium overflow-hidden group transition-all ${waterVolume === ml
+                      ? 'border-gray-900 bg-gray-900 text-white'
+                      : 'border-gray-900 text-gray-900'
+                      }`}
                   >
                     <span className="absolute inset-0 bg-gray-900 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] rounded-lg"></span>
                     <span className="relative z-10 group-hover:text-white transition-colors duration-400">{ml} ml</span>
@@ -189,11 +183,10 @@ export default function DosageCalculator() {
                 ))}
                 <button
                   onClick={() => setShowWaterOther(!showWaterOther)}
-                  className={`relative px-6 py-2.5 border-2 rounded-lg text-sm font-medium overflow-hidden group transition-all ${
-                    showWaterOther
-                      ? 'border-gray-900 bg-gray-900 text-white'
-                      : 'border-gray-900 text-gray-900'
-                  }`}
+                  className={`relative px-6 py-2.5 border-2 rounded-lg text-sm font-medium overflow-hidden group transition-all ${showWaterOther
+                    ? 'border-gray-900 bg-gray-900 text-white'
+                    : 'border-gray-900 text-gray-900'
+                    }`}
                 >
                   <span className="absolute inset-0 bg-gray-900 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] rounded-lg"></span>
                   <span className="relative z-10 group-hover:text-white transition-colors duration-400">{t('calculator.other')}</span>
@@ -234,11 +227,10 @@ export default function DosageCalculator() {
                       setCustomDose('');
                       setShowDoseOther(false);
                     }}
-                    className={`relative px-6 py-2.5 border-2 rounded-lg text-sm font-medium overflow-hidden group transition-all ${
-                      desiredDose === dose.value && doseUnit === dose.unit
-                        ? 'border-gray-900 bg-gray-900 text-white'
-                        : 'border-gray-900 text-gray-900'
-                    }`}
+                    className={`relative px-6 py-2.5 border-2 rounded-lg text-sm font-medium overflow-hidden group transition-all ${desiredDose === dose.value && doseUnit === dose.unit
+                      ? 'border-gray-900 bg-gray-900 text-white'
+                      : 'border-gray-900 text-gray-900'
+                      }`}
                   >
                     <span className="absolute inset-0 bg-gray-900 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] rounded-lg"></span>
                     <span className="relative z-10 group-hover:text-white transition-colors duration-400">{dose.label}</span>
@@ -246,11 +238,10 @@ export default function DosageCalculator() {
                 ))}
                 <button
                   onClick={() => setShowDoseOther(!showDoseOther)}
-                  className={`relative px-6 py-2.5 border-2 rounded-lg text-sm font-medium overflow-hidden group transition-all ${
-                    showDoseOther
-                      ? 'border-gray-900 bg-gray-900 text-white'
-                      : 'border-gray-900 text-gray-900'
-                  }`}
+                  className={`relative px-6 py-2.5 border-2 rounded-lg text-sm font-medium overflow-hidden group transition-all ${showDoseOther
+                    ? 'border-gray-900 bg-gray-900 text-white'
+                    : 'border-gray-900 text-gray-900'
+                    }`}
                 >
                   <span className="absolute inset-0 bg-gray-900 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] rounded-lg"></span>
                   <span className="relative z-10 group-hover:text-white transition-colors duration-400">{t('calculator.other')}</span>
@@ -270,7 +261,7 @@ export default function DosageCalculator() {
                     className="flex-1 px-6 py-2.5 border-2 border-gray-300 rounded-lg text-sm font-medium focus:border-gray-900 focus:outline-none"
                     autoFocus
                   />
-                  <select 
+                  <select
                     value={doseUnit}
                     onChange={(e) => setDoseUnit(e.target.value as 'mcg' | 'mg')}
                     className="px-4 py-2.5 border-2 border-gray-300 rounded-lg text-sm font-medium focus:border-gray-900 focus:outline-none"
@@ -290,7 +281,7 @@ export default function DosageCalculator() {
             <h2 className="text-xl  text-gray-900 text-center mb-2">
               {t('calculator.result_title')}
             </h2>
-            
+
             {result ? (
               result.exceedsSyringe ? (
                 <div className="text-center space-y-2">
@@ -321,7 +312,7 @@ export default function DosageCalculator() {
                       {/* Syringe */}
                       <div className="h-12 bg-gray-200 rounded-full relative overflow-hidden">
                         {/* Fill */}
-                        <div 
+                        <div
                           className="absolute left-0 top-0 bottom-0 bg-gray-200 transition-all duration-700 ease-out"
                           style={{ width: `${(result.volume / selectedSyringe) * 100}%` }}
                         >

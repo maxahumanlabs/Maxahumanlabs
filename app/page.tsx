@@ -154,46 +154,28 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pb-0">
-        <div className="relative  text-white overflow-hidden rounded-3xl">
-          {/* Background Image with Parallax Effect */}
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-40"
-            style={{
-              backgroundImage: "url('/banner.png')",
-              transform: `translateX(${scrollY * 0.15}px)`,
-              transition: 'transform 0.1s ease-out'
-            }}
-          />
-
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/75" />
-
-          {/* Content */}
-          <div className="relative px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-32 pb-12 md:pb-16 pt-12 md:pt-52">
-            <div className="max-w-2xl pb-4">
-              <p className="text-yellow-500 text-xs md:text-xs lg:text-xs xl:text-sm 2xl:text-sm font-medium tracking-[0.25em] mb-2 uppercase">
-                {t('hero.tagline')}
-              </p>
-              <h1 className="text-3xl md:text-4xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold mb-4 leading-[1.15]">
-                {t('hero.title')}
-              </h1>
-              <p className="text-gray-200 text-sm md:text-base lg:text-base xl:text-lg 2xl:text-xl mb-8 leading-relaxed max-w-lg">
-                {t('hero.description')}
-              </p>
-              <Link href="/products">
-                <button className="relative inline-flex items-center bg-white text-gray-900 px-12 py-3.5 text-sm lg:text-sm xl:text-base 2xl:text-lg font-semibold rounded-full overflow-hidden group transition-colors">
-                  {/* Liquid fill animation background */}
-                  <span className="absolute inset-0 bg-black origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] rounded-full"></span>
-
-                  {/* Button content */}
-                  <span className="relative z-10 group-hover:text-white transition-colors duration-400">{t('hero.cta')}</span>
-                  <svg className="relative z-10 w-4 h-4 ml-2 group-hover:stroke-white transition-colors duration-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </button>
-              </Link>
-            </div>
+      <section className="w-full bg-[#a855f7] py-24 md:py-32">
+        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 max-w-4xl mx-auto text-center">
+          <p className="text-purple-100 text-xs md:text-sm font-semibold tracking-[0.2em] mb-6 uppercase">
+            {t('hero.tagline')}
+          </p>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white mb-8 leading-[1.15]">
+            <span className="block font-normal">{t('hero.title')}</span>
+          </h1>
+          <p className="text-white/90 text-sm md:text-base lg:text-lg mb-12 leading-relaxed max-w-2xl mx-auto">
+            {t('hero.description')}
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/products">
+              <button className="bg-white text-[#a855f7] px-8 py-3.5 text-sm font-semibold tracking-wide uppercase transition-colors hover:bg-gray-50 w-full sm:w-auto shadow-sm">
+                {t('hero.cta')}
+              </button>
+            </Link>
+            <Link href="#">
+              <button className="bg-transparent border border-white/50 text-white px-8 py-3.5 text-sm font-semibold tracking-wide uppercase transition-colors hover:border-white hover:bg-white/10 w-full sm:w-auto shadow-sm">
+                {t('hero.cta_secondary')}
+              </button>
+            </Link>
           </div>
         </div>
       </section>

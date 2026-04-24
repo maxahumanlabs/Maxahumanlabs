@@ -27,7 +27,7 @@ export default function ProductDetailPage() {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
-  const [selectedBundle, setSelectedBundle] = useState('one-month');
+  const [selectedBundle, setSelectedBundle] = useState('six-months');
   const [email, setEmail] = useState('');
   const [reviews, setReviews] = useState<ProductReview[]>([]);
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
@@ -139,34 +139,34 @@ export default function ProductDetailPage() {
   // Helper function to check if a value is set and not empty
   const hasValue = (val: any) => val !== null && val !== undefined && val !== '' && parseFloat(val) > 0;
   
-  // 3-Month pricing: Use custom prices if set, otherwise calculate
+  // 2-Pack pricing: Use custom prices if set, otherwise calculate (10% discount on 2 items)
   const threeMonthRegular = hasValue(bundlePricing.three_month?.regular_price) 
     ? parseFloat(bundlePricing.three_month.regular_price) 
-    : originalPrice * 3;
+    : originalPrice * 2;
   const threeMonthSale = hasValue(bundlePricing.three_month?.sale_price)
     ? parseFloat(bundlePricing.three_month.sale_price)
-    : (hasValue(bundlePricing.three_month?.regular_price) ? threeMonthRegular : currentPrice * 3);
+    : (hasValue(bundlePricing.three_month?.regular_price) ? threeMonthRegular : (currentPrice * 2 * 0.90));
   const threeMonthSavings = threeMonthRegular - threeMonthSale;
   const threeMonthSavingsPercent = threeMonthRegular > 0 ? ((threeMonthSavings / threeMonthRegular) * 100) : 0;
   
-  // 6-Month pricing: Use custom prices if set, otherwise calculate
+  // 3-Pack pricing: Use custom prices if set, otherwise calculate (15% discount on 3 items)
   const sixMonthRegular = hasValue(bundlePricing.six_month?.regular_price)
     ? parseFloat(bundlePricing.six_month.regular_price)
-    : originalPrice * 6;
+    : originalPrice * 3;
   const sixMonthSale = hasValue(bundlePricing.six_month?.sale_price)
     ? parseFloat(bundlePricing.six_month.sale_price)
-    : (hasValue(bundlePricing.six_month?.regular_price) ? sixMonthRegular : currentPrice * 6);
+    : (hasValue(bundlePricing.six_month?.regular_price) ? sixMonthRegular : (currentPrice * 3 * 0.85));
   const sixMonthSavings = sixMonthRegular - sixMonthSale;
   const sixMonthSavingsPercent = sixMonthRegular > 0 ? ((sixMonthSavings / sixMonthRegular) * 100) : 0;
   
   const bundleOptions: BundleOption[] = [
     {
-      id: 'one-month',
-      months: 1,
-      label: t('bundle.one_month'),
-      price: currentPrice,
-      savings: savingsPerItem,
-      savingsPercent: Math.round(savingsPercentPerItem),
+      id: 'six-months',
+      months: 6,
+      label: t('bundle.six_months'),
+      price: sixMonthSale,
+      savings: sixMonthSavings,
+      savingsPercent: Math.round(sixMonthSavingsPercent),
     },
     {
       id: 'three-months',
@@ -178,12 +178,12 @@ export default function ProductDetailPage() {
       isPopular: true,
     },
     {
-      id: 'six-months',
-      months: 6,
-      label: t('bundle.six_months'),
-      price: sixMonthSale,
-      savings: sixMonthSavings,
-      savingsPercent: Math.round(sixMonthSavingsPercent),
+      id: 'one-month',
+      months: 1,
+      label: t('bundle.one_month'),
+      price: currentPrice,
+      savings: savingsPerItem,
+      savingsPercent: Math.round(savingsPercentPerItem),
     },
   ];
 
@@ -423,6 +423,42 @@ export default function ProductDetailPage() {
                   )}
                 </label>
               ))}
+            </div>
+
+            {/* Free Gifts Section */}
+            <div className="mt-6 pt-6 border-t border-gray-200">
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-6 flex items-center justify-center gap-2">
+                <span className="text-2xl">🎁</span> {t('bundle.unlock_gifts')}
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                {/* Gift 1: Free Shipping */}
+                <div className="border-2 border-gray-900 rounded-xl p-4 text-center relative flex flex-col items-center justify-center bg-white h-32 shadow-sm">
+                  <div className="absolute -top-3 bg-gray-200 text-gray-800 text-xs font-bold px-3 py-1 rounded-md">
+                    {t('bundle.free')}
+                  </div>
+                  <div className="mb-2">
+                    <svg className="w-12 h-12 text-[#9333ea]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11M14 9h4l4 4v5c0 .6-.4 1-1 1h-2" />
+                      <circle cx="7" cy="18" r="2" strokeWidth={1.5} />
+                      <circle cx="17" cy="18" r="2" strokeWidth={1.5} />
+                    </svg>
+                  </div>
+                  <p className="font-semibold text-sm text-gray-900">{t('bundle.free_shipping')}</p>
+                </div>
+
+                {/* Gift 2: Free E-book */}
+                <div className="border-2 border-gray-900 rounded-xl p-4 text-center relative flex flex-col items-center justify-center bg-white h-32 shadow-sm">
+                  <div className="absolute -top-3 bg-gray-200 text-gray-800 text-xs font-bold px-3 py-1 rounded-md">
+                    {t('bundle.free')}
+                  </div>
+                  <div className="mb-2">
+                    <svg className="w-12 h-12 text-[#9333ea]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                  </div>
+                  <p className="font-semibold text-sm text-gray-900">{t('bundle.free_ebook')}</p>
+                </div>
+              </div>
             </div>
           </div>
 

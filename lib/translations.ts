@@ -4,7 +4,7 @@ export const translations = {
     header: {
       home: "Home",
       all_peptides: "All Peptides",
-      oral_peptides: "Oral Peptides Supplements",
+      peptides_ex_supplements: "Peptides Ex-Supplements",
       dosage_calculator: "Dosage Calculator",
       maxa_ai: "Maxa Ai",
       login: "Login",
@@ -17,7 +17,8 @@ export const translations = {
       tagline: "Science They Can't Silent",
       title: "Precision Crafted Research Peptides",
       description: "High-purity compounds. Independent lab verification. Trusted by researchers seeking uncompromised quality.",
-      cta: "Shop All"
+      cta: "Shop All",
+      cta_secondary: "Learn More"
     },
     brand: {
       research: "Research",
@@ -40,16 +41,16 @@ export const translations = {
     why_maxa: {
       title: "Why Maxa Human?",
       precision: {
-        title: "Precision-Focused",
-        description: "Small-batch synthesis with exact amino-acid sequencing."
+        title: "Certified",
+        description: "Third-party lab tested. Batch-specific certificates. Quality you can verify."
       },
       middlemen: {
-        title: "No Middlemen",
-        description: "Direct from Swiss facility to your fridge."
+        title: "Lab Tested",
+        description: "Lab tested under the highest industry standards."
       },
       disruptive: {
-        title: "Boldly Disruptive",
-        description: "We say what legacy pharma won't: better biology is DIY."
+        title: "Purest Quality",
+        description: "100% Pure, Lab Tested & Verified Peptides."
       }
     },
     faqs: {
@@ -103,14 +104,14 @@ export const translations = {
       no_products_title: "No Products Found",
       no_products_message: "Check back soon for new products."
     },
-    oral_peptides: {
-      title: "Oral Peptides Supplements",
-      loading: "Loading oral peptides...",
+    peptides_ex_supplements: {
+      title: "All Peptides Infused Supplements",
+      loading: "Loading Peptides Ex-supplements...",
       showing: "Showing",
       product: "product",
       products: "products",
-      no_products_title: "No Oral Peptides Found",
-      no_products_message: "Check back soon for new oral peptide products."
+      no_products_title: "No Peptides Ex-supplements Found",
+      no_products_message: "Check back soon for new Peptides Ex-supplements products."
     },
     calculator: {
       title: "Dosage Calculator",
@@ -162,7 +163,8 @@ export const translations = {
       join: "Join the future of biology and get 15% off + a free copy of our 'Maxa Human Playbook'.",
       email_placeholder: "Enter your email",
       copyright: "© 2026 Maxa Human. Powered by Shopify",
-      privacy_policy: "Privacy policy"
+      privacy_policy: "Privacy policy",
+      terms_of_service: "Terms of service"
     },
     authentication: {
       title: "Authentication",
@@ -258,10 +260,14 @@ export const translations = {
       secure_payment_desc: "You will be redirected to Stripe's secure checkout to complete your payment."
     },
     bundle: {
-      one_month: "1 month",
-      three_months: "3 months",
-      six_months: "6 months",
-      buy_with_google_pay: "Buy with Google Pay"
+      one_month: "1 pack",
+      three_months: "2 pack",
+      six_months: "3 pack",
+      buy_with_google_pay: "Buy with Google Pay",
+      unlock_gifts: "Unlock Free gifts with your order",
+      free_shipping: "Free shipping",
+      free_ebook: "Free E-book",
+      free: "FREE"
     }
   },
   ar: {
@@ -269,7 +275,7 @@ export const translations = {
     header: {
       home: "بيتبيت",
       all_peptides: "جميع الببتيدات",
-      oral_peptides: "مكملات الببتيدات الفموية",
+      oral_peptides: "Peptides Ex-supplements",
       dosage_calculator: "حاسبة الجرعات",
       maxa_ai: "ماكسا أي",
       login: "تسجيل الدخول",
@@ -282,7 +288,8 @@ export const translations = {
       tagline: "العلم الذي لا يمكنهم إسكاته",
       title: "ببتيدات بحثية مصممة بدقة",
       description: "مركبات عالية النقاء. تم التحقق منها من قبل مختبر مستقل. موثوق بها من قبل الباحثين الذين يسعون إلى جودة لا مثيل لها.",
-      cta: "تسوق الكل"
+      cta: "تسوق الكل",
+      cta_secondary: "اعرف المزيد"
     },
     brand: {
       research: "الأبحاث",
@@ -305,16 +312,16 @@ export const translations = {
     why_maxa: {
       title: "لماذا ماكسا هيومان؟",
       precision: {
-        title: "التركيز على الدقة",
-        description: "التخليق بكميات صغيرة مع تسلسل دقيق للأحماض الأمينية."
+        title: "معتمد",
+        description: "تم اختباره بواسطة مختبر خارجي. شهادات محددة لكل دفعة. جودة يمكنك التحقق منها."
       },
       middlemen: {
-        title: "بدون وسطاء",
-        description: "مباشرة من المنشأة السويسرية إلى ثلاجتك."
+        title: "تم اختباره في المختبر",
+        description: "تم اختباره في المختبر تحت أعلى معايير الصناعة."
       },
       disruptive: {
-        title: "جريء ومبتكر",
-        description: "نقول ما لا تقوله شركات الأدوية التقليدية: علم الأحياء الأفضل هو ما تصنعه بنفسك."
+        title: "نقاء عالي",
+        description: "100% نقي، تم اختباره في المختبر، موثوق."
       }
     },
     faqs: {
@@ -368,14 +375,14 @@ export const translations = {
       no_products_title: "لم يتم العثور على منتجات",
       no_products_message: "تحقق مرة أخرى قريبًا للمنتجات الجديدة."
     },
-    oral_peptides: {
-      title: "مكملات الببتيدات الفموية",
-      loading: "جاري تحميل الببتيدات الفموية...",
+    peptides_ex_supplements: {
+      title: "Peptides Ex-supplements",
+      loading: "جاري تحميل Peptides Ex-supplements...",
       showing: "عرض",
       product: "منتج",
       products: "منتجات",
-      no_products_title: "لم يتم العثور على ببتيدات فموية",
-      no_products_message: "تحقق مرة أخرى قريبًا للمنتجات الفموية الجديدة."
+      no_products_title: "لم يتم العثور على Peptides Ex-supplements",
+      no_products_message: "تحقق مرة أخرى قريبًا لمنتجات Peptides Ex-supplements الجديدة."
     },
     calculator: {
       title: "حاسبة الجرعات",
@@ -427,7 +434,8 @@ export const translations = {
       join: "انضم إلى مستقبل علم الأحياء واحصل على خصم 15% + نسخة مجانية من 'دليل ببتيدات ماكسا هيومان' الخاص بنا.",
       email_placeholder: "أدخل بريدك الإلكتروني",
       copyright: "© 2026 Maxa Human. مدعوم من Shopify",
-      privacy_policy: "سياسة الخصوصية"
+      privacy_policy: "سياسة الخصوصية",
+      terms_of_service: "شروط الخدمة"
     },
     authentication: {
       title: "مصادقة",
@@ -523,10 +531,14 @@ export const translations = {
       secure_payment_desc: "سيتم تحويلك إلى صفحة الدفع الآمنة من Stripe لإتمام عملية الدفع."
     },
     bundle: {
-      one_month: "شهر واحد",
-      three_months: "٣ أشهر",
-      six_months: "٦ أشهر",
-      buy_with_google_pay: "الشراء بواسطة جوجل باي"
+      one_month: "عبوة واحدة",
+      three_months: "عبوتين",
+      six_months: "٣ عبوات",
+      buy_with_google_pay: "الشراء بواسطة جوجل باي",
+      unlock_gifts: "احصل على هدايا مجانية مع طلبك",
+      free_shipping: "شحن مجاني",
+      free_ebook: "كتاب إلكتروني مجاني",
+      free: "مجاناً"
     }
   }
 };
