@@ -164,7 +164,16 @@ export const translations = {
       email_placeholder: "Enter your email",
       copyright: "© 2026 Maxa Human. Powered by Shopify",
       privacy_policy: "Privacy policy",
-      terms_of_service: "Terms of service"
+      terms_of_service: "Terms of service",
+      disclaimer: {
+        title: "RESEARCH DISCLAIMER",
+        p1: "All products presented on this website are intended exclusively for in-vitro laboratory research and scientific investigation by qualified professionals. Nothing herein constitutes medical advice, therapeutic recommendation, or endorsement for human or animal consumption.",
+        p2: "Maxa Human do not advocate or condone any off-label use, self-administration, or application beyond controlled research environments. All compounds are sold strictly for academic and investigational purposes. Purchasers assume full responsibility for compliance with applicable regulations. Consultation with research ethics boards, medical advisors, and legal counsel is recommended prior to purchase.",
+        p3: "Maxa Human does not provide medical services, nor is it a substitute for medical consultations.",
+        p4: "All products are intended solely for laboratory research use. Any mention of potential effects is provided for informational purposes only.",
+        p5: "The statements made within this website have not been evaluated by health authorities. The statements and the products of this company are intended for research and educational purposes only.",
+        p6: "Please refer to our Terms Of Service prior to purchasing. By purchasing products, you confirm that you are at least 21 years old."
+      }
     },
     authentication: {
       title: "Authentication",
@@ -435,7 +444,16 @@ export const translations = {
       email_placeholder: "أدخل بريدك الإلكتروني",
       copyright: "© 2026 Maxa Human. مدعوم من Shopify",
       privacy_policy: "سياسة الخصوصية",
-      terms_of_service: "شروط الخدمة"
+      terms_of_service: "شروط الخدمة",
+      disclaimer: {
+        title: "إخلاء مسؤولية للبحوث",
+        p1: "جميع المنتجات المعروضة على هذا الموقع مخصصة حصريًا للبحث المختبري والتحقيق العلمي من قبل محترفين مؤهلين. لا يوجد في هذا الموقع ما يشكل نصيحة طبية أو توصية علاجية أو تأييدًا للاستهلاك البشري أو الحيواني.",
+        p2: "لا تدعو ماكسا هيومان (Maxa Human) أو تتغاضى عن أي استخدام خارج النطاق المصرح به، أو الإدارة الذاتية، أو التطبيق خارج بيئات البحث الخاضعة للرقابة. تُباع جميع المركبات للأغراض الأكاديمية والبحثية فقط. يتحمل المشترون المسؤولية الكاملة عن الامتثال للوائح المعمول بها. يُنصح بالتشاور مع مجالس أخلاقيات البحث والمستشارين الطبيين والمستشارين القانونيين قبل الشراء.",
+        p3: "ماكسا هيومان لا تقدم خدمات طبية، كما أنها ليست بديلاً عن الاستشارات الطبية.",
+        p4: "جميع المنتجات مخصصة حصريًا للاستخدام في البحوث المختبرية. يتم توفير أي ذكر للآثار المحتملة للأغراض الإعلامية فقط.",
+        p5: "البيانات الواردة في هذا الموقع لم يتم تقييمها من قبل السلطات الصحية. البيانات ومنتجات هذه الشركة مخصصة للأغراض البحثية والتعليمية فقط.",
+        p6: "يرجى الرجوع إلى شروط الخدمة الخاصة بنا قبل الشراء. من خلال شراء المنتجات، فإنك تؤكد أنك تبلغ من العمر 21 عامًا على الأقل."
+      }
     },
     authentication: {
       title: "مصادقة",

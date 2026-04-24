@@ -40,13 +40,13 @@ export default function Footer() {
 
           {/* Disclaimer */}
           <div className="border-t border-gray-800 pt-8 mt-8 text-gray-400 text-xs md:text-sm leading-relaxed space-y-4">
-            <h4 className="font-bold text-gray-300 uppercase">RESEARCH DISCLAIMER</h4>
-            <p>All products presented on this website are intended exclusively for in-vitro laboratory research and scientific investigation by qualified professionals. Nothing herein constitutes medical advice, therapeutic recommendation, or endorsement for human or animal consumption.</p>
-            <p>Peptive do not advocate or condone any off-label use, self-administration, or application beyond controlled research environments. All compounds are sold strictly for academic and investigational purposes. Purchasers assume full responsibility for compliance with applicable regulations. Consultation with research ethics boards, medical advisors, and legal counsel is recommended prior to purchase.</p>
-            <p>Peptive does not provide medical services, nor is it a substitute for medical consultations.</p>
-            <p>All products are intended solely for laboratory research use. Any mention of potential effects is provided for informational purposes only.</p>
-            <p>The statements made within this website have not been evaluated by health authorities. The statements and the products of this company are intended for research and educational purposes only.</p>
-            <p>Please refer to our Terms Of Service prior to purchasing. By purchasing products, you confirm that you are at least 21 years old.</p>
+            <h4 className="font-bold text-gray-300 uppercase">{t('footer.disclaimer.title')}</h4>
+            <p>{t('footer.disclaimer.p1')}</p>
+            <p>{t('footer.disclaimer.p2')}</p>
+            <p>{t('footer.disclaimer.p3')}</p>
+            <p>{t('footer.disclaimer.p4')}</p>
+            <p>{t('footer.disclaimer.p5')}</p>
+            <p>{t('footer.disclaimer.p6')}</p>
           </div>
         </div>
       </footer>
