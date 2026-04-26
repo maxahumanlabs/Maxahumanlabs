@@ -224,7 +224,7 @@ export default function HomePage() {
                 </p>
                 <Link href={slide.url}>
                   <button className="bg-transparent border border-white text-white px-8 py-3 text-xs md:text-sm font-semibold tracking-widest uppercase transition-colors hover:bg-white hover:text-[#3b2760] shadow-sm inline-block">
-                    {t('hero_slider.buy_now', { defaultValue: 'BUY NOW →' })}
+                    {t('hero_slider.buy_now') || 'BUY NOW →'}
                   </button>
                 </Link>
               </div>
