@@ -18,6 +18,9 @@ export default function HomePage() {
   const [stackItems, setStackItems] = useState<Product[]>([]);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [stackPage, setStackPage] = useState(1);
+  const [hasMoreStack, setHasMoreStack] = useState(true);
+  const [isLoadingMoreStack, setIsLoadingMoreStack] = useState(false);
 
   const heroSlides = [
     {
@@ -78,9 +81,10 @@ export default function HomePage() {
         const trending = await woocommerce.getProducts({ category: 'trending', perPage: 10 });
         setTrendingProducts(trending);
 
-        // Fetch stack products from "stack" category - only first 3
-        const stack = await woocommerce.getProducts({ category: 'stack', perPage: 3 });
+        // Fetch stack products from "stack" category
+        const stack = await woocommerce.getProducts({ category: 'stack', perPage: 6, page: 1 });
         setStackProducts(stack);
+        setHasMoreStack(stack.length === 6);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -136,6 +140,24 @@ export default function HomePage() {
     const updatedStack = [...stackItems, product];
     setStackItems(updatedStack);
     localStorage.setItem('maxa-stack', JSON.stringify(updatedStack));
+  };
+
+  const loadMoreStack = async () => {
+    if (isLoadingMoreStack || !hasMoreStack) return;
+    setIsLoadingMoreStack(true);
+    try {
+      const { woocommerce } = await import('@/lib/woocommerce');
+      const nextPage = stackPage + 1;
+      const newProducts = await woocommerce.getProducts({ category: 'stack', perPage: 6, page: nextPage });
+      
+      setStackProducts([...stackProducts, ...newProducts]);
+      setStackPage(nextPage);
+      setHasMoreStack(newProducts.length === 6);
+    } catch (error) {
+      console.error('Error loading more stack products:', error);
+    } finally {
+      setIsLoadingMoreStack(false);
+    }
   };
 
   // Remove product from stack
@@ -411,10 +433,11 @@ export default function HomePage() {
           {/* Stack Builder Grid */}
           <div className="grid lg:grid-cols-4 gap-6">
             {/* Stack Cards Container */}
-            <div className="lg:col-span-3 grid md:grid-cols-3 gap-6">
-              {stackProducts.length > 0 ? (
-                stackProducts.map((product) => (
-                  <div key={product.id} className="relative bg-gray-50 rounded-xl overflow-hidden shadow-sm">
+            <div className="lg:col-span-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {stackProducts.length > 0 ? (
+                  stackProducts.map((product) => (
+                    <div key={product.id} className="relative bg-gray-50 rounded-xl overflow-hidden shadow-sm">
                     {/* Badges */}
                     <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
                       {product.onSale && product.regularPrice && product.salePrice && (
@@ -494,6 +517,27 @@ export default function HomePage() {
                     </div>
                   </div>
                 ))
+              )}
+              </div>
+              
+              {/* Load More Button */}
+              {hasMoreStack && stackProducts.length > 0 && (
+                <div className="mt-8 flex justify-center">
+                  <button 
+                    onClick={loadMoreStack}
+                    disabled={isLoadingMoreStack}
+                    className="bg-[#3b2760] text-white px-8 py-3 rounded-full font-medium hover:bg-[#2a1b45] transition-colors disabled:opacity-50 flex items-center gap-2"
+                  >
+                    {isLoadingMoreStack ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        {language === 'ar' ? 'جاري التحميل...' : 'Loading...'}
+                      </>
+                    ) : (
+                      language === 'ar' ? 'عرض المزيد' : 'Load More'
+                    )}
+                  </button>
+                </div>
               )}
             </div>
 
