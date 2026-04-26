@@ -4,7 +4,7 @@ export const translations = {
     header: {
       home: "Home",
       all_peptides: "All Peptides",
-      peptides_ex_supplements: "Peptides Ex-Supplements",
+      peptides_x_supplements: "Peptides X-Supplements",
       dosage_calculator: "Dosage Calculator",
       maxa_ai: "Maxa Ai",
       login: "Login",
@@ -106,12 +106,12 @@ export const translations = {
     },
     peptides_ex_supplements: {
       title: "All Peptides Infused Supplements",
-      loading: "Loading Peptides Ex-supplements...",
+      loading: "Loading Peptides X-Supplements...",
       showing: "Showing",
       product: "product",
       products: "products",
-      no_products_title: "No Peptides Ex-supplements Found",
-      no_products_message: "Check back soon for new Peptides Ex-supplements products."
+      no_products_title: "No Peptides X-Supplements Found",
+      no_products_message: "Check back soon for new Peptides X-Supplements products."
     },
     calculator: {
       title: "Dosage Calculator",
@@ -277,14 +277,29 @@ export const translations = {
       free_shipping: "Free shipping",
       free_ebook: "Free E-book",
       free: "FREE"
+    },
+    hero_slider: {
+      buy_now: "BUY NOW →",
+      slide1: {
+        title: "BPC-157",
+        description: "BPC-157 (Arginine Salt) is a synthetic peptide fragment studied for its role in supporting cellular regeneration, tissue remodeling, and inflammation modulation."
+      },
+      slide2: {
+        title: "MOTS-c 10mg",
+        description: "MOTS-c 10mg is a high-purity research peptide supplied in a premium-grade vial with bacteriostatic water for reconstitution. Designed for laboratory and research use only."
+      },
+      slide3: {
+        title: "MAXA TEST",
+        description: "MAXA TEST is a powerful blend of adaptogens, nootropics, and androgenic support compounds designed for research models involving testosterone, vitality, physical performance, and hormonal resilience."
+      }
     }
   },
   ar: {
     announcement_bar: "أهلاً بكم في مستقبل علم الأحياء",
     header: {
-      home: "بيتبيت",
+      home: "الرئيسية",
       all_peptides: "جميع الببتيدات",
-      peptides_ex_supplements: "مكملات الببتيدات",
+      peptides_x_supplements: "مكملات الببتيدات",
       dosage_calculator: "حاسبة الجرعات",
       maxa_ai: "ماكسا أي",
       login: "تسجيل الدخول",
@@ -390,8 +405,8 @@ export const translations = {
       showing: "عرض",
       product: "منتج",
       products: "منتجات",
-      no_products_title: "لم يتم العثور على Peptides Ex-supplements",
-      no_products_message: "تحقق مرة أخرى قريبًا لمنتجات Peptides Ex-supplements الجديدة."
+      no_products_title: "لم يتم العثور على Peptides X-Supplements",
+      no_products_message: "تحقق مرة أخرى قريبًا لمنتجات Peptides X-Supplements الجديدة."
     },
     calculator: {
       title: "حاسبة الجرعات",
@@ -552,11 +567,26 @@ export const translations = {
       one_month: "عبوة واحدة",
       three_months: "عبوتين",
       six_months: "٣ عبوات",
-      buy_with_google_pay: "الشراء بواسطة جوجل باي",
-      unlock_gifts: "احصل على هدايا مجانية مع طلبك",
+      buy_with_google_pay: "شراء عبر Google Pay",
+      unlock_gifts: "افتح الهدايا المجانية مع طلبك",
       free_shipping: "شحن مجاني",
       free_ebook: "كتاب إلكتروني مجاني",
-      free: "مجاناً"
+      free: "مجانا"
+    },
+    hero_slider: {
+      buy_now: "اشترِ الآن ←",
+      slide1: {
+        title: "BPC-157",
+        description: "BPC-157 (ملح الأرجينين) هو جزء ببتيد اصطناعي تمت دراسته لدوره في دعم تجديد الخلايا، وإعادة بناء الأنسجة، وتنظيم الالتهاب."
+      },
+      slide2: {
+        title: "MOTS-c 10mg",
+        description: "MOTS-c 10mg هو ببتيد بحثي عالي النقاء يأتي في قنينة فاخرة مع ماء مضاد للبكتيريا لإعادة التكوين. مصمم للاستخدام المخبري والبحثي فقط."
+      },
+      slide3: {
+        title: "MAXA TEST",
+        description: "MAXA TEST هو مزيج قوي من المواد المتكيفة (Adaptogens)، والمنشطات الذهنية، ومركبات دعم الأندروجين المصممة للنماذج البحثية التي تتضمن التستوستيرون، الحيوية، الأداء البدني، والمرونة الهرمونية."
+      }
     }
   }
 };

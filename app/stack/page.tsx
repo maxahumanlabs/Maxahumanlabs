@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Product } from '@/types';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -67,17 +68,20 @@ export default function StackPage() {
     <div>
       {/* Banner Section */}
       <section className="pb-0">
-        <div className="relative  text-white overflow-hidden rounded-t-3xl min-h-[300px] md:min-h-[400px] flex items-center">
-          {/* Background Image */}
-          <div 
-            className="absolute inset-0 bg-cover bg-center opacity-40"
-            style={{
-              backgroundImage: "url('/banner.png')",
-            }}
-          />
+        <div className="relative bg-[#3b2760] text-white overflow-hidden rounded-t-3xl min-h-[300px] md:min-h-[400px] flex items-center">
+          {/* Logo Background with low opacity */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+            <Image
+              src="/logo.svg"
+              alt="Maxa Human Logo Background"
+              width={800}
+              height={800}
+              className="w-[120%] md:w-full object-contain brightness-0 invert"
+            />
+          </div>
           
           {/* Overlay */}
-          <div className="absolute inset-0 bg-black/75" />
+          <div className="absolute inset-0 bg-[#3b2760]/20" />
           
           {/* Content */}
           <div className="relative px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-32 w-full">

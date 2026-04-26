@@ -39,7 +39,7 @@ export default function Header() {
   const navigation = [
     { name: t('header.home'), href: '/' },
     { name: t('header.all_peptides'), href: '/products' },
-    { name: t('header.peptides_ex_supplements'), href: '/peptides-ex-supplements' },
+    { name: t('header.peptides_x_supplements'), href: '/peptides-x-supplements' },
     // { name: t('stack.title'), href: '/stack' },
     { name: t('header.dosage_calculator'), href: '/pages/dosage-calculator' },
 

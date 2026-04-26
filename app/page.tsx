@@ -17,6 +17,35 @@ export default function HomePage() {
   const [stackProducts, setStackProducts] = useState<Product[]>([]);
   const [stackItems, setStackItems] = useState<Product[]>([]);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const heroSlides = [
+    {
+      title: t('hero_slider.slide1.title'),
+      description: t('hero_slider.slide1.description'),
+      image: "https://slategrey-zebra-234644.hostingersite.com/wp-content/uploads/2026/02/11.png",
+      url: "/products/bpc-157-1000-mcg-60-capsules"
+    },
+    {
+      title: t('hero_slider.slide2.title'),
+      description: t('hero_slider.slide2.description'),
+      image: "https://slategrey-zebra-234644.hostingersite.com/wp-content/uploads/2026/02/5.png",
+      url: "/products/mots-c-10mg"
+    },
+    {
+      title: t('hero_slider.slide3.title'),
+      description: t('hero_slider.slide3.description'),
+      image: "https://slategrey-zebra-234644.hostingersite.com/wp-content/uploads/2026/02/Screenshot2026-01-26at9.48.08AM.webp",
+      url: "/products/maxa-test-advanced-natural-trt-testosterone-complex-90-capsules"
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -153,30 +182,69 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="w-full bg-[#3b2760] py-24 md:py-32">
-        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 max-w-4xl mx-auto text-center">
-          <p className="text-purple-100 text-xs md:text-sm font-semibold tracking-[0.2em] mb-6 uppercase">
-            {t('hero.tagline')}
-          </p>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-white mb-8 leading-[1.15]">
-            <span className="block font-normal">{t('hero.title')}</span>
-          </h1>
-          <p className="text-white/90 text-sm md:text-base lg:text-lg mb-12 leading-relaxed max-w-2xl mx-auto">
-            {t('hero.description')}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/products">
-              <button className="bg-white text-[#3b2760] px-8 py-3.5 text-sm font-semibold tracking-wide uppercase transition-colors hover:bg-gray-50 w-full sm:w-auto shadow-sm">
-                {t('hero.cta')}
-              </button>
-            </Link>
-            <Link href="#">
-              <button className="bg-transparent border border-white/50 text-white px-8 py-3.5 text-sm font-semibold tracking-wide uppercase transition-colors hover:border-white hover:bg-white/10 w-full sm:w-auto shadow-sm">
-                {t('hero.cta_secondary')}
-              </button>
-            </Link>
+      {/* Hero Section Slider */}
+      <section className="relative w-full bg-[#3b2760] overflow-hidden min-h-[680px] md:min-h-[600px] flex items-center py-16 pb-28 md:py-20 md:pb-20">
+        {/* Logo Background with low opacity */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+          <Image
+            src="/logo.svg"
+            alt="Maxa Human Logo Background"
+            width={800}
+            height={800}
+            className="w-[120%] md:w-full object-contain brightness-0 invert"
+          />
+        </div>
+
+        {heroSlides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out flex items-center ${currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+              }`}
+          >
+            <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-8 relative z-20">
+              {/* Product Image */}
+              <div className="w-full md:w-1/2 flex justify-center">
+                <div className="relative w-40 h-60 md:w-64 md:h-[400px]">
+                  <Image
+                    src={slide.image}
+                    alt={slide.title}
+                    fill
+                    className="object-contain drop-shadow-2xl"
+                  />
+                </div>
+              </div>
+
+              {/* Product Info */}
+              <div className={`w-full md:w-1/2 text-center ${language === 'ar' ? 'md:text-right' : 'md:text-left'}`}>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+                  {slide.title}
+                </h2>
+                <p className="text-white/80 text-base md:text-lg lg:text-xl mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
+                  {slide.description}
+                </p>
+                <Link href={slide.url}>
+                  <button className="bg-transparent border border-white text-white px-8 py-3 text-xs md:text-sm font-semibold tracking-widest uppercase transition-colors hover:bg-white hover:text-[#3b2760] shadow-sm inline-block">
+                    {t('hero_slider.buy_now', { defaultValue: 'BUY NOW →' })}
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
+        ))}
+
+        {/* Dots Navigation */}
+        <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-3 z-30">
+          {heroSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index
+                ? 'bg-white scale-110'
+                : 'bg-white/30 hover:bg-white/50'
+                }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </section>
 

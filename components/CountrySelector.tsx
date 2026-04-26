@@ -38,7 +38,7 @@ export default function CountrySelector() {
       >
         <button
           type="button"
-          className={`flex items-center gap-2 bg-[#1f1f1f] text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-all duration-300 min-w-[180px]`}
+          className={`flex items-center gap-2 bg-[#3b2760] text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-all duration-300 min-w-[180px]`}
           tabIndex={0}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -52,7 +52,7 @@ export default function CountrySelector() {
 
         {/* Dropdown */}
         <div
-          className={`absolute top-full left-0 mt-2 bg-[#1f1f1f] text-white rounded-b-2xl shadow-2xl overflow-hidden z-[100] min-w-[220px] transition-all duration-300 origin-top ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+          className={`absolute top-full left-0 mt-2 bg-[#3b2760] text-white rounded-b-2xl shadow-2xl overflow-hidden z-[100] min-w-[220px] transition-all duration-300 origin-top ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
         >
           {countries.map((country) => (
             <button

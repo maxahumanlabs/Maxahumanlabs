@@ -43,7 +43,7 @@ export default function LanguageSelector() {
       >
         <button
           type="button"
-          className={`flex items-center gap-2 bg-[#1f1f1f] text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-all duration-300 min-w-[120px]`}
+          className={`flex items-center gap-2 bg-[#3b2760] text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-all duration-300 min-w-[120px]`}
           tabIndex={0}
         >
           
@@ -55,7 +55,7 @@ export default function LanguageSelector() {
 
         {/* Dropdown */}
         <div
-          className={`absolute top-full left-0 mt-2 bg-[#1f1f1f] text-white rounded-b-2xl shadow-2xl overflow-hidden z-[100] min-w-[120px] transition-all duration-300 origin-top ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
+          className={`absolute top-full left-0 mt-2 bg-[#3b2760] text-white rounded-b-2xl shadow-2xl overflow-hidden z-[100] min-w-[120px] transition-all duration-300 origin-top ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
         >
           {languages.map((lang) => (
             <button

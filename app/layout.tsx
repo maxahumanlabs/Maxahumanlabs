@@ -45,7 +45,7 @@ export default function RootLayout({
             <WelcomePopup />
             {/* WhatsApp Button - global */}
             <a
-              href="https://wa.me/971558225919"
+              href="https://wa.me/971528107166"
               target="_blank"
               rel="noopener noreferrer"
               className="fixed bottom-4 left-4 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors z-50"

@@ -9,7 +9,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-[#1f1f1f] text-white ">
+      <footer className="bg-[#3b2760] text-white ">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-24 pb-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
             {/* Quick Links */}
@@ -28,8 +28,8 @@ export default function Footer() {
             <div>
               <h3 className="text-white font-bold text-lg lg:text-lg xl:text-xl 2xl:text-2xl mb-4 tracking-wide">{t('footer.contact').toUpperCase()}</h3>
               <div className="space-y-2">
-                <a href="tel:+971558225919" className="block underline text-white hover:text-gray-300 transition-colors text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
-                  +971 55 822 5919
+                <a href="tel:+971528107166" className="block underline text-white hover:text-gray-300 transition-colors text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
+                  +971 52 810 7166
                 </a>
                 <a href="mailto:info@maxahuman.com" className="block underline text-white hover:text-gray-300 transition-colors text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
                   info@maxahuman.com
@@ -52,7 +52,7 @@ export default function Footer() {
       </footer>
 
       {/* Bottom Bar Section */}
-      <div className="bg-[#1f1f1f] py-4">
+      <div className="bg-[#3b2760] py-4">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-4 text-gray-600 text-sm">
             <span>©{currentYear} Maxa Human.</span>
