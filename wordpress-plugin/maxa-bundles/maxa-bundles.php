@@ -85,6 +85,7 @@ class Maxa_Bundles {
         require_once MAXA_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-order.php';
         require_once MAXA_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-inventory.php';
         require_once MAXA_BUNDLES_PLUGIN_DIR . 'includes/class-bundle-api.php';
+        require_once MAXA_BUNDLES_PLUGIN_DIR . 'includes/class-academy-cpt.php';
     }
     
     /**
@@ -105,6 +106,7 @@ class Maxa_Bundles {
         new Maxa_Bundle_Order();
         new Maxa_Bundle_Inventory();
         new Maxa_Bundle_API();
+        new Maxa_Academy_CPT();
         
         // Load text domain
         load_plugin_textdomain('maxa-bundles', false, dirname(MAXA_BUNDLES_PLUGIN_BASENAME) . '/languages');
