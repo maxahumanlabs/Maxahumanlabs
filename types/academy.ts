@@ -16,6 +16,12 @@ export interface AcademyArticle {
   molecular_weight?: string;
   molecular_formula?: string;
   appearance?: string;
+  solubility?: string;
+  half_life?: string;
+  bioavailability?: string;
+  storage_condition?: string;
+  tab_research?: string;
+  tab_studies?: string;
   _embedded?: {
     'wp:featuredmedia'?: Array<{
       source_url: string;

@@ -32,7 +32,10 @@ class Maxa_Academy_CPT {
         ]);
 
         // Register custom fields to be exposed in REST API
-        $meta_fields = ['cas_number', 'purity', 'sequence', 'molecular_weight', 'molecular_formula', 'appearance'];
+        $meta_fields = [
+            'cas_number', 'purity', 'sequence', 'molecular_weight', 'molecular_formula', 'appearance',
+            'solubility', 'half_life', 'bioavailability', 'storage_condition', 'tab_research', 'tab_studies'
+        ];
         foreach ($meta_fields as $field) {
             register_rest_field('academy', $field, [
                 'get_callback' => function($object) use ($field) {
