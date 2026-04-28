@@ -127,7 +127,7 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section Slider */}
-      <section className="relative w-full bg-gradient-to-br from-[#f3eef9] to-[#ffffff] overflow-hidden min-h-[680px] md:min-h-[600px] flex items-center py-16 pb-28 md:py-20 md:pb-20">
+      <section className="relative w-full bg-gradient-to-br from-[#f3eef9] to-[#ffffff] overflow-hidden min-h-[680px] md:min-h-[600px] flex items-center pt-16 pb-32 md:py-20 md:pb-24">
         
         {/* Soft Bubbles Background */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -153,7 +153,7 @@ export default function HomePage() {
             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out flex items-center ${currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
               }`}
           >
-            <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-8 relative z-20">
+            <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-8 pb-8 md:pb-0 relative z-20">
               {/* Product Image */}
               <div className="w-full md:w-1/2 flex justify-center">
                 <div className="relative w-56 h-80 md:w-80 md:h-[500px] lg:w-[400px] lg:h-[600px] transition-all duration-500">
@@ -185,14 +185,14 @@ export default function HomePage() {
         ))}
 
         {/* Dots Navigation */}
-        <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-3 z-30">
+        <div className="absolute bottom-8 md:bottom-10 left-0 right-0 flex justify-center gap-3 z-30 px-4">
           {heroSlides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index
-                ? 'bg-white scale-110 shadow-md ring-2 ring-white/50'
-                : 'bg-white/40 hover:bg-white/70 ring-2 ring-white/20'
+                ? 'bg-[#3b2760] scale-110 shadow-md ring-2 ring-[#3b2760]/15'
+                : 'bg-[#3b2760]/25 hover:bg-[#3b2760]/45 ring-1 ring-[#3b2760]/10'
                 }`}
               aria-label={`Go to slide ${index + 1}`}
             />
