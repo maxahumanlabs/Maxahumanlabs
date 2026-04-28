@@ -7,6 +7,7 @@ import { Product } from '@/types';
 import ProductGrid from '@/components/products/ProductGrid';
 import { wordpress } from '@/lib/wordpress';
 import { useLanguage } from '@/contexts/LanguageContext';
+import BuildYourStack from '@/components/products/BuildYourStack';
 
 export default function ProductsPage() {
   const { t } = useLanguage();
@@ -110,6 +111,9 @@ export default function ProductsPage() {
           </div>
         )}
       </section>
+
+      {/* Build Your Stack Section for All Peptides */}
+      <BuildYourStack categorySlug="all" />
     </div>
   );
 }
