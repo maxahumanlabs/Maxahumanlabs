@@ -210,7 +210,7 @@ export const translations = {
       please_wait: "Please wait..."
     },
     moving_text: {
-      stimulating_peptides: "Stimulating Peptides",
+      stimulating_peptides: "Maxa Human Peptides",
       research_grade_peptides: "Research Grade Peptides"
     },
     instant_authentication: {
@@ -505,7 +505,7 @@ export const translations = {
       please_wait: "يرجى الانتظار..."
     },
     moving_text: {
-      stimulating_peptides: "الببتيدات المحفزة",
+      stimulating_peptides: "ببتيدات ماكسا هيومان",
       research_grade_peptides: "ببتيدات من الدرجة البحثية"
     },
     instant_authentication: {
