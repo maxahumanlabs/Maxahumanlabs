@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Product } from '@/types';
 import ProductGrid from '@/components/products/ProductGrid';
@@ -33,38 +32,24 @@ export default function ProductsPage() {
     <div>
       {/* Banner Section */}
       <section className="pb-0">
-        <div className="relative bg-[#3b2760] text-white overflow-hidden rounded-t-3xl min-h-[300px] md:min-h-[400px] flex items-center">
-          {/* Logo Background with low opacity */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-            <Image
-              src="/logo.svg"
-              alt="Maxa Human Logo Background"
-              width={800}
-              height={800}
-              className="w-[120%] md:w-full object-contain brightness-0 invert"
-            />
-          </div>
-          
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-[#3b2760]/20" />
-          
+        <div className="relative bg-white text-gray-900 overflow-hidden rounded-t-3xl">
           {/* Content */}
-          <div className="relative px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-32 w-full">
+          <div className="relative px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-12 md:pt-16 pb-8 md:pb-10 w-full">
             {/* Breadcrumb */}
             <nav className="mb-6">
               <ol className="flex items-center gap-2 text-sm">
                 <li>
-                  <Link href="/" className="text-gray-300 hover:text-white transition-colors">
+                  <Link href="/" className="text-gray-500 hover:text-gray-900 transition-colors">
                     {t('products.breadcrumb_home')}
                   </Link>
                 </li>
-                <li className="text-gray-500">/</li>
-                <li className="text-white font-medium">{t('products.title')}</li>
+                <li className="text-gray-400">/</li>
+                <li className="text-gray-900 font-medium">{t('products.title')}</li>
               </ol>
             </nav>
             
             {/* Heading */}
-            <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold text-white">
+            <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold text-gray-900">
               {t('products.title')}
             </h1>
             

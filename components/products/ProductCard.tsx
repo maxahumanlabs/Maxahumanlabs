@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Product } from '@/types';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -42,16 +43,20 @@ export default function ProductCard({ product }: ProductCardProps) {
         {product.images && product.images.length > 0 ? (
           <>
             {/* First Image */}
-            <img 
-              src={product.images[0] || '/placeholder.jpg'} 
-              alt={productName} 
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:translate-x-full" 
+            <Image
+              src={product.imageThumbnails?.[0] || product.images[0] || '/placeholder.jpg'}
+              alt={productName}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:translate-x-full"
             />
             {/* Second Image - slides in from left */}
-            <img 
-              src={product.images[1] || product.images[0] || '/placeholder.jpg'} 
-              alt={productName} 
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out -translate-x-full group-hover:translate-x-0" 
+            <Image
+              src={product.imageThumbnails?.[1] || product.images[1] || product.imageThumbnails?.[0] || product.images[0] || '/placeholder.jpg'}
+              alt={productName}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out -translate-x-full group-hover:translate-x-0"
             />
           </>
         ) : (

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function DosageCalculator() {
@@ -73,7 +74,7 @@ export default function DosageCalculator() {
                   }`}
                   style={{ boxSizing: 'content-box' }}
                 >
-                  <img src="/0.3ml.webp" alt="0.3 ml syringe" className="w-16 h-36 sm:w-20 sm:h-48 md:w-24 md:h-56 object-contain mb-2" />
+                  <Image src="/0.3ml.webp" alt="0.3 ml syringe" width={96} height={224} className="w-16 h-36 sm:w-20 sm:h-48 md:w-24 md:h-56 object-contain mb-2" />
                   <span className="text-xs sm:text-sm md:text-base font-semibold text-gray-900">0.3 {t('units.ml')}</span>
                 </button>
                 <button
@@ -85,7 +86,7 @@ export default function DosageCalculator() {
                   }`}
                   style={{ boxSizing: 'content-box' }}
                 >
-                  <img src="/0.5ml.webp" alt="0.5 ml syringe" className="w-16 h-36 sm:w-20 sm:h-48 md:w-24 md:h-56 object-contain mb-2" />
+                  <Image src="/0.5ml.webp" alt="0.5 ml syringe" width={96} height={224} className="w-16 h-36 sm:w-20 sm:h-48 md:w-24 md:h-56 object-contain mb-2" />
                   <span className="text-xs sm:text-sm md:text-base font-semibold text-gray-900">0.5 {t('units.ml')}</span>
                 </button>
               </div>
@@ -100,7 +101,7 @@ export default function DosageCalculator() {
                   }`}
                   style={{ boxSizing: 'content-box' }}
                 >
-                  <img src="/1ml.webp" alt="1.0 ml syringe" className="w-16 h-36 sm:w-20 sm:h-48 md:w-24 md:h-56 object-contain mb-2" />
+                  <Image src="/1ml.webp" alt="1.0 ml syringe" width={96} height={224} className="w-16 h-36 sm:w-20 sm:h-48 md:w-24 md:h-56 object-contain mb-2" />
                   <span className="text-xs sm:text-sm md:text-base font-semibold text-gray-900">1.0 {t('units.ml')}</span>
                 </button>
               </div>
@@ -113,7 +114,7 @@ export default function DosageCalculator() {
             <div>
               <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
-                  <img src="/Peptide Vial Quantity.webp" alt="Peptide Vial" className="w-full h-full object-cover" />
+                  <Image src="/Peptide Vial Quantity.webp" alt="Peptide Vial" width={96} height={96} className="w-full h-full object-cover" />
                 </div>
                 <h3 className="text-sm sm:text-base font-bold text-gray-900">{t('calculator.peptide_vial')}</h3>
               </div>
@@ -167,7 +168,7 @@ export default function DosageCalculator() {
             <div>
               <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0">
-                  <img src="/Bacteriostatic Water Volume.webp" alt="Bacteriostatic Water" className="w-full h-full object-cover" />
+                  <Image src="/Bacteriostatic Water Volume.webp" alt="Bacteriostatic Water" width={96} height={96} className="w-full h-full object-cover" />
                 </div>
                 <h3 className="text-sm sm:text-base font-bold text-gray-900">{t('calculator.water_volume')}</h3>
               </div>

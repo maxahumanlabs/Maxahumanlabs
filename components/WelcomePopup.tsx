@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfAhFwhiEQNOQqhKMYYsFfmi2eeh0nahSx1LDW9gR-dY8WbjA/formResponse';
@@ -260,7 +261,7 @@ export default function WelcomePopup() {
           {t('welcome_popup.title')}{' '}
           <span className="inline-block ml-2 align-middle">
             🎉
-            <img
+            <Image
               src="https://cdn.shopify.com/s/files/1/0772/8748/9774/files/Screenshot_2025-11-19_at_17.57.08.png?v=1763557038"
               alt="WhatsApp"
               width={40}

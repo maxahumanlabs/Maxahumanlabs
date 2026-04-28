@@ -1,5 +1,6 @@
 import { getAcademyArticles } from '@/lib/academy-api';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default async function AcademyPage() {
   const articles = await getAcademyArticles();
@@ -25,10 +26,12 @@ export default async function AcademyPage() {
                 <div className="aspect-[4/3] bg-gray-50 relative overflow-hidden flex items-center justify-center p-8 border-b border-gray-100">
                   <div className="relative w-full h-full flex items-center justify-center">
                     {featuredImage ? (
-                      <img 
-                        src={featuredImage} 
-                        alt={article.title.rendered} 
-                        className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" 
+                      <Image
+                        src={featuredImage}
+                        alt={article.title.rendered}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                        className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-[#f8f5ff] to-[#e6dcf5] rounded-xl flex items-center justify-center shadow-inner">

@@ -49,7 +49,7 @@ export default function HomePage() {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [heroSlides.length]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -293,15 +293,19 @@ export default function HomePage() {
                       {product.images && product.images.length > 0 ? (
                         <>
                           {/* First Image */}
-                          <img
-                            src={product.images[0] || '/placeholder.jpg'}
+                          <Image
+                            src={product.imageThumbnails?.[0] || product.images[0] || '/placeholder.jpg'}
                             alt={product.name}
+                            fill
+                            sizes="(max-width: 768px) 16rem, (max-width: 1280px) 20rem, 22.5rem"
                             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:-translate-x-full"
                           />
                           {/* Second Image - slides in from right */}
-                          <img
-                            src={product.images[1] || product.images[0] || '/placeholder.jpg'}
+                          <Image
+                            src={product.imageThumbnails?.[1] || product.images[1] || product.imageThumbnails?.[0] || product.images[0] || '/placeholder.jpg'}
                             alt={product.name}
+                            fill
+                            sizes="(max-width: 768px) 16rem, (max-width: 1280px) 20rem, 22.5rem"
                             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out translate-x-full group-hover:translate-x-0"
                           />
                         </>

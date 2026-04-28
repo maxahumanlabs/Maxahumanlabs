@@ -75,6 +75,7 @@ export interface Product {
   onSale: boolean;
   image: string;
   images: string[];
+  imageThumbnails?: string[];
   categories: string[];
   stockStatus: string;
   stockQuantity: number | null;

@@ -62,13 +62,13 @@ export default function AuthenticationPage() {
           <div className="flex flex-col items-center text-center bg-white rounded-2xl p-4 sm:p-6 shadow border">
             <div className="font-bold text-base md:text-lg mb-1">{t("authentication.step1_title")}</div>
             <div className="text-xs text-gray-700 mb-4">{t("authentication.step1_desc")}</div>
-            <img src="/step1.webp" alt="Step 1" className="w-full max-w-xs rounded-lg" />
+            <Image src="/step1.webp" alt="Step 1" width={320} height={240} className="w-full max-w-xs rounded-lg h-auto" />
           </div>
           {/* Step 2 */}
           <div className="flex flex-col items-center text-center bg-white rounded-2xl p-4 sm:p-6 shadow border">
             <div className="font-bold text-base md:text-lg mb-1">{t("authentication.step2_title")}</div>
             <div className="text-xs text-gray-700 mb-4">{t("authentication.step2_desc")}</div>
-            <img src="/step2.webp" alt="Step 2" className="w-full max-w-xs rounded-lg" />
+            <Image src="/step2.webp" alt="Step 2" width={320} height={240} className="w-full max-w-xs rounded-lg h-auto" />
           </div>
         </div>
         {/* Important Notice and Form */}

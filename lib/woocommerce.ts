@@ -127,6 +127,7 @@ class WooCommerceAPI {
       onSale: wcProduct.on_sale,
       image: wcProduct.images[0]?.src || '/placeholder-product.jpg',
       images: wcProduct.images.map(img => img.src),
+      imageThumbnails: wcProduct.images.map(img => img.src),
       categories: wcProduct.categories.map(cat => cat.name),
       tags: wcProduct.tags?.map(tag => tag.name) || [],
       stockStatus: wcProduct.stock_status,
@@ -160,6 +161,7 @@ class WooCommerceAPI {
       onSale: storeProduct.on_sale,
       image: storeProduct.images[0]?.src || '/placeholder-product.jpg',
       images: storeProduct.images.map(img => img.src), // Override with string array
+      imageThumbnails: storeProduct.images.map(img => img.thumbnail || img.src),
       categories: storeProduct.categories.map(cat => cat.name),
       stockStatus: storeProduct.is_in_stock ? 'instock' : 'outofstock',
       stockQuantity: null, // Store API doesn't provide exact quantity

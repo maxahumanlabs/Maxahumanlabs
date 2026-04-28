@@ -128,9 +128,11 @@ export default function StackPage() {
                         {/* Product Image */}
                         <div className="w-16 h-16 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden">
                           {item.image || (item.images && item.images.length > 0) ? (
-                            <img 
-                              src={item.image || item.images[0]} 
+                            <Image
+                              src={(item as any).imageThumbnails?.[0] || item.image || item.images[0]}
                               alt={item.name}
+                              width={64}
+                              height={64}
                               className="w-full h-full object-cover"
                             />
                           ) : (
@@ -218,10 +220,12 @@ export default function StackPage() {
                       {/* Product Image */}
                       <div className="relative bg-gray-100 aspect-square flex items-center justify-center overflow-hidden">
                         {product.images && product.images.length > 0 ? (
-                          <img 
-                            src={product.images[0] || '/placeholder.jpg'} 
-                            alt={language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name} 
-                            className="w-full h-full object-cover" 
+                          <Image
+                            src={product.imageThumbnails?.[0] || product.images[0] || '/placeholder.jpg'}
+                            alt={language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                            className="w-full h-full object-cover"
                           />
                         ) : (
                           <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300" />

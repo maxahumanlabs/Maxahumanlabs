@@ -145,7 +145,7 @@ export const translations = {
       reviews: "reviews",
       out_of_stock: "Out of stock",
       in_stock: "In stock, ready to ship",
-      bundle_save: "BUNDLE & SAVE",
+      bundle_save: "ORDER NOW",
       save: "SAVE",
       you_save: "You save",
       standard_price: "Standard price",
@@ -269,13 +269,13 @@ export const translations = {
       secure_payment_desc: "You will be redirected to Stripe's secure checkout to complete your payment."
     },
     bundle: {
-      one_month: "1 pack",
-      three_months: "2 pack",
-      six_months: "3 pack",
+      one_month: "1 Month (1 Pack)",
+      three_months: "2 Month (2 Packs)",
+      six_months: "3 Month (3 Packs)",
       buy_with_google_pay: "Buy with Google Pay",
       unlock_gifts: "Unlock Free gifts with your order",
       free_shipping: "Free shipping",
-      free_ebook: "Free E-book",
+      free_ebook: "Peptide Program",
       free: "FREE"
     },
     hero_slider: {
@@ -444,7 +444,7 @@ export const translations = {
       reviews: "تقييمات",
       out_of_stock: "نفذت الكمية",
       in_stock: "متوفر في المخزون، جاهز للشحن",
-      bundle_save: "احصل على عرض الحزمة",
+      bundle_save: "اطلب الآن",
       save: "وفر",
       you_save: "توفر",
       standard_price: "السعر القياسي",
@@ -568,13 +568,13 @@ export const translations = {
       secure_payment_desc: "سيتم تحويلك إلى صفحة الدفع الآمنة من Stripe لإتمام عملية الدفع."
     },
     bundle: {
-      one_month: "عبوة واحدة",
-      three_months: "عبوتين",
-      six_months: "٣ عبوات",
+      one_month: "شهر واحد (عبوة واحدة)",
+      three_months: "شهران (عبوتان)",
+      six_months: "3 شهور (3 عبوات)",
       buy_with_google_pay: "شراء عبر Google Pay",
       unlock_gifts: "افتح الهدايا المجانية مع طلبك",
       free_shipping: "شحن مجاني",
-      free_ebook: "كتاب إلكتروني مجاني",
+      free_ebook: "برنامج الببتيدات",
       free: "مجانا"
     },
     hero_slider: {
