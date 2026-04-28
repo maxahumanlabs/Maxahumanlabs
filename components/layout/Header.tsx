@@ -42,7 +42,7 @@ export default function Header() {
     { name: t('header.peptides_x_supplements'), href: '/peptides-x-supplements' },
     // { name: t('stack.title'), href: '/stack' },
     { name: t('header.dosage_calculator'), href: '/pages/dosage-calculator' },
-
+    { name: t('header.peptive_ai'), href: 'https://peptivepedtides-aichat.vercel.app/', external: true },
   ];
 
   return (
@@ -66,6 +66,8 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noopener noreferrer' : undefined}
                 className="relative px-4 py-3 text-gray-900 text-sm lg:text-sm xl:text-base 2xl:text-lg font-medium rounded-full overflow-hidden group transition-colors">
                 <span className="absolute inset-0 bg-black origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] rounded-full"></span>
                 <span className="relative z-10 group-hover:text-white transition-colors duration-400">{item.name}</span>
@@ -177,6 +179,8 @@ export default function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
+                    target={item.external ? '_blank' : undefined}
+                    rel={item.external ? 'noopener noreferrer' : undefined}
                     className="text-gray-900 hover:text-gray-600 transition-colors font-medium text-lg py-3 border-b border-gray-100"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
