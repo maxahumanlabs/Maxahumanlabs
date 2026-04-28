@@ -281,16 +281,20 @@ export const translations = {
     hero_slider: {
       buy_now: "BUY NOW →",
       slide1: {
-        title: "BPC-157",
-        description: "BPC-157 (Arginine Salt) is a synthetic peptide fragment studied for its role in supporting cellular regeneration, tissue remodeling, and inflammation modulation."
+        title: "GHK-CU",
+        description: "GHK-Cu is a research ingredient widely studied in skin science for supporting skin renewal, firmness, and collagen-related processes."
       },
       slide2: {
         title: "MOTS-c 10mg",
         description: "MOTS-c 10mg is a high-purity research peptide supplied in a premium-grade vial with bacteriostatic water for reconstitution. Designed for laboratory and research use only."
       },
       slide3: {
-        title: "MAXA TEST",
-        description: "MAXA TEST is a powerful blend of adaptogens, nootropics, and androgenic support compounds designed for research models involving testosterone, vitality, physical performance, and hormonal resilience."
+        title: "SLU-PP-332",
+        description: "SLU-PP-332 is a synthetic peptide fragment widely studied for its role in supporting mitochondrial function, energy metabolism, and age-related cellular health."
+      },
+      slide4: {
+        title: "TB-500 + BPC-157 (Wolverine Stack)",
+        description: "This stack combines two well-researched peptides for synergistic effects on recovery, tissue repair, and inflammation management. Ideal for advanced research models."
       }
     }
   },
@@ -576,16 +580,20 @@ export const translations = {
     hero_slider: {
       buy_now: "اشترِ الآن ←",
       slide1: {
-        title: "BPC-157",
-        description: "BPC-157 (ملح الأرجينين) هو جزء ببتيد اصطناعي تمت دراسته لدوره في دعم تجديد الخلايا، وإعادة بناء الأنسجة، وتنظيم الالتهاب."
+        title: "GHK-CU",
+        description: "GHK-Cu هو مكون بحثي تمت دراسته على نطاق واسع في علم الجلد لدوره في دعم تجديد البشرة، وثباتها، والعمليات المتعلقة بالكولاجين."
       },
       slide2: {
         title: "MOTS-c 10mg",
         description: "MOTS-c 10mg هو ببتيد بحثي عالي النقاء يأتي في قنينة فاخرة مع ماء مضاد للبكتيريا لإعادة التكوين. مصمم للاستخدام المخبري والبحثي فقط."
       },
       slide3: {
-        title: "MAXA TEST",
-        description: "MAXA TEST هو مزيج قوي من المواد المتكيفة (Adaptogens)، والمنشطات الذهنية، ومركبات دعم الأندروجين المصممة للنماذج البحثية التي تتضمن التستوستيرون، الحيوية، الأداء البدني، والمرونة الهرمونية."
+        title: "SLU-PP-332",
+        description: "SLU-PP-332 هو ببتيد اصطناعي تمت دراسته لدوره في دعم وظائف الميتوكوندريا، واستقلاب الطاقة، والصحة الخلوية المرتبطة بالشيخوخة."
+      },
+      slide4: {
+        title: "TB-500 + BPC-157 (Wolverine Stack)",
+        description: "هذا المزيج يجمع بين ببتيدين تمت دراستهما على نطاق واسع لتأثيرات تآزرية على التعافي، وإصلاح الأنسجة، وإدارة الالتهاب. مثالي للنماذج البحثية المتقدمة."
       }
     }
   }

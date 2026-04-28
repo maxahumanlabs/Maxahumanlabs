@@ -9,15 +9,15 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-[#3b2760] text-white ">
+      <footer className="bg-white text-gray-900 border-t border-gray-100">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-24 pb-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
             {/* Quick Links */}
             <div>
-              <h3 className="text-white font-bold text-lg lg:text-lg xl:text-xl 2xl:text-2xl mb-4 tracking-wide">{t('footer.quick_links').toUpperCase()}</h3>
+              <h3 className="text-gray-900 font-bold text-lg lg:text-lg xl:text-xl 2xl:text-2xl mb-4 tracking-wide">{t('footer.quick_links').toUpperCase()}</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/search" className="text-gray-300 hover:text-white text-base lg:text-base xl:text-lg 2xl:text-xl transition-colors">
+                  <Link href="/search" className="text-gray-500 hover:text-gray-900 text-base lg:text-base xl:text-lg 2xl:text-xl transition-colors">
                     {t('footer.search')}
                   </Link>
                 </li>
@@ -26,12 +26,12 @@ export default function Footer() {
 
             {/* Contact Info */}
             <div>
-              <h3 className="text-white font-bold text-lg lg:text-lg xl:text-xl 2xl:text-2xl mb-4 tracking-wide">{t('footer.contact').toUpperCase()}</h3>
+              <h3 className="text-gray-900 font-bold text-lg lg:text-lg xl:text-xl 2xl:text-2xl mb-4 tracking-wide">{t('footer.contact').toUpperCase()}</h3>
               <div className="space-y-2">
-                <a href="tel:+971528107166" className="block underline text-white hover:text-gray-300 transition-colors text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
+                <a href="tel:+971528107166" className="block underline text-gray-900 hover:text-gray-600 transition-colors text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
                   +971 52 810 7166
                 </a>
-                <a href="mailto:info@maxahuman.com" className="block underline text-white hover:text-gray-300 transition-colors text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
+                <a href="mailto:info@maxahuman.com" className="block underline text-gray-900 hover:text-gray-600 transition-colors text-xl lg:text-xl xl:text-2xl 2xl:text-3xl">
                   info@maxahuman.com
                 </a>
               </div>
@@ -39,8 +39,8 @@ export default function Footer() {
           </div>
 
           {/* Disclaimer */}
-          <div className="border-t border-gray-800 pt-8 mt-8 text-gray-400 text-xs md:text-sm leading-relaxed space-y-4">
-            <h4 className="font-bold text-gray-300 uppercase">{t('footer.disclaimer.title')}</h4>
+          <div className="border-t border-gray-200 pt-8 mt-8 text-gray-500 text-xs md:text-sm leading-relaxed space-y-4">
+            <h4 className="font-bold text-gray-700 uppercase">{t('footer.disclaimer.title')}</h4>
             <p>{t('footer.disclaimer.p1')}</p>
             <p>{t('footer.disclaimer.p2')}</p>
             <p>{t('footer.disclaimer.p3')}</p>
@@ -52,7 +52,7 @@ export default function Footer() {
       </footer>
 
       {/* Bottom Bar Section */}
-      <div className="bg-[#3b2760] py-4">
+      <div className="bg-gray-50 border-t border-gray-200 py-4">
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-4 text-gray-600 text-sm">
             <span>©{currentYear} Maxa Human.</span>

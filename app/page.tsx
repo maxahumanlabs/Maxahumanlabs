@@ -21,20 +21,26 @@ export default function HomePage() {
     {
       title: t('hero_slider.slide1.title'),
       description: t('hero_slider.slide1.description'),
-      image: "https://slategrey-zebra-234644.hostingersite.com/wp-content/uploads/2026/02/11.png",
-      url: "/products/bpc-157-1000-mcg-60-capsules"
+      image: "https://slategrey-zebra-234644.hostingersite.com/wp-content/uploads/2026/04/ghkcu.webp",
+      url: "/products/ghk-cu-50mg"
     },
     {
       title: t('hero_slider.slide2.title'),
       description: t('hero_slider.slide2.description'),
-      image: "https://slategrey-zebra-234644.hostingersite.com/wp-content/uploads/2026/02/5.png",
+      image: "https://slategrey-zebra-234644.hostingersite.com/wp-content/uploads/2026/04/motsc.webp",
       url: "/products/mots-c-10mg"
     },
     {
       title: t('hero_slider.slide3.title'),
       description: t('hero_slider.slide3.description'),
-      image: "https://slategrey-zebra-234644.hostingersite.com/wp-content/uploads/2026/02/Screenshot2026-01-26at9.48.08AM.webp",
-      url: "/products/maxa-test-advanced-natural-trt-testosterone-complex-90-capsules"
+      image: "https://slategrey-zebra-234644.hostingersite.com/wp-content/uploads/2026/04/slupp.webp",
+      url: "/products/slu-pp-332-250-mcg-60-capsules"
+    },
+    {
+      title: t('hero_slider.slide4.title'),
+      description: t('hero_slider.slide4.description'),
+      image: "https://slategrey-zebra-234644.hostingersite.com/wp-content/uploads/2026/04/Tb500-bpc.webp",
+      url: "/products/tb-500-10mg-bpc-157-10mg-wolverine-stack"
     }
   ];
 
@@ -121,15 +127,23 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section Slider */}
-      <section className="relative w-full bg-[#3b2760] overflow-hidden min-h-[680px] md:min-h-[600px] flex items-center py-16 pb-28 md:py-20 md:pb-20">
+      <section className="relative w-full bg-gradient-to-br from-[#f3eef9] to-[#ffffff] overflow-hidden min-h-[680px] md:min-h-[600px] flex items-center py-16 pb-28 md:py-20 md:pb-20">
+        
+        {/* Soft Bubbles Background */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-[#e8deff]/40 blur-3xl" />
+          <div className="absolute top-[20%] -right-[5%] w-[40%] h-[40%] rounded-full bg-white/60 blur-3xl" />
+          <div className="absolute -bottom-[20%] left-[20%] w-[60%] h-[60%] rounded-full bg-[#e8deff]/60 blur-3xl" />
+        </div>
+
         {/* Logo Background with low opacity */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+        <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none z-0">
           <Image
             src="/logo.svg"
             alt="Maxa Human Logo Background"
             width={800}
             height={800}
-            className="w-[120%] md:w-full object-contain brightness-0 invert"
+            className="w-[120%] md:w-full object-contain"
           />
         </div>
 
@@ -142,26 +156,26 @@ export default function HomePage() {
             <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-8 relative z-20">
               {/* Product Image */}
               <div className="w-full md:w-1/2 flex justify-center">
-                <div className="relative w-40 h-60 md:w-64 md:h-[400px]">
+                <div className="relative w-56 h-80 md:w-80 md:h-[500px] lg:w-[400px] lg:h-[600px] transition-all duration-500">
                   <Image
                     src={slide.image}
                     alt={slide.title}
                     fill
-                    className="object-contain drop-shadow-2xl"
+                    className="object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               </div>
 
               {/* Product Info */}
               <div className={`w-full md:w-1/2 text-center ${language === 'ar' ? 'md:text-right' : 'md:text-left'}`}>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#3b2760] mb-4 leading-tight">
                   {slide.title}
                 </h2>
-                <p className="text-white/80 text-base md:text-lg lg:text-xl mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
+                <p className="text-[#3b2760]/80 text-sm md:text-base lg:text-lg mb-6 leading-relaxed max-w-lg mx-auto md:mx-0 font-medium">
                   {slide.description}
                 </p>
                 <Link href={slide.url}>
-                  <button className="bg-transparent border border-white text-white px-8 py-3 text-xs md:text-sm font-semibold tracking-widest uppercase transition-colors hover:bg-white hover:text-[#3b2760] shadow-sm inline-block">
+                  <button className="bg-transparent border-2 border-[#3b2760] text-[#3b2760] px-6 py-2.5 text-xs md:text-sm font-bold tracking-widest uppercase transition-all duration-300 hover:bg-[#3b2760] hover:text-white shadow-sm inline-block">
                     {t('hero_slider.buy_now') || 'BUY NOW →'}
                   </button>
                 </Link>
@@ -177,8 +191,8 @@ export default function HomePage() {
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index
-                ? 'bg-white scale-110'
-                : 'bg-white/30 hover:bg-white/50'
+                ? 'bg-white scale-110 shadow-md ring-2 ring-white/50'
+                : 'bg-white/40 hover:bg-white/70 ring-2 ring-white/20'
                 }`}
               aria-label={`Go to slide ${index + 1}`}
             />
