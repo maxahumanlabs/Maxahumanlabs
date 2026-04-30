@@ -24,7 +24,7 @@ interface ProductDetailClientProps {
 export default function ProductDetailClient({ product }: ProductDetailClientProps) {
   const { t, language } = useLanguage();
   const [selectedImage, setSelectedImage] = useState(0);
-  const [selectedBundle, setSelectedBundle] = useState('six-months');
+  const [selectedBundle, setSelectedBundle] = useState('three-months');
   const [email, setEmail] = useState('');
   const addItem = useCartStore((state) => state.addItem);
 
@@ -35,33 +35,25 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
   const bundlePricing = (product as any).bundle_pricing || {};
   const hasValue = (val: any) => val !== null && val !== undefined && val !== '' && parseFloat(val) > 0;
 
+  const twoMonthRegular = hasValue(bundlePricing.two_month?.regular_price)
+    ? parseFloat(bundlePricing.two_month.regular_price)
+    : originalPrice * 2;
+  const twoMonthSale = hasValue(bundlePricing.two_month?.sale_price)
+    ? parseFloat(bundlePricing.two_month.sale_price)
+    : (hasValue(bundlePricing.two_month?.regular_price) ? twoMonthRegular : (currentPrice * 2 * 0.90));
+  const twoMonthSavings = twoMonthRegular - twoMonthSale;
+  const twoMonthSavingsPercent = twoMonthRegular > 0 ? ((twoMonthSavings / twoMonthRegular) * 100) : 0;
+
   const threeMonthRegular = hasValue(bundlePricing.three_month?.regular_price)
     ? parseFloat(bundlePricing.three_month.regular_price)
-    : originalPrice * 2;
+    : originalPrice * 3;
   const threeMonthSale = hasValue(bundlePricing.three_month?.sale_price)
     ? parseFloat(bundlePricing.three_month.sale_price)
-    : (hasValue(bundlePricing.three_month?.regular_price) ? threeMonthRegular : (currentPrice * 2 * 0.90));
+    : (hasValue(bundlePricing.three_month?.regular_price) ? threeMonthRegular : (currentPrice * 3 * 0.85));
   const threeMonthSavings = threeMonthRegular - threeMonthSale;
   const threeMonthSavingsPercent = threeMonthRegular > 0 ? ((threeMonthSavings / threeMonthRegular) * 100) : 0;
 
-  const sixMonthRegular = hasValue(bundlePricing.six_month?.regular_price)
-    ? parseFloat(bundlePricing.six_month.regular_price)
-    : originalPrice * 3;
-  const sixMonthSale = hasValue(bundlePricing.six_month?.sale_price)
-    ? parseFloat(bundlePricing.six_month.sale_price)
-    : (hasValue(bundlePricing.six_month?.regular_price) ? sixMonthRegular : (currentPrice * 3 * 0.85));
-  const sixMonthSavings = sixMonthRegular - sixMonthSale;
-  const sixMonthSavingsPercent = sixMonthRegular > 0 ? ((sixMonthSavings / sixMonthRegular) * 100) : 0;
-
   const bundleOptions: BundleOption[] = [
-    {
-      id: 'six-months',
-      months: 6,
-      label: t('bundle.six_months'),
-      price: sixMonthSale,
-      savings: sixMonthSavings,
-      savingsPercent: Math.round(sixMonthSavingsPercent),
-    },
     {
       id: 'three-months',
       months: 3,
@@ -69,6 +61,14 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       price: threeMonthSale,
       savings: threeMonthSavings,
       savingsPercent: Math.round(threeMonthSavingsPercent),
+    },
+    {
+      id: 'two-months',
+      months: 2,
+      label: t('bundle.two_months'),
+      price: twoMonthSale,
+      savings: twoMonthSavings,
+      savingsPercent: Math.round(twoMonthSavingsPercent),
       isPopular: true,
     },
     {
@@ -91,7 +91,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       slug: product.slug,
       price: bundle.price.toString(),
       image: product.image,
-      bundleType: selectedBundle as 'one-month' | 'three-months' | 'six-months',
+      bundleType: selectedBundle as 'one-month' | 'two-months' | 'three-months',
       bundleLabel: bundle.label,
       arabicName: (product as any).arabic_name || '',
     });

@@ -127,13 +127,50 @@ class Maxa_Bundle_Product_Type {
         global $post;
         
         // Get existing bundle pricing
-        $three_month_price = get_post_meta($post->ID, '_bundle_3_month_regular_price', true);
-        $three_month_sale_price = get_post_meta($post->ID, '_bundle_3_month_sale_price', true);
-        $six_month_price = get_post_meta($post->ID, '_bundle_6_month_regular_price', true);
-        $six_month_sale_price = get_post_meta($post->ID, '_bundle_6_month_sale_price', true);
+        $three_month_price = get_post_meta($post->ID, '_bundle_2_month_regular_price', true);
+        $three_month_sale_price = get_post_meta($post->ID, '_bundle_2_month_sale_price', true);
+        $six_month_price = get_post_meta($post->ID, '_bundle_3_month_regular_price', true);
+        $six_month_sale_price = get_post_meta($post->ID, '_bundle_3_month_sale_price', true);
         
         ?>
         <div id="maxa_bundle_pricing_data" class="panel woocommerce_options_panel">
+            <div class="options_group">
+                <p class="form-field">
+                    <strong><?php _e('2-Month Pricing', 'maxa-bundles'); ?></strong>
+                    <span class="description" style="display: block; margin-top: 5px;">
+                        <?php _e('Set pricing for 2-month supply (2 units). Leave empty to auto-calculate from single unit price.', 'maxa-bundles'); ?>
+                    </span>
+                </p>
+                
+                <?php
+                woocommerce_wp_text_input(array(
+                    'id'                => '_bundle_2_month_regular_price',
+                    'label'             => __('Regular Price (2 months)', 'maxa-bundles'),
+                    'placeholder'       => __('Auto-calculated if empty', 'maxa-bundles'),
+                    'desc_tip'          => true,
+                    'description'       => __('Regular price for 2-month supply', 'maxa-bundles'),
+                    'type'              => 'number',
+                    'custom_attributes' => array(
+                        'step' => '0.01',
+                        'min'  => '0',
+                    ),
+                ));
+                
+                woocommerce_wp_text_input(array(
+                    'id'                => '_bundle_2_month_sale_price',
+                    'label'             => __('Sale Price (2 months)', 'maxa-bundles'),
+                    'placeholder'       => __('Optional', 'maxa-bundles'),
+                    'desc_tip'          => true,
+                    'description'       => __('Sale price for 2-month supply', 'maxa-bundles'),
+                    'type'              => 'number',
+                    'custom_attributes' => array(
+                        'step' => '0.01',
+                        'min'  => '0',
+                    ),
+                ));
+                ?>
+            </div>
+            
             <div class="options_group">
                 <p class="form-field">
                     <strong><?php _e('3-Month Pricing', 'maxa-bundles'); ?></strong>
@@ -172,48 +209,12 @@ class Maxa_Bundle_Product_Type {
             </div>
             
             <div class="options_group">
-                <p class="form-field">
-                    <strong><?php _e('6-Month Pricing', 'maxa-bundles'); ?></strong>
-                    <span class="description" style="display: block; margin-top: 5px;">
-                        <?php _e('Set pricing for 6-month supply (6 units). Leave empty to auto-calculate from single unit price.', 'maxa-bundles'); ?>
-                    </span>
-                </p>
-                
-                <?php
-                woocommerce_wp_text_input(array(
-                    'id'                => '_bundle_6_month_regular_price',
-                    'label'             => __('Regular Price (6 months)', 'maxa-bundles'),
-                    'placeholder'       => __('Auto-calculated if empty', 'maxa-bundles'),
-                    'desc_tip'          => true,
-                    'description'       => __('Regular price for 6-month supply', 'maxa-bundles'),
-                    'type'              => 'number',
-                    'custom_attributes' => array(
-                        'step' => '0.01',
-                        'min'  => '0',
-                    ),
-                ));
-                
-                woocommerce_wp_text_input(array(
-                    'id'                => '_bundle_6_month_sale_price',
-                    'label'             => __('Sale Price (6 months)', 'maxa-bundles'),
-                    'placeholder'       => __('Optional', 'maxa-bundles'),
-                    'desc_tip'          => true,
-                    'description'       => __('Sale price for 6-month supply', 'maxa-bundles'),
-                    'type'              => 'number',
-                    'custom_attributes' => array(
-                        'step' => '0.01',
-                        'min'  => '0',
-                    ),
-                ));
-                ?>
-            </div>
-            
-            <div class="options_group">
                 <p class="form-field" style="padding: 10px 12px; background: #f0f0f1; border-left: 4px solid #2271b1;">
                     <strong><?php _e('How it works:', 'maxa-bundles'); ?></strong><br>
                     <span class="description">
                         • <?php _e('If monthly prices are empty, they will be auto-calculated (unit price × quantity)', 'maxa-bundles'); ?><br>
-                        • <?php _e('Set custom prices to offer monthly supply discounts', 'maxa-bundles'); ?><br>
+                        • <?php _e('Default bundle discounts: 2 months = 10% off, 3 months = 15% off', 'maxa-bundles'); ?><br>
+                        • <?php _e('Set custom prices to offer different monthly supply discounts', 'maxa-bundles'); ?><br>
                         • <?php _e('Sale prices override regular prices when set', 'maxa-bundles'); ?>
                     </span>
                 </p>
@@ -241,17 +242,17 @@ class Maxa_Bundle_Product_Type {
         }
         
         // Save bundle pricing fields
+        if (isset($_POST['_bundle_2_month_regular_price'])) {
+            update_post_meta($post_id, '_bundle_2_month_regular_price', sanitize_text_field($_POST['_bundle_2_month_regular_price']));
+        }
+        if (isset($_POST['_bundle_2_month_sale_price'])) {
+            update_post_meta($post_id, '_bundle_2_month_sale_price', sanitize_text_field($_POST['_bundle_2_month_sale_price']));
+        }
         if (isset($_POST['_bundle_3_month_regular_price'])) {
             update_post_meta($post_id, '_bundle_3_month_regular_price', sanitize_text_field($_POST['_bundle_3_month_regular_price']));
         }
         if (isset($_POST['_bundle_3_month_sale_price'])) {
             update_post_meta($post_id, '_bundle_3_month_sale_price', sanitize_text_field($_POST['_bundle_3_month_sale_price']));
-        }
-        if (isset($_POST['_bundle_6_month_regular_price'])) {
-            update_post_meta($post_id, '_bundle_6_month_regular_price', sanitize_text_field($_POST['_bundle_6_month_regular_price']));
-        }
-        if (isset($_POST['_bundle_6_month_sale_price'])) {
-            update_post_meta($post_id, '_bundle_6_month_sale_price', sanitize_text_field($_POST['_bundle_6_month_sale_price']));
         }
     }
     

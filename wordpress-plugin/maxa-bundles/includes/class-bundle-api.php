@@ -52,13 +52,13 @@ class Maxa_Bundle_API {
             'arabic_short_description' => get_post_meta($product->get_id(), '_arabic_short_description', true) ?: '',
             'arabic_tags'              => get_post_meta($product->get_id(), '_arabic_tags', true) ?: '',
             'bundle_pricing'           => array(
+                'two_month' => array(
+                    'regular_price' => get_post_meta($product->get_id(), '_bundle_2_month_regular_price', true) ?: '',
+                    'sale_price'    => get_post_meta($product->get_id(), '_bundle_2_month_sale_price', true) ?: '',
+                ),
                 'three_month' => array(
                     'regular_price' => get_post_meta($product->get_id(), '_bundle_3_month_regular_price', true) ?: '',
                     'sale_price'    => get_post_meta($product->get_id(), '_bundle_3_month_sale_price', true) ?: '',
-                ),
-                'six_month' => array(
-                    'regular_price' => get_post_meta($product->get_id(), '_bundle_6_month_regular_price', true) ?: '',
-                    'sale_price'    => get_post_meta($product->get_id(), '_bundle_6_month_sale_price', true) ?: '',
                 ),
             ),
             'is_bundle'                => $product->get_type() === 'bundle',
@@ -212,18 +212,18 @@ class Maxa_Bundle_API {
         register_rest_field('product', 'bundle_pricing', array(
             'get_callback' => array($this, 'get_bundle_pricing_field'),
             'schema'       => array(
-                'description' => __('Bundle pricing for 3-month and 6-month options', 'maxa-bundles'),
+                'description' => __('Bundle pricing for 2-month and 3-month options', 'maxa-bundles'),
                 'type'        => 'object',
                 'context'     => array('view', 'edit'),
                 'properties' => array(
-                    'three_month' => array(
+                    'two_month' => array(
                         'type' => 'object',
                         'properties' => array(
                             'regular_price' => array('type' => 'string'),
                             'sale_price' => array('type' => 'string'),
                         ),
                     ),
-                    'six_month' => array(
+                    'three_month' => array(
                         'type' => 'object',
                         'properties' => array(
                             'regular_price' => array('type' => 'string'),
@@ -327,26 +327,26 @@ class Maxa_Bundle_API {
         $current_price = $product->get_price();
         
         // Get custom bundle prices (monthly pricing)
+        $two_month_price = get_post_meta($object['id'], '_bundle_2_month_regular_price', true);
+        $two_month_sale_price = get_post_meta($object['id'], '_bundle_2_month_sale_price', true);
         $three_month_price = get_post_meta($object['id'], '_bundle_3_month_regular_price', true);
         $three_month_sale_price = get_post_meta($object['id'], '_bundle_3_month_sale_price', true);
-        $six_month_price = get_post_meta($object['id'], '_bundle_6_month_regular_price', true);
-        $six_month_sale_price = get_post_meta($object['id'], '_bundle_6_month_sale_price', true);
         
-        // Auto-calculate if not set
+        // Auto-calculate if not set (10% discount for 2 months, 15% discount for 3 months)
+        $two_regular = !empty($two_month_price) ? $two_month_price : ($regular_price * 2);
+        $two_sale = !empty($two_month_sale_price) ? $two_month_sale_price : ($sale_price ? $sale_price * 2 * 0.90 : null);
+        
         $three_regular = !empty($three_month_price) ? $three_month_price : ($regular_price * 3);
-        $three_sale = !empty($three_month_sale_price) ? $three_month_sale_price : ($sale_price ? $sale_price * 3 : null);
-        
-        $six_regular = !empty($six_month_price) ? $six_month_price : ($regular_price * 6);
-        $six_sale = !empty($six_month_sale_price) ? $six_month_sale_price : ($sale_price ? $sale_price * 6 : null);
+        $three_sale = !empty($three_month_sale_price) ? $three_month_sale_price : ($sale_price ? $sale_price * 3 * 0.85 : null);
         
         return array(
+            'two_month' => array(
+                'regular_price' => $two_regular ? number_format($two_regular, 2, '.', '') : null,
+                'sale_price' => $two_sale ? number_format($two_sale, 2, '.', '') : null,
+            ),
             'three_month' => array(
                 'regular_price' => $three_regular ? number_format($three_regular, 2, '.', '') : null,
                 'sale_price' => $three_sale ? number_format($three_sale, 2, '.', '') : null,
-            ),
-            'six_month' => array(
-                'regular_price' => $six_regular ? number_format($six_regular, 2, '.', '') : null,
-                'sale_price' => $six_sale ? number_format($six_sale, 2, '.', '') : null,
             ),
         );
     }

@@ -271,8 +271,8 @@ export const translations = {
     },
     bundle: {
       one_month: "1 Month (1 Pack)",
-      three_months: "2 Month (2 Packs)",
-      six_months: "3 Month (3 Packs)",
+      two_months: "2 Months (2 Packs)",
+      three_months: "3 Months (3 Packs)",
       buy_with_google_pay: "Buy with Google Pay",
       unlock_gifts: "Unlock Free gifts with your order",
       free_shipping: "Free shipping",
@@ -571,8 +571,8 @@ export const translations = {
     },
     bundle: {
       one_month: "شهر واحد (عبوة واحدة)",
-      three_months: "شهران (عبوتان)",
-      six_months: "3 شهور (3 عبوات)",
+      two_months: "شهران (عبوتان)",
+      three_months: "3 شهور (3 عبوات)",
       buy_with_google_pay: "شراء عبر Google Pay",
       unlock_gifts: "افتح الهدايا المجانية مع طلبك",
       free_shipping: "شحن مجاني",

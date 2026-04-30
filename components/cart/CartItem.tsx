@@ -24,10 +24,10 @@ export default function CartItem({ item }: CartItemProps) {
     switch (bundleType) {
       case 'one-month':
         return t('bundle.one_month');
+      case 'two-months':
+        return t('bundle.two_months');
       case 'three-months':
         return t('bundle.three_months');
-      case 'six-months':
-        return t('bundle.six_months');
       default:
         return item.bundleLabel;
     }

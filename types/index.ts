@@ -94,7 +94,7 @@ export interface CartItem {
   price: string;
   image: string;
   quantity: number;
-  bundleType?: 'one-month' | 'three-months' | 'six-months';
+  bundleType?: 'one-month' | 'two-months' | 'three-months';
   bundleLabel?: string;
   cartItemId?: string; // Unique identifier for each cart entry
   arabicName?: string; // Arabic product name
