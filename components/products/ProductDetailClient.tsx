@@ -6,6 +6,7 @@ import { Product } from '@/types';
 import { useCartStore } from '@/store/cartStore';
 import { formatPrice } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
+import RelatedProducts from './RelatedProducts';
 
 type BundleOption = {
   id: string;
@@ -61,6 +62,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       price: threeMonthSale,
       savings: threeMonthSavings,
       savingsPercent: Math.round(threeMonthSavingsPercent),
+      isPopular: true,
     },
     {
       id: 'two-months',
@@ -69,7 +71,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       price: twoMonthSale,
       savings: twoMonthSavings,
       savingsPercent: Math.round(twoMonthSavingsPercent),
-      isPopular: true,
+
     },
     {
       id: 'one-month',
@@ -135,11 +137,10 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`relative aspect-square bg-white rounded-2xl overflow-hidden border-2 transition-all duration-200 ${
-                    selectedImage === index
+                  className={`relative aspect-square bg-white rounded-2xl overflow-hidden border-2 transition-all duration-200 ${selectedImage === index
                       ? 'border-gray-900 shadow-lg scale-105'
                       : 'border-gray-200 hover:border-gray-400'
-                  }`}
+                    }`}
                 >
                   <Image
                     src={product.imageThumbnails?.[index] || image}
@@ -227,11 +228,10 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
               {bundleOptions.map((bundle) => (
                 <label
                   key={bundle.id}
-                  className={`relative flex items-center p-3 lg:p-3 xl:p-3 2xl:p-4 rounded-xl border cursor-pointer transition-all ${
-                    selectedBundle === bundle.id
+                  className={`relative flex items-center p-3 lg:p-3 xl:p-3 2xl:p-4 rounded-xl border cursor-pointer transition-all ${selectedBundle === bundle.id
                       ? 'border-gray-900 bg-gray-50'
                       : 'border-gray-300 bg-white hover:border-gray-400'
-                  }`}
+                    }`}
                 >
                   <input
                     type="radio"
@@ -396,6 +396,13 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
           </div>
         </div>
       </div>
+
+      {/* Related Products Section */}
+      {product.relatedIds && product.relatedIds.length > 0 && (
+        <div className="mt-24 pt-12 border-t border-gray-200">
+          <RelatedProducts productIds={product.relatedIds} currentProductId={product.id} />
+        </div>
+      )}
     </div>
   );
 }

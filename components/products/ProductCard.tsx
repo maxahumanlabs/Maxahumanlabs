@@ -1,16 +1,20 @@
 'use client';
 
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Product } from '@/types';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useCartStore } from '@/store/cartStore';
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
+  const addItem = useCartStore((state) => state.addItem);
+  const openCart = useCartStore((state) => state.openCart);
+  const router = useRouter();
   
   // Get localized product name
   const productName = language === 'ar' && (product as any).arabic_name 
@@ -22,8 +26,33 @@ export default function ProductCard({ product }: ProductCardProps) {
     ? Math.round(((parseFloat(product.regularPrice) - parseFloat(product.salePrice)) / parseFloat(product.regularPrice)) * 100)
     : 0;
 
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent navigating to product details
+    addItem({
+      id: product.id,
+      name: product.name,
+      slug: product.slug,
+      price: product.salePrice || product.price,
+      image: product.imageThumbnails?.[0] || product.images[0] || product.image,
+      bundleType: 'one-month',
+      bundleLabel: t('bundle.one_month'),
+      arabicName: (product as any).arabic_name || '',
+    });
+    openCart();
+  };
+
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Only navigate if we didn't click a button
+    if (!(e.target as HTMLElement).closest('button')) {
+      router.push(`/products/${product.slug}`);
+    }
+  };
+
   return (
-    <Link href={`/products/${product.slug}`} className="relative bg-gray-50 rounded-xl overflow-hidden shadow-sm group block">
+    <div 
+      className="relative bg-gray-50 rounded-xl overflow-hidden shadow-sm group block cursor-pointer"
+      onClick={handleCardClick}
+    >
       {/* Badges */}
       <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
         {product.onSale && discountPercent > 0 && (
@@ -87,18 +116,21 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         </div>
         
-        {/* View Details Button */}
-        {/* <Link 
-          href={`/products/${product.slug}`}
-          className={`block w-full text-center py-3 rounded-full font-semibold transition-colors ${
-            product.stockStatus === 'instock'
-              ? 'bg-gray-900 text-white hover:bg-gray-800'
-              : 'bg-gray-600 text-white cursor-not-allowed'
-          }`}
-        >
-          {product.stockStatus === 'instock' ? 'View Details' : 'Sold Out'}
-        </Link> */}
+        {/* Add to Cart Button */}
+        <div className="mt-4 relative z-10">
+          <button
+            onClick={handleAddToCart}
+            disabled={product.stockStatus !== 'instock'}
+            className={`w-full py-3 rounded-full font-semibold transition-colors ${
+              product.stockStatus === 'instock'
+                ? 'bg-gray-900 text-white hover:bg-gray-800'
+                : 'bg-gray-600 text-white cursor-not-allowed'
+            }`}
+          >
+            {product.stockStatus === 'instock' ? t('product_detail.add_to_cart') || 'Add to Cart' : t('stack.sold_out') || 'Sold Out'}
+          </button>
+        </div>
       </div>
-    </Link>
+    </div>
   );
 }

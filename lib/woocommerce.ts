@@ -167,7 +167,7 @@ class WooCommerceAPI {
       stockQuantity: null, // Store API doesn't provide exact quantity
       rating: parseFloat(storeProduct.average_rating) || 0,
       ratingCount: storeProduct.review_count,
-      relatedIds: [], // Store API doesn't provide related products
+      relatedIds: extensions.related_ids || [], // Mapped from Maxa Bundles extension
       attributes: [], // Store API doesn't provide attributes
       tags: storeProduct.tags?.map(tag => tag.name) || [],
       // Add custom fields from plugin extensions

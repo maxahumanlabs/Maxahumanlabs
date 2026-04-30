@@ -63,6 +63,7 @@ class Maxa_Bundle_API {
             ),
             'is_bundle'                => $product->get_type() === 'bundle',
             'bundle_items'             => $this->get_bundle_items_for_store_api($product),
+            'related_ids'              => wc_get_related_products($product->get_id(), 4),
         );
     }
     
@@ -130,6 +131,13 @@ class Maxa_Bundle_API {
             'bundle_items'             => array(
                 'description' => 'Bundle items',
                 'type'        => 'array',
+            ),
+            'related_ids'              => array(
+                'description' => 'Related product IDs',
+                'type'        => 'array',
+                'items'       => array(
+                    'type' => 'integer',
+                ),
             ),
         );
     }

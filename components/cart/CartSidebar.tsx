@@ -7,6 +7,7 @@ import { formatPrice } from '@/lib/utils';
 import CartItem from './CartItem';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/contexts/LanguageContext';
+import UpsellProducts from './UpsellProducts';
 
 export default function CartSidebar() {
   const { items, isOpen, closeCart, getSubtotal } = useCartStore();
@@ -74,6 +75,9 @@ export default function CartSidebar() {
               {items.map((item) => (
                 <CartItem key={item.cartItemId || `${item.id}-${Math.random()}`} item={item} />
               ))}
+              
+              {/* Upsell Products in Cart */}
+              <UpsellProducts />
             </div>
           )}
         </div>
