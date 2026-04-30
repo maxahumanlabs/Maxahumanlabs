@@ -27,6 +27,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedBundle, setSelectedBundle] = useState('three-months');
   const [email, setEmail] = useState('');
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const addItem = useCartStore((state) => state.addItem);
 
   const currentPrice = parseFloat(product.salePrice || product.price);
@@ -116,8 +117,38 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
     : product.shortDescription;
   const isOutOfStock = product.stockStatus === 'outofstock';
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: productName,
+    image: product.images,
+    description: productShortDescription?.replace(/<[^>]+>/g, '') || productName,
+    sku: product.id.toString(),
+    brand: {
+      '@type': 'Brand',
+      name: 'Maxa Human',
+    },
+    offers: {
+      '@type': 'Offer',
+      url: `https://maxahumanlabs.com/products/${product.slug}`,
+      priceCurrency: 'USD',
+      price: product.price,
+      availability: isOutOfStock ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+      itemCondition: 'https://schema.org/NewCondition',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '2869',
+    },
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 px-4 md:px-12 lg:px-12 xl:px-12 2xl:px-48 py-16 md:py-20 lg:py-20 xl:py-20 2xl:py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="grid lg:grid-cols-[1.08fr_0.92fr] xl:grid-cols-[1.12fr_0.88fr] gap-12 lg:gap-10 xl:gap-12 2xl:gap-16">
         <div className="space-y-4 lg:space-y-4 xl:space-y-4 2xl:space-y-6">
           <div className="relative aspect-square rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-[#f3f3f3] border border-gray-200 shadow-sm">
@@ -348,51 +379,74 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             </button>
           </div>
 
-          <div className="order-7 lg:order-none">
-            {productShortDescription && (
-              <div
-                className="text-sm md:text-sm text-gray-900 mb-2"
-                dangerouslySetInnerHTML={{ __html: productShortDescription }}
-              />
-            )}
+          <div className="order-7 pt-4 border-t border-gray-100">
+            <h3 className="text-lg font-bold text-gray-900 mb-4">{t('product_detail.description_title')}</h3>
+            
+            <div className={`relative transition-all duration-500 overflow-hidden ${isDescriptionExpanded ? 'max-h-[5000px]' : 'max-h-[120px]'}`}>
+              {productShortDescription && (
+                <div
+                  className="text-sm md:text-sm text-gray-900 mb-2"
+                  dangerouslySetInnerHTML={{ __html: productShortDescription }}
+                />
+              )}
 
-            {productDescription && (
-              (() => {
-                const hasStructuredContent = productDescription.includes('Contains:') || productDescription.includes('Instructions:');
+              {productDescription && (
+                (() => {
+                  const hasStructuredContent = productDescription.includes('Contains:') || productDescription.includes('Instructions:');
 
-                if (hasStructuredContent) {
-                  const containsMatch = productDescription.match(/Contains:([\s\S]*?)(Instructions:|$)/i);
-                  const instructionsMatch = productDescription.match(/Instructions:([\s\S]*?)(<\/p>|$)/i);
-                  const contains = containsMatch ? containsMatch[1].replace(/<[^>]+>/g, '').trim() : '';
-                  const instructions = instructionsMatch ? instructionsMatch[1].replace(/<[^>]+>/g, '').trim() : '';
+                  if (hasStructuredContent) {
+                    const containsMatch = productDescription.match(/Contains:([\s\S]*?)(Instructions:|$)/i);
+                    const instructionsMatch = productDescription.match(/Instructions:([\s\S]*?)(<\/p>|$)/i);
+                    const contains = containsMatch ? containsMatch[1].replace(/<[^>]+>/g, '').trim() : '';
+                    const instructions = instructionsMatch ? instructionsMatch[1].replace(/<[^>]+>/g, '').trim() : '';
+
+                    return (
+                      <div className="mt-4 space-y-4">
+                        {contains && (
+                          <div>
+                            <div className="font-bold text-sm md:text-sm text-gray-900 mb-1">{t('product_detail.contains')}</div>
+                            <div className="text-sm md:text-sm text-gray-800 whitespace-pre-line">{contains}</div>
+                          </div>
+                        )}
+                        {instructions && (
+                          <div>
+                            <div className="font-bold text-sm md:text-sm text-gray-900 mb-1">{t('product_detail.instructions')}</div>
+                            <div className="text-sm md:text-sm text-gray-800 whitespace-pre-line mb-6">{instructions}</div>
+                            <div className="text-sm md:text-sm italic text-gray-800 whitespace-pre-line">{t('product_detail.research_use')}</div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
 
                   return (
-                    <div className="mt-4 space-y-4">
-                      {contains && (
-                        <div>
-                          <div className="font-bold text-sm md:text-sm text-gray-900 mb-1">{t('product_detail.contains')}</div>
-                          <div className="text-sm md:text-sm text-gray-800 whitespace-pre-line">{contains}</div>
-                        </div>
-                      )}
-                      {instructions && (
-                        <div>
-                          <div className="font-bold text-sm md:text-sm text-gray-900 mb-1">{t('product_detail.instructions')}</div>
-                          <div className="text-sm md:text-sm text-gray-800 whitespace-pre-line mb-6">{instructions}</div>
-                          <div className="text-sm md:text-sm italic text-gray-800 whitespace-pre-line">{t('product_detail.research_use')}</div>
-                        </div>
-                      )}
-                    </div>
+                    <div
+                      className="text-sm md:text-sm text-gray-800 mt-4"
+                      dangerouslySetInnerHTML={{ __html: productDescription }}
+                    />
                   );
-                }
-
-                return (
-                  <div
-                    className="text-sm md:text-sm text-gray-800 mt-4"
-                    dangerouslySetInnerHTML={{ __html: productDescription }}
-                  />
-                );
-              })()
-            )}
+                })()
+              )}
+              
+              {!isDescriptionExpanded && (
+                <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-gray-50 to-transparent pointer-events-none"></div>
+              )}
+            </div>
+            
+            <button 
+              onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+              className="mt-4 text-gray-900 font-bold text-sm flex items-center gap-1 hover:text-gray-700 transition-colors"
+            >
+              <span>{isDescriptionExpanded ? t('product_detail.read_less') : t('product_detail.read_more')}</span>
+              <svg 
+                className={`w-4 h-4 transition-transform duration-300 ${isDescriptionExpanded ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

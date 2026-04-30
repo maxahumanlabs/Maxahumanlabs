@@ -15,13 +15,60 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Maxa Human - Precision Crafted Research Peptides',
-  description: 'High-purity compounds. Independent lab verification. Trusted by researchers seeking uncompromised quality.',
-  keywords: 'research peptides, high purity peptides, lab verified compounds, scientific research, Maxa Human',
+  title: {
+    default: 'Maxa Human | Precision Crafted Research Peptides',
+    template: '%s | Maxa Human'
+  },
+  description: 'Maxa Human provides high-purity compounds and research peptides with independent lab verification. Trusted by researchers for uncompromised quality and precision.',
+  keywords: 'research peptides, peptides, supplements, SARMs, Maxa, Maxahuman, Maxa Human, Maxa Human Labs, Maxa peptides, lab verified peptides, GHK-Cu, BPC-157, research compounds, high purity peptides',
+  authors: [{ name: 'Maxa Human' }],
+  creator: 'Maxa Human',
+  publisher: 'Maxa Human',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://maxahumanlabs.com',
+    siteName: 'Maxa Human',
+    title: 'Maxa Human | Precision Crafted Research Peptides',
+    description: 'High-purity compounds. Independent lab verification. Trusted by researchers seeking uncompromised quality.',
+    images: [
+      {
+        url: 'https://maxahumanlabs.com/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Maxa Human',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Maxa Human | Precision Crafted Research Peptides',
+    description: 'High-purity compounds. Independent lab verification. Trusted by researchers seeking uncompromised quality.',
+    images: ['https://maxahumanlabs.com/og-image.png'],
+  },
+  alternates: {
+    canonical: 'https://maxahumanlabs.com',
+  },
   icons: {
     icon: '/favicon.png',
     shortcut: '/favicon.png',
     apple: '/favicon.png',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 

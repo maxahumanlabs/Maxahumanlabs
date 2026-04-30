@@ -155,6 +155,9 @@ export const translations = {
       add_to_cart: "Add to cart",
       contains: "Contains:",
       instructions: "Instructions:",
+      description_title: "Description",
+      read_more: "Read more",
+      read_less: "Read less",
       research_use: "For research use only. Not a drug. Not for diagnostic or therapeutic purposes."
     },
     footer: {
@@ -455,6 +458,9 @@ export const translations = {
       add_to_cart: "أضف إلى السلة",
       contains: "يحتوي على:",
       instructions: "التعليمات:",
+      description_title: "الوصف",
+      read_more: "اقرأ المزيد",
+      read_less: "اقرأ أقل",
       research_use: "للاستخدام البحثي فقط. ليس دواء. ليس لأغراض التشخيص أو العلاج."
     },
     footer: {
