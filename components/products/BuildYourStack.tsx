@@ -220,7 +220,7 @@ export default function BuildYourStack({ categorySlug }: { categorySlug: string 
                 <button 
                   onClick={loadMoreStack}
                   disabled={isLoadingMoreStack}
-                  className="bg-[#3b2760] text-white px-8 py-3 rounded-full font-medium hover:bg-[#2a1b45] transition-colors disabled:opacity-50 flex items-center gap-2"
+                  className="bg-[#0b182b] text-white px-8 py-3 rounded-full font-medium hover:bg-[#1c3a5c] transition-colors disabled:opacity-50 flex items-center gap-2"
                 >
                   {isLoadingMoreStack ? (
                     <>

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Product } from '@/types';
 import { useCartStore } from '@/store/cartStore';
-import { formatPrice } from '@/lib/utils';
+import { formatPrice, buildWhatsAppUrl } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 import RelatedProducts from './RelatedProducts';
 
@@ -16,7 +16,55 @@ type BundleOption = {
   savings?: number;
   savingsPercent?: number;
   isPopular?: boolean;
+  tag: string;
+  bottles: number;
+  freeGifts: { id: string; label: string; price: number }[];
 };
+
+const MYSTERY_IMAGES = [
+  '/Mystery Supplement 1.png',
+  '/Mystery Supplement 2.png',
+  '/Mystery Supplement 3.png',
+];
+
+function GiftIcon({ id, className }: { id: string; className?: string }) {
+  switch (id) {
+    case 'shipping':
+      return (
+        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11M14 9h4l4 4v5c0 .6-.4 1-1 1h-2" />
+          <circle cx="7" cy="18" r="2" />
+          <circle cx="17" cy="18" r="2" />
+        </svg>
+      );
+    case 'bac':
+      return (
+        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 2.69s-6 6.36-6 11.06a6 6 0 0012 0c0-4.7-6-11.06-6-11.06z" />
+        </svg>
+      );
+    case 'ebook':
+      return (
+        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+      );
+    case 'ai':
+      return (
+        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.456-2.456L14.25 6l1.035-.259a3.375 3.375 0 002.456-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
+        </svg>
+      );
+    case 'mystery':
+      return (
+        <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M21 11.25H3M21 11.25a1.125 1.125 0 001.125-1.125v-1.5A1.125 1.125 0 0021 7.5H3a1.125 1.125 0 00-1.125 1.125v1.5C1.875 10.746 2.379 11.25 3 11.25M12 7.5V21m0-13.5a2.625 2.625 0 10-2.625-2.625C9.375 6.34 10.66 7.5 12 7.5zm0 0a2.625 2.625 0 112.625-2.625C14.625 6.34 13.34 7.5 12 7.5z" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
 
 interface ProductDetailClientProps {
   product: Product;
@@ -64,6 +112,15 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       savings: threeMonthSavings,
       savingsPercent: Math.round(threeMonthSavingsPercent),
       isPopular: true,
+      tag: t('bundle.tag_three_months'),
+      bottles: 3,
+      freeGifts: [
+        { id: 'shipping', label: t('bundle.gift_free_shipping'), price: 200 },
+        { id: 'bac', label: t('bundle.gift_bac_water'), price: 450 },
+        { id: 'ebook', label: t('bundle.gift_ebook'), price: 299 },
+        { id: 'ai', label: t('bundle.gift_ai_coach'), price: 99 },
+        { id: 'mystery', label: t('bundle.gift_mystery'), price: 999 },
+      ],
     },
     {
       id: 'two-months',
@@ -72,7 +129,14 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       price: twoMonthSale,
       savings: twoMonthSavings,
       savingsPercent: Math.round(twoMonthSavingsPercent),
-
+      tag: t('bundle.tag_two_months'),
+      bottles: 2,
+      freeGifts: [
+        { id: 'shipping', label: t('bundle.gift_free_shipping'), price: 200 },
+        { id: 'bac', label: t('bundle.gift_bac_water'), price: 300 },
+        { id: 'ebook', label: t('bundle.gift_ebook'), price: 299 },
+        { id: 'ai', label: t('bundle.gift_ai_coach'), price: 99 },
+      ],
     },
     {
       id: 'one-month',
@@ -81,6 +145,12 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       price: currentPrice,
       savings: savingsPerItem,
       savingsPercent: Math.round(savingsPercentPerItem),
+      tag: t('bundle.tag_one_month'),
+      bottles: 1,
+      freeGifts: [
+        { id: 'shipping', label: t('bundle.gift_free_shipping'), price: 200 },
+        { id: 'bac', label: t('bundle.gift_bac_water'), price: 150 },
+      ],
     },
   ];
 
@@ -98,6 +168,14 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       bundleLabel: bundle.label,
       arabicName: (product as any).arabic_name || '',
     });
+  };
+
+  const handleBuyNow = () => {
+    const bundle = bundleOptions.find((item) => item.id === selectedBundle);
+    if (!bundle) return;
+
+    const message = `Hello, I'd like to order:\n\n• ${product.name} (${bundle.label}) — ${formatPrice(bundle.price)}`;
+    window.open(buildWhatsAppUrl(message), '_blank');
   };
 
   const handleNotifyMe = () => {
@@ -255,91 +333,138 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
               </div>
             </div>
 
-            <div className="space-y-2 lg:space-y-2 xl:space-y-2 2xl:space-y-3">
-              {bundleOptions.map((bundle) => (
-                <label
-                  key={bundle.id}
-                  className={`relative flex items-center p-3 lg:p-3 xl:p-3 2xl:p-4 rounded-xl border cursor-pointer transition-all ${selectedBundle === bundle.id
-                      ? 'border-gray-900 bg-gray-50'
-                      : 'border-gray-300 bg-white hover:border-gray-400'
-                    }`}
-                >
-                  <input
-                    type="radio"
-                    name="bundle"
-                    value={bundle.id}
-                    checked={selectedBundle === bundle.id}
-                    onChange={(e) => setSelectedBundle(e.target.value)}
-                    className="w-4 h-4 text-gray-900 focus:ring-gray-900 flex-shrink-0"
-                  />
-                  <div className="flex-1 ml-3">
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex-1">
-                        <div className="text-sm md:text-base lg:text-base xl:text-base font-bold text-gray-900">
-                          {bundle.label}
+            <div className="space-y-4 lg:space-y-4 xl:space-y-4 2xl:space-y-5 pt-2">
+              {bundleOptions.map((bundle) => {
+                const isSelected = selectedBundle === bundle.id;
+                const hasGifts = bundle.freeGifts.length > 0;
+                const hasSavings = (bundle.savings ?? 0) > 0;
+                return (
+                  <label
+                    key={bundle.id}
+                    className={`relative block rounded-2xl border-2 cursor-pointer transition-all ${isSelected
+                        ? 'border-gray-900 shadow-md'
+                        : 'border-gray-300 hover:border-gray-400'
+                      }`}
+                  >
+                    <div className="absolute -top-3 right-4 z-10">
+                      <span className="inline-block px-3 py-1 rounded-full text-[10px] md:text-xs font-bold tracking-wide shadow-sm bg-black text-white">
+                        {bundle.tag}
+                      </span>
+                    </div>
+
+                    <div className="overflow-hidden rounded-[14px]">
+                    <div
+                      className={`flex items-center gap-3 p-3 lg:p-3 xl:p-3 2xl:p-4 ${isSelected ? 'bg-gray-50' : 'bg-white'}`}
+                    >
+                      <input
+                        type="radio"
+                        name="bundle"
+                        value={bundle.id}
+                        checked={isSelected}
+                        onChange={(e) => setSelectedBundle(e.target.value)}
+                        className="w-4 h-4 text-gray-900 focus:ring-gray-900 flex-shrink-0"
+                      />
+                      <div className="relative w-14 h-14 2xl:w-16 2xl:h-16 flex-shrink-0 rounded-xl overflow-hidden bg-[#f3f3f3] border border-gray-200">
+                        <Image
+                          src={product.image}
+                          alt={productName}
+                          fill
+                          className="object-contain p-1"
+                          sizes="64px"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-sm md:text-base lg:text-base xl:text-base font-bold text-gray-900">
+                            {bundle.label}
+                          </span>
+                          {hasSavings && (
+                            <span className="bg-[#ecfccb] text-[#4d7c0f] text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-md">
+                              {bundle.savingsPercent}% {t('bundle.off')}
+                            </span>
+                          )}
                         </div>
-                        {bundle.savings && bundle.savings > 0 ? (
-                          <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-[#4d7c0f] font-medium">
-                            {t('product_detail.you_save')} {formatPrice(bundle.savings)} ({bundle.savingsPercent}%)
-                          </div>
-                        ) : (
-                          <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-gray-500">
-                            {t('product_detail.standard_price')}
-                          </div>
-                        )}
+                        <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-gray-500 mt-0.5">
+                          {bundle.bottles}{' '}
+                          {bundle.bottles === 1 ? t('bundle.bottle') : t('bundle.bottles')}
+                          {hasGifts && ` + ${bundle.freeGifts.length} ${t('bundle.free_gifts')}`}
+                        </div>
                       </div>
                       <div className="text-right flex-shrink-0">
                         <div className="text-base md:text-lg lg:text-lg xl:text-lg font-bold text-gray-900">
                           {formatPrice(bundle.price)}
                         </div>
-                        {bundle.savings && bundle.savings > 0 && (
-                          <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-gray-500 line-through">
+                        {hasSavings && (
+                          <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-gray-400 line-through">
                             {formatPrice(originalPrice * bundle.months)}
                           </div>
                         )}
                       </div>
                     </div>
-                  </div>
-                  {bundle.isPopular && (
-                    <div className="absolute -top-2 -right-2 bg-black text-white px-2 py-1 rounded-full text-[10px] md:text-xs font-bold">
-                      {t('product_detail.most_popular')}
+
+                    {hasGifts && (
+                      <div
+                        className={`border-t border-black/10 divide-y ${isSelected ? 'divide-white/15' : 'divide-black/10'
+                          }`}
+                      >
+                        {bundle.freeGifts.map((gift) => (
+                          <div
+                            key={gift.id}
+                            className={`flex items-center justify-between gap-2 px-3 lg:px-4 py-1 ${isSelected ? 'bg-black' : 'bg-[#f6faff]'
+                              }`}
+                          >
+                            <div className="flex items-center gap-2 min-w-0">
+                                {gift.id === 'mystery' ? (
+                                  <span className="flex items-center flex-shrink-0">
+                                    {MYSTERY_IMAGES.map((src, i) => (
+                                      <span key={i} className="relative w-5 h-5">
+                                        <Image
+                                          src={src}
+                                          alt={gift.label}
+                                          fill
+                                          className="object-contain"
+                                          sizes="20px"
+                                        />
+                                      </span>
+                                    ))}
+                                  </span>
+                                ) : (
+                                  <span className="flex items-center justify-center w-5 h-5 flex-shrink-0">
+                                    <GiftIcon
+                                      id={gift.id}
+                                      className={`w-[18px] h-[18px] ${isSelected ? 'text-white' : 'text-black'}`}
+                                    />
+                                  </span>
+                                )}
+                                <span
+                                  className={`text-xs md:text-sm truncate ${isSelected ? 'text-white' : 'text-gray-700'
+                                    }`}
+                                >
+                                  {gift.label}
+                                </span>
+                              </div>
+                              <span className="flex items-center gap-1.5 flex-shrink-0">
+                                <span
+                                  className={`text-[10px] md:text-xs font-bold ${isSelected ? 'text-white' : 'text-[#4d7c0f]'
+                                    }`}
+                                >
+                                  {t('bundle.free')}
+                                </span>
+                                <span
+                                  className={`text-[10px] md:text-xs line-through ${isSelected ? 'text-white/50' : 'text-gray-400'
+                                    }`}
+                                >
+                                  {gift.price} {t('bundle.currency')}
+                                </span>
+                              </span>
+                            </div>
+                        ))}
+                      </div>
+                    )}
                     </div>
-                  )}
-                </label>
-              ))}
-            </div>
-
-            <div className="mt-6 pt-6 border-t border-gray-200">
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-6 flex items-center justify-center gap-2">
-                <span className="text-2xl">🎁</span> {t('bundle.unlock_gifts')}
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="border-2 border-gray-900 rounded-xl p-4 text-center relative flex flex-col items-center justify-center bg-white h-32 shadow-sm">
-                  <div className="absolute -top-3 bg-gray-200 text-gray-800 text-xs font-bold px-3 py-1 rounded-md">
-                    {t('bundle.free')}
-                  </div>
-                  <div className="mb-2">
-                    <svg className="w-12 h-12 text-[#9333ea]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11M14 9h4l4 4v5c0 .6-.4 1-1 1h-2" />
-                      <circle cx="7" cy="18" r="2" strokeWidth={1.5} />
-                      <circle cx="17" cy="18" r="2" strokeWidth={1.5} />
-                    </svg>
-                  </div>
-                  <p className="font-semibold text-sm text-gray-900">{t('bundle.free_shipping')}</p>
-                </div>
-
-                <div className="border-2 border-gray-900 rounded-xl p-4 text-center relative flex flex-col items-center justify-center bg-white h-32 shadow-sm">
-                  <div className="absolute -top-3 bg-gray-200 text-gray-800 text-xs font-bold px-3 py-1 rounded-md">
-                    {t('bundle.free')}
-                  </div>
-                  <div className="mb-2">
-                    <svg className="w-12 h-12 text-[#9333ea]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                  </div>
-                  <p className="font-semibold text-sm text-gray-900">{t('bundle.free_ebook')}</p>
-                </div>
-              </div>
+                  </label>
+                );
+              })}
             </div>
           </div>
 
@@ -362,19 +487,12 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             )}
 
             <button
-              onClick={() => {
-                const gpayUrl = 'https://pay.google.com/gp/p/ui/pay';
-                if (window.innerWidth >= 1024) {
-                  window.open(gpayUrl, 'gpay', 'width=500,height=700,menubar=no,toolbar=no,location=no,status=no');
-                } else {
-                  window.open(gpayUrl, '_blank');
-                }
-              }}
+              onClick={handleBuyNow}
               disabled={isOutOfStock}
               className="w-full flex items-center justify-center bg-black text-white text-sm md:text-base py-4 lg:py-4 xl:py-4 2xl:py-5 px-6 rounded-full mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span className="flex items-center">
-                <span>{t('bundle.buy_with_google_pay')}</span>
+                <span>{t('bundle.buy_now')}</span>
               </span>
             </button>
           </div>

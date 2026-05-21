@@ -47,7 +47,7 @@ export default function DosingCalculator() {
             step="0.1"
             value={vialAmountMg || ''}
             onChange={(e) => setVialAmountMg(parseFloat(e.target.value) || 0)}
-            className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#3b2760] focus:border-transparent transition-all"
+            className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0b182b] focus:border-transparent transition-all"
           />
         </div>
         
@@ -59,7 +59,7 @@ export default function DosingCalculator() {
             step="0.1"
             value={waterAddedMl || ''}
             onChange={(e) => setWaterAddedMl(parseFloat(e.target.value) || 0)}
-            className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#3b2760] focus:border-transparent transition-all"
+            className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0b182b] focus:border-transparent transition-all"
           />
         </div>
 
@@ -71,7 +71,7 @@ export default function DosingCalculator() {
             step="10"
             value={desiredDoseMcg || ''}
             onChange={(e) => setDesiredDoseMcg(parseFloat(e.target.value) || 0)}
-            className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#3b2760] focus:border-transparent transition-all"
+            className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#0b182b] focus:border-transparent transition-all"
           />
         </div>
       </div>
@@ -87,7 +87,7 @@ export default function DosingCalculator() {
         </div>
         <div className="flex justify-between items-center border-t border-gray-200 pt-4">
           <span className="text-gray-500 font-medium text-sm">Doses per vial:</span>
-          <span className="text-[#3b2760] font-bold text-lg">{dosesPerVial} doses</span>
+          <span className="text-[#0b182b] font-bold text-lg">{dosesPerVial} doses</span>
         </div>
       </div>
     </div>

@@ -90,6 +90,24 @@ export function getStockStatusLabel(status: string): string {
   return labels[status] || 'Unknown';
 }
 
+// WhatsApp ordering (store owner takes all orders via WhatsApp, no on-site payment)
+export const WHATSAPP_NUMBER = '971528107166';
+
+export function buildWhatsAppUrl(message: string): string {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+// WhatsApp link for ordering a whole cart
+export function getCartWhatsAppUrl(items: CartItem[]): string {
+  const lines = items.map((item) => {
+    const label = item.bundleLabel ? ` (${item.bundleLabel})` : '';
+    return `• ${item.name}${label} x${item.quantity} — ${formatPrice(parseFloat(item.price) * item.quantity)}`;
+  });
+  const total = formatPrice(calculateCartTotal(items));
+  const message = `Hello, I'd like to place an order:\n\n${lines.join('\n')}\n\nTotal: ${total}`;
+  return buildWhatsAppUrl(message);
+}
+
 // Get stock status color
 export function getStockStatusColor(status: string): string {
   const colors: { [key: string]: string } = {

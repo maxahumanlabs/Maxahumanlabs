@@ -21,25 +21,25 @@ export default function HomePage() {
     {
       title: t('hero_slider.slide1.title'),
       description: t('hero_slider.slide1.description'),
-      image: "https://slategrey-zebra-234644.hostingersite.com/wp-content/uploads/2026/04/ghkcu.webp",
+      image: "/ghkcu.webp",
       url: "/products/ghk-cu-50mg"
     },
     {
       title: t('hero_slider.slide2.title'),
       description: t('hero_slider.slide2.description'),
-      image: "https://slategrey-zebra-234644.hostingersite.com/wp-content/uploads/2026/04/motsc.webp",
+      image: "/motsc.webp",
       url: "/products/mots-c-10mg"
     },
     {
       title: t('hero_slider.slide3.title'),
       description: t('hero_slider.slide3.description'),
-      image: "https://slategrey-zebra-234644.hostingersite.com/wp-content/uploads/2026/04/slupp.webp",
+      image: "/slupp.webp",
       url: "/products/slu-pp-332-250-mcg-60-capsules"
     },
     {
       title: t('hero_slider.slide4.title'),
       description: t('hero_slider.slide4.description'),
-      image: "https://slategrey-zebra-234644.hostingersite.com/wp-content/uploads/2026/04/Tb500-bpc.webp",
+      image: "/Tb500-bpc.webp",
       url: "/products/tb-500-10mg-bpc-157-10mg-wolverine-stack"
     }
   ];
@@ -127,13 +127,13 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section Slider */}
-      <section className="relative w-full bg-gradient-to-br from-[#f3eef9] to-[#ffffff] overflow-hidden min-h-[680px] md:min-h-[600px] flex items-center pt-16 pb-32 md:py-20 md:pb-24">
+      <section className="relative w-full bg-gradient-to-br from-[#eef2f9] to-[#ffffff] overflow-hidden min-h-[680px] md:min-h-[600px] flex items-center pt-16 pb-32 md:py-20 md:pb-24">
         
         {/* Soft Bubbles Background */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-[#e8deff]/40 blur-3xl" />
+          <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-[#dde6f3]/40 blur-3xl" />
           <div className="absolute top-[20%] -right-[5%] w-[40%] h-[40%] rounded-full bg-white/60 blur-3xl" />
-          <div className="absolute -bottom-[20%] left-[20%] w-[60%] h-[60%] rounded-full bg-[#e8deff]/60 blur-3xl" />
+          <div className="absolute -bottom-[20%] left-[20%] w-[60%] h-[60%] rounded-full bg-[#dde6f3]/60 blur-3xl" />
         </div>
 
         {/* Logo Background with low opacity */}
@@ -168,14 +168,14 @@ export default function HomePage() {
 
               {/* Product Info */}
               <div className={`w-full md:w-1/2 text-center ${language === 'ar' ? 'md:text-right' : 'md:text-left'}`}>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#3b2760] mb-4 leading-tight">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#0b182b] mb-4 leading-tight">
                   {slide.title}
                 </h2>
-                <p className="text-[#3b2760]/80 text-sm md:text-base lg:text-lg mb-6 leading-relaxed max-w-lg mx-auto md:mx-0 font-medium">
+                <p className="text-[#0b182b]/80 text-sm md:text-base lg:text-lg mb-6 leading-relaxed max-w-lg mx-auto md:mx-0 font-medium">
                   {slide.description}
                 </p>
                 <Link href={slide.url}>
-                  <button className="bg-transparent border-2 border-[#3b2760] text-[#3b2760] px-6 py-2.5 text-xs md:text-sm font-bold tracking-widest uppercase transition-all duration-300 hover:bg-[#3b2760] hover:text-white shadow-sm inline-block">
+                  <button className="bg-transparent border-2 border-[#0b182b] text-[#0b182b] px-6 py-2.5 text-xs md:text-sm font-bold tracking-widest uppercase transition-all duration-300 hover:bg-[#0b182b] hover:text-white shadow-sm inline-block">
                     {t('hero_slider.buy_now') || 'BUY NOW →'}
                   </button>
                 </Link>
@@ -191,8 +191,8 @@ export default function HomePage() {
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index
-                ? 'bg-[#3b2760] scale-110 shadow-md ring-2 ring-[#3b2760]/15'
-                : 'bg-[#3b2760]/25 hover:bg-[#3b2760]/45 ring-1 ring-[#3b2760]/10'
+                ? 'bg-[#0b182b] scale-110 shadow-md ring-2 ring-[#0b182b]/15'
+                : 'bg-[#0b182b]/25 hover:bg-[#0b182b]/45 ring-1 ring-[#0b182b]/10'
                 }`}
               aria-label={`Go to slide ${index + 1}`}
             />

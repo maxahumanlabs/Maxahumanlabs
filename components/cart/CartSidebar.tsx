@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { useCartStore } from '@/store/cartStore';
-import { formatPrice } from '@/lib/utils';
+import { formatPrice, getCartWhatsAppUrl } from '@/lib/utils';
 import CartItem from './CartItem';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -97,11 +97,15 @@ export default function CartSidebar() {
 
             {/* Buttons */}
             <div className="space-y-2">
-              <Link href="/checkout" onClick={closeCart} className="block">
-                <button className="w-full bg-gray-900 text-white font-normal py-3 text-sm rounded-full hover:bg-gray-800 transition-colors">
-                  {t('cart.proceed_to_checkout')}
-                </button>
-              </Link>
+              <button
+                onClick={() => {
+                  window.open(getCartWhatsAppUrl(items), '_blank');
+                  closeCart();
+                }}
+                className="w-full bg-gray-900 text-white font-normal py-3 text-sm rounded-full hover:bg-gray-800 transition-colors"
+              >
+                {t('cart.proceed_to_checkout')}
+              </button>
               <Link href="/cart" onClick={closeCart} className="block">
                 <button className="w-full border-2 border-gray-900 text-gray-900 font-normal py-3 text-sm rounded-full hover:bg-gray-50 transition-colors">
                   {t('cart.view_cart')}

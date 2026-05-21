@@ -68,7 +68,7 @@ export default function StackPage() {
     <div>
       {/* Banner Section */}
       <section className="pb-0">
-        <div className="relative bg-[#3b2760] text-white overflow-hidden rounded-t-3xl min-h-[300px] md:min-h-[400px] flex items-center">
+        <div className="relative bg-[#0b182b] text-white overflow-hidden rounded-t-3xl min-h-[300px] md:min-h-[400px] flex items-center">
           {/* Logo Background with low opacity */}
           <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
             <Image
@@ -81,7 +81,7 @@ export default function StackPage() {
           </div>
           
           {/* Overlay */}
-          <div className="absolute inset-0 bg-[#3b2760]/20" />
+          <div className="absolute inset-0 bg-[#0b182b]/20" />
           
           {/* Content */}
           <div className="relative px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-32 w-full">

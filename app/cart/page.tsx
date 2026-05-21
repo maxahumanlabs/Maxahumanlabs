@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useCartStore } from '@/store/cartStore';
-import { formatPrice } from '@/lib/utils';
+import { formatPrice, getCartWhatsAppUrl } from '@/lib/utils';
 import CartItem from '@/components/cart/CartItem';
 import Button from '@/components/ui/Button';
 
@@ -115,11 +115,12 @@ export default function CartPage() {
               </div>
             </div>
 
-            <Link href="/checkout">
-              <button className="w-full bg-gray-900 text-white text-lg md:text-xl lg:text-xl xl:text-xl 2xl:text-2xl font-semibold py-5 lg:py-5 xl:py-5 2xl:py-6 px-6 rounded-full hover:bg-gray-800 transform hover:scale-[1.02] transition-all duration-200 shadow-lg mb-6">
-                Proceed to Checkout
-              </button>
-            </Link>
+            <button
+              onClick={() => window.open(getCartWhatsAppUrl(items), '_blank')}
+              className="w-full bg-gray-900 text-white text-lg md:text-xl lg:text-xl xl:text-xl 2xl:text-2xl font-semibold py-5 lg:py-5 xl:py-5 2xl:py-6 px-6 rounded-full hover:bg-gray-800 transform hover:scale-[1.02] transition-all duration-200 shadow-lg mb-6"
+            >
+              Proceed to Checkout
+            </button>
 
             <p className="text-sm md:text-base lg:text-base text-gray-500 text-center mb-8">
               Tax and shipping calculated at checkout
