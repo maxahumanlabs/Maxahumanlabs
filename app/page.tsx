@@ -2,15 +2,37 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Button from '@/components/ui/Button';
 import ProductGrid from '@/components/products/ProductGrid';
 import { Product } from '@/types';
 import { wordpress } from '@/lib/wordpress';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useCartStore } from '@/store/cartStore';
 
 export default function HomePage() {
   const { t, language } = useLanguage();
+  const router = useRouter();
+  const addItem = useCartStore((state) => state.addItem);
+  const openCart = useCartStore((state) => state.openCart);
+
+  const handleHomeAddToCart = (e: React.MouseEvent, product: Product) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addItem({
+      id: product.id,
+      name: product.name,
+      slug: product.slug,
+      price: product.salePrice || product.price,
+      image: product.images[0] || product.imageThumbnails?.[0] || product.image,
+      bundleType: 'one-month',
+      bundleLabel: t('bundle.one_month'),
+      arabicName: (product as any).arabic_name || '',
+    });
+    openCart();
+  };
+
   const [scrollY, setScrollY] = useState(0);
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [trendingProducts, setTrendingProducts] = useState<Product[]>([]);
@@ -272,7 +294,11 @@ export default function HomePage() {
           <div className="flex gap-6 px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pb-6">
             {trendingProducts.length > 0 ? (
               trendingProducts.map((product) => (
-                <Link key={product.id} href={`/products/${product.slug}`} className="flex-none w-64 md:w-72 lg:w-80 xl:w-[340px] 2xl:w-[360px]">
+                <div
+                  key={product.id}
+                  onClick={(e) => { if (!(e.target as HTMLElement).closest('button')) router.push(`/products/${product.slug}`); }}
+                  className="flex-none w-64 md:w-72 lg:w-80 xl:w-[340px] 2xl:w-[360px] cursor-pointer"
+                >
                   <div className="relative bg-gray-50 rounded-xl overflow-hidden shadow-sm group h-full">
                     {/* Badges */}
                     <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
@@ -312,31 +338,56 @@ export default function HomePage() {
                       ) : (
                         <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300" />
                       )}
+
+                      {/* Desktop: Add to cart pill slides up from the bottom of the image on hover */}
+                      <div className="hidden md:block absolute inset-x-0 bottom-0 p-3 z-20 transition-transform duration-300 ease-out translate-y-full group-hover:translate-y-0">
+                        <button
+                          onClick={(e) => handleHomeAddToCart(e, product)}
+                          disabled={product.stockStatus !== 'instock'}
+                          className={`w-full py-3 rounded-full font-semibold text-white text-sm lg:text-base transition-colors ${
+                            product.stockStatus === 'instock' ? 'bg-gray-900 hover:bg-gray-800' : 'bg-gray-600 cursor-not-allowed'
+                          }`}
+                        >
+                          {product.stockStatus === 'instock' ? (t('product_detail.add_to_cart') || 'Add to Cart') : (t('stack.sold_out') || 'Sold Out')}
+                        </button>
+                      </div>
+
+                      {/* Mobile: round add-to-cart icon, always visible */}
+                      <button
+                        onClick={(e) => handleHomeAddToCart(e, product)}
+                        disabled={product.stockStatus !== 'instock'}
+                        aria-label={t('product_detail.add_to_cart') || 'Add to Cart'}
+                        className={`md:hidden absolute bottom-3 right-3 w-11 h-11 rounded-full flex items-center justify-center shadow-lg z-20 ${
+                          product.stockStatus === 'instock' ? 'bg-gray-900 text-white' : 'bg-gray-600 text-white cursor-not-allowed'
+                        }`}
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                      </button>
                     </div>
 
                     {/* Product Info */}
                     <div className="bg-gray-50 p-5">
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <p className="text-gray-500 text-xs lg:text-xs xl:text-sm 2xl:text-sm mb-1 uppercase tracking-wide">
-                            Maxa Human
+                      <p className="text-gray-500 text-xs lg:text-xs xl:text-sm 2xl:text-sm mb-1 uppercase tracking-wide">
+                        Maxa Human
+                      </p>
+                      <h3 className="text-gray-900 text-base lg:text-base xl:text-lg 2xl:text-xl font-medium">{language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name}</h3>
+
+                      {/* Price below the product name */}
+                      <div className="mt-2 flex items-baseline gap-2 flex-wrap">
+                        <p className="text-red-500 font-semibold text-base lg:text-base xl:text-lg 2xl:text-xl">
+                          Dhs. {parseFloat(product.price).toFixed(2)}
+                        </p>
+                        {product.onSale && product.regularPrice && parseFloat(product.regularPrice) > parseFloat(product.price) && (
+                          <p className="text-gray-400 text-sm lg:text-sm xl:text-base 2xl:text-lg line-through">
+                            Dhs. {parseFloat(product.regularPrice).toFixed(2)}
                           </p>
-                          <h3 className="text-gray-900 text-base lg:text-base xl:text-lg 2xl:text-xl font-medium">{language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name}</h3>
-                        </div>
-                        <div className="text-right ml-3">
-                          <p className="text-red-500 font-semibold text-base lg:text-base xl:text-lg 2xl:text-xl whitespace-nowrap">
-                            Dhs. {parseFloat(product.price).toFixed(2)}
-                          </p>
-                          {product.onSale && product.regularPrice && parseFloat(product.regularPrice) > parseFloat(product.price) && (
-                            <p className="text-gray-400 text-sm lg:text-sm xl:text-base 2xl:text-lg line-through whitespace-nowrap">
-                              Dhs. {parseFloat(product.regularPrice).toFixed(2)}
-                            </p>
-                          )}
-                        </div>
+                        )}
                       </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))
             ) : (
               <div className="flex-none w-80">
