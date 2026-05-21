@@ -294,7 +294,7 @@ export default function HomePage() {
                         <>
                           {/* First Image */}
                           <Image
-                            src={product.imageThumbnails?.[0] || product.images[0] || '/placeholder.jpg'}
+                            src={product.images[0] || product.imageThumbnails?.[0] || '/placeholder.jpg'}
                             alt={product.name}
                             fill
                             sizes="(max-width: 768px) 16rem, (max-width: 1280px) 20rem, 22.5rem"
@@ -302,7 +302,7 @@ export default function HomePage() {
                           />
                           {/* Second Image - slides in from right */}
                           <Image
-                            src={product.imageThumbnails?.[1] || product.images[1] || product.imageThumbnails?.[0] || product.images[0] || '/placeholder.jpg'}
+                            src={product.images[1] || product.images[0] || product.imageThumbnails?.[1] || product.imageThumbnails?.[0] || '/placeholder.jpg'}
                             alt={product.name}
                             fill
                             sizes="(max-width: 768px) 16rem, (max-width: 1280px) 20rem, 22.5rem"

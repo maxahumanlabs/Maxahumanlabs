@@ -221,7 +221,7 @@ export default function StackPage() {
                       <div className="relative bg-gray-100 aspect-square flex items-center justify-center overflow-hidden">
                         {product.images && product.images.length > 0 ? (
                           <Image
-                            src={product.imageThumbnails?.[0] || product.images[0] || '/placeholder.jpg'}
+                            src={product.images[0] || product.imageThumbnails?.[0] || '/placeholder.jpg'}
                             alt={language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name}
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
