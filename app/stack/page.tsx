@@ -202,7 +202,7 @@ export default function StackPage() {
               <>
                 <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
                   {stackProducts.map((product) => (
-                    <div key={product.id} className="relative bg-white rounded-xl overflow-hidden shadow-sm">
+                    <div key={product.id} className="relative bg-white rounded-xl overflow-hidden shadow-sm group">
                       {/* Badges */}
                       <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
                         {product.onSale && product.regularPrice && product.salePrice && (
@@ -230,45 +230,53 @@ export default function StackPage() {
                         ) : (
                           <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300" />
                         )}
+
+                        {/* Desktop: Add to Stack pill slides up from the bottom of the image on hover */}
+                        <div className="hidden md:block absolute inset-x-0 bottom-0 p-3 z-20 transition-transform duration-300 ease-out translate-y-full group-hover:translate-y-0">
+                          <button
+                            onClick={() => addToStack(product)}
+                            disabled={product.stockStatus !== 'instock'}
+                            className={`w-full py-3 rounded-full font-semibold text-white text-sm lg:text-base transition-colors ${
+                              product.stockStatus === 'instock' ? 'bg-gray-900 hover:bg-gray-800' : 'bg-gray-600 cursor-not-allowed'
+                            }`}
+                          >
+                            {product.stockStatus === 'instock' ? t('stack.add_button') : t('stack.sold_out')}
+                          </button>
+                        </div>
+
+                        {/* Mobile: round add icon, always visible */}
+                        <button
+                          onClick={() => addToStack(product)}
+                          disabled={product.stockStatus !== 'instock'}
+                          aria-label={t('stack.add_button')}
+                          className={`md:hidden absolute bottom-3 right-3 w-11 h-11 rounded-full flex items-center justify-center shadow-lg z-20 ${
+                            product.stockStatus === 'instock' ? 'bg-gray-900 text-white' : 'bg-gray-600 text-white cursor-not-allowed'
+                          }`}
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                          </svg>
+                        </button>
                       </div>
 
                       {/* Product Info */}
                       <div className="bg-gray-50 p-5">
-                        <div className="flex items-start justify-between mb-4">
-                          <div>
-                            <p className="text-gray-500 text-xs lg:text-xs xl:text-sm 2xl:text-sm mb-1 uppercase tracking-wide">
-                              Maxa Human
+                        <p className="text-gray-500 text-xs lg:text-xs xl:text-sm 2xl:text-sm mb-1 uppercase tracking-wide">
+                          Maxa Human
+                        </p>
+                        <h3 className="text-gray-900 text-base lg:text-base xl:text-lg 2xl:text-xl font-medium">{language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name}</h3>
+
+                        {/* Price below the product name */}
+                        <div className="mt-2 flex items-baseline gap-2 flex-wrap">
+                          <p className="text-red-500 font-semibold text-base lg:text-base xl:text-lg 2xl:text-xl">
+                            Dhs. {parseFloat(product.price).toFixed(2)}
+                          </p>
+                          {product.onSale && product.regularPrice && parseFloat(product.regularPrice) > parseFloat(product.price) && (
+                            <p className="text-gray-400 text-sm lg:text-sm xl:text-base 2xl:text-lg line-through">
+                              Dhs. {parseFloat(product.regularPrice).toFixed(2)}
                             </p>
-                            <h3 className="text-gray-900 text-base lg:text-base xl:text-lg 2xl:text-xl font-medium">{language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name}</h3>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-red-500 font-semibold text-base lg:text-base xl:text-lg 2xl:text-xl">
-                              Dhs. {parseFloat(product.price).toFixed(2)}
-                            </p>
-                            {product.onSale && product.regularPrice && parseFloat(product.regularPrice) > parseFloat(product.price) && (
-                              <p className="text-gray-400 text-sm lg:text-sm xl:text-base 2xl:text-lg line-through">
-                                Dhs. {parseFloat(product.regularPrice).toFixed(2)}
-                              </p>
-                            )}
-                          </div>
+                          )}
                         </div>
-                        
-                        {/* Add to Stack or Sold Out Button */}
-                        {product.stockStatus === 'instock' ? (
-                          <button 
-                            onClick={() => addToStack(product)}
-                            className="w-full bg-gray-900 text-white font-semibold py-3 text-base lg:text-base xl:text-base 2xl:text-lg rounded-full hover:bg-gray-800 transition-colors"
-                          >
-                            {t('stack.add_button')}
-                          </button>
-                        ) : (
-                          <button 
-                            className="w-full bg-gray-600 text-white font-semibold py-3 text-base lg:text-base xl:text-base 2xl:text-lg rounded-full cursor-not-allowed" 
-                            disabled
-                          >
-                            {t('stack.sold_out')}
-                          </button>
-                        )}
                       </div>
                     </div>
                   ))}
