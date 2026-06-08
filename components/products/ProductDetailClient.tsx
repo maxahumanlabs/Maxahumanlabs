@@ -195,38 +195,11 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
     : product.shortDescription;
   const isOutOfStock = product.stockStatus === 'outofstock';
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: productName,
-    image: product.images,
-    description: productShortDescription?.replace(/<[^>]+>/g, '') || productName,
-    sku: product.id.toString(),
-    brand: {
-      '@type': 'Brand',
-      name: 'Maxa Human',
-    },
-    offers: {
-      '@type': 'Offer',
-      url: `https://www.maxahumanlabs.com/products/${product.slug}`,
-      priceCurrency: 'USD',
-      price: product.price,
-      availability: isOutOfStock ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
-      itemCondition: 'https://schema.org/NewCondition',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '2869',
-    },
-  };
+  // NOTE: Product/Offer/Breadcrumb JSON-LD is emitted server-side from real
+  // WooCommerce data in app/products/[slug]/page.tsx (see lib/schema.ts).
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 px-4 md:px-12 lg:px-12 xl:px-12 2xl:px-48 py-16 md:py-20 lg:py-20 xl:py-20 2xl:py-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
       <div className="grid lg:grid-cols-[1.08fr_0.92fr] xl:grid-cols-[1.12fr_0.88fr] gap-12 lg:gap-10 xl:gap-12 2xl:gap-16">
         <div className="space-y-4 lg:space-y-4 xl:space-y-4 2xl:space-y-6">
           <div className="relative aspect-square rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-[#f3f3f3] border border-gray-200 shadow-sm">

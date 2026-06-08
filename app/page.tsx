@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { SITE_URL, localeFromHeaders, pageMetadata } from '@/lib/seo';
+import { organizationSchema, websiteSchema, faqSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 import HomeClient from '@/components/home/HomeClient';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -30,5 +32,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function Page() {
-  return <HomeClient />;
+  const locale = localeFromHeaders();
+  return (
+    <>
+      <JsonLd data={[organizationSchema(), websiteSchema(), faqSchema(locale)]} />
+      <HomeClient />
+    </>
+  );
 }
