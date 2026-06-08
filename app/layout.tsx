@@ -15,6 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.maxahumanlabs.com'),
   title: {
     default: 'Maxa Human | Precision Crafted Research Peptides',
     template: '%s | Maxa Human'
@@ -29,16 +30,17 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  // Site-level OG/Twitter fallback (used by pages that don't set their own).
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://maxahumanlabs.com',
+    url: 'https://www.maxahumanlabs.com',
     siteName: 'Maxa Human',
     title: 'Maxa Human | Precision Crafted Research Peptides',
     description: 'High-purity compounds. Independent lab verification. Trusted by researchers seeking uncompromised quality.',
     images: [
       {
-        url: 'https://maxahumanlabs.com/og-image.png',
+        url: 'https://www.maxahumanlabs.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Maxa Human',
@@ -49,16 +51,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Maxa Human | Precision Crafted Research Peptides',
     description: 'High-purity compounds. Independent lab verification. Trusted by researchers seeking uncompromised quality.',
-    images: ['https://maxahumanlabs.com/og-image.png'],
+    images: ['https://www.maxahumanlabs.com/og-image.png'],
   },
-  alternates: {
-    canonical: 'https://maxahumanlabs.com',
-    languages: {
-      en: 'https://maxahumanlabs.com',
-      ar: 'https://maxahumanlabs.com/ar',
-      'x-default': 'https://maxahumanlabs.com',
-    },
-  },
+  // NOTE: no global `alternates.canonical` — each page sets its own self-referencing
+  // canonical + hreflang (see lib/seo.ts). Pages without one fall back to the crawled URL.
   icons: {
     icon: '/favicon.png',
     shortcut: '/favicon.png',

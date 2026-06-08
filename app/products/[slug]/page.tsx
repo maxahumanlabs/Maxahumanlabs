@@ -4,6 +4,7 @@ import ProductDetailClient from '@/components/products/ProductDetailClient';
 import { woocommerce } from '@/lib/woocommerce';
 
 import { Metadata, ResolvingMetadata } from 'next';
+import { SITE_URL, localeFromHeaders, buildAlternates } from '@/lib/seo';
 
 export const revalidate = 300;
 
@@ -29,27 +30,26 @@ export async function generateMetadata(
 
   const previousImages = (await parent).openGraph?.images || [];
 
-  const baseUrl = 'https://maxahumanlabs.com';
-  const enUrl = `${baseUrl}/products/${params.slug}`;
-  const arUrl = `${baseUrl}/ar/products/${params.slug}`;
+  const locale = localeFromHeaders();
+  const alternates = buildAlternates(`/products/${params.slug}`, locale);
+  const canonical = (alternates as { canonical: string }).canonical;
+  const description =
+    product.shortDescription?.replace(/<[^>]+>/g, '') ||
+    product.description?.replace(/<[^>]+>/g, '').substring(0, 160);
 
   return {
     title: product.name,
-    description: product.shortDescription?.replace(/<[^>]+>/g, '') || product.description?.replace(/<[^>]+>/g, '').substring(0, 160),
+    description,
     openGraph: {
       title: `${product.name} | Maxa Human`,
       description: product.shortDescription?.replace(/<[^>]+>/g, ''),
+      url: canonical,
+      type: 'website',
+      siteName: 'Maxa Human',
       images: [product.image, ...previousImages],
     },
     keywords: `${product.name}, research peptides, ${product.categories.join(', ')}, Maxa Human`,
-    alternates: {
-      canonical: enUrl,
-      languages: {
-        en: enUrl,
-        ar: arUrl,
-        'x-default': enUrl,
-      },
-    },
+    alternates,
   };
 }
 

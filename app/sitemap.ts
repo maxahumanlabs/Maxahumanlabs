@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { woocommerce } from '@/lib/woocommerce';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://maxahumanlabs.com';
+  const baseUrl = 'https://www.maxahumanlabs.com';
 
   // Build an English + Arabic entry pair for a given path, wiring hreflang alternates.
   const entry = (

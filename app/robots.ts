@@ -5,8 +5,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/account/', '/checkout/', '/admin/'],
+      disallow: ['/api/', '/account/', '/checkout/', '/admin/', '/login', '/signup', '/cart', '/search'],
     },
-    sitemap: 'https://maxahumanlabs.com/sitemap.xml',
+    sitemap: 'https://www.maxahumanlabs.com/sitemap.xml',
+    host: 'https://www.maxahumanlabs.com',
   };
 }
