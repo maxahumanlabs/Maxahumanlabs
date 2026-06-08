@@ -5,6 +5,8 @@ import { woocommerce } from '@/lib/woocommerce';
 
 import { Metadata, ResolvingMetadata } from 'next';
 import { SITE_URL, localeFromHeaders, buildAlternates } from '@/lib/seo';
+import { productSchema, breadcrumbSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 
 export const revalidate = 300;
 
@@ -64,5 +66,18 @@ export default async function ProductDetailPage({
     notFound();
   }
 
-  return <ProductDetailClient product={product} />;
+  const locale = localeFromHeaders();
+  const prefix = locale === 'ar' ? '/ar' : '';
+  const breadcrumb = breadcrumbSchema([
+    { name: 'Home', path: `${prefix}/` },
+    { name: 'All Peptides', path: `${prefix}/products` },
+    { name: product.name, path: `${prefix}/products/${product.slug}` },
+  ]);
+
+  return (
+    <>
+      <JsonLd data={[productSchema(product, locale), breadcrumb]} />
+      <ProductDetailClient product={product} />
+    </>
+  );
 }
