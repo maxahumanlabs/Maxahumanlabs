@@ -16,11 +16,20 @@ export default function Footer() {
             <div>
               <h3 className="text-gray-900 font-bold text-lg lg:text-lg xl:text-xl 2xl:text-2xl mb-4 tracking-wide">{t('footer.quick_links').toUpperCase()}</h3>
               <ul className="space-y-2">
-                <li>
-                  <Link href="/search" className="text-gray-500 hover:text-gray-900 text-base lg:text-base xl:text-lg 2xl:text-xl transition-colors">
-                    {t('footer.search')}
-                  </Link>
-                </li>
+                {[
+                  { href: '/', label: t('header.home') },
+                  { href: '/products', label: t('header.all_peptides') },
+                  { href: '/peptides-x-supplements', label: t('header.peptides_x_supplements') },
+                  { href: '/pages/dosage-calculator', label: t('header.dosage_calculator') },
+                  { href: '/academy', label: t('footer.academy') },
+                  { href: '/search', label: t('footer.search') },
+                ].map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className="text-gray-500 hover:text-gray-900 text-base lg:text-base xl:text-lg 2xl:text-xl transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 

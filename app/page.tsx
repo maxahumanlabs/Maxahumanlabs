@@ -1,8 +1,16 @@
 import type { Metadata } from 'next';
+import { unstable_cache } from 'next/cache';
 import { SITE_URL, localeFromHeaders, pageMetadata } from '@/lib/seo';
 import { organizationSchema, websiteSchema, faqSchema } from '@/lib/schema';
+import { woocommerce } from '@/lib/woocommerce';
 import JsonLd from '@/components/JsonLd';
 import HomeClient from '@/components/home/HomeClient';
+
+const getTrendingProducts = unstable_cache(
+  async () => woocommerce.getProducts({ category: 'trending', perPage: 10 }),
+  ['home-trending'],
+  { revalidate: 300 }
+);
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = localeFromHeaders();
@@ -31,12 +39,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Page() {
+export default async function Page() {
   const locale = localeFromHeaders();
+  const trendingProducts = await getTrendingProducts();
   return (
     <>
       <JsonLd data={[organizationSchema(), websiteSchema(), faqSchema(locale)]} />
-      <HomeClient />
+      <HomeClient trendingProducts={trendingProducts} />
     </>
   );
 }

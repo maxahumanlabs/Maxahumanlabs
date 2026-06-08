@@ -164,6 +164,7 @@ export const translations = {
     },
     footer: {
       quick_links: "Quick Links",
+      academy: "Academy",
       search: "Search",
       contact: "Get in touch",
       join: "Join the future of biology and get 15% off + a free copy of our 'Maxa Human Playbook'.",
@@ -483,6 +484,7 @@ export const translations = {
     },
     footer: {
       quick_links: "روابط سريعة",
+      academy: "الأكاديمية",
       search: "يبحث",
       contact: "تواصل معنا على",
       join: "انضم إلى مستقبل علم الأحياء واحصل على خصم 15% + نسخة مجانية من 'دليل ببتيدات ماكسا هيومان' الخاص بنا.",
