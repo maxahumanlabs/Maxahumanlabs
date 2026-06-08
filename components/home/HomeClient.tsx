@@ -148,6 +148,13 @@ export default function HomePage() {
 
   return (
     <div>
+      {/* SEO H1 — single, keyword-rich, in source (MXA-025). Visually hidden; the
+          hero uses a rotating slider so its per-slide headings stay <h2>. */}
+      <h1 className="sr-only">
+        {language === 'ar'
+          ? 'اشترِ ببتيدات بحثية في الإمارات والخليج — جودة معتمدة مختبريًا | مكسا هيومن'
+          : 'Buy Research Peptides in the UAE & GCC — Lab-Verified Quality | Maxa Human'}
+      </h1>
       {/* Hero Section Slider */}
       <section className="relative w-full bg-gradient-to-br from-[#eef2f9] to-[#ffffff] overflow-hidden min-h-[680px] md:min-h-[600px] flex items-center pt-16 pb-32 md:py-20 md:pb-24">
         
@@ -183,6 +190,8 @@ export default function HomePage() {
                     src={slide.image}
                     alt={slide.title}
                     fill
+                    priority={index === 0}
+                    sizes="(max-width: 768px) 224px, (max-width: 1024px) 320px, 400px"
                     className="object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700"
                   />
                 </div>
