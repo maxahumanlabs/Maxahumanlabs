@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
-import { unstable_cache } from 'next/cache';
-import { woocommerce } from '@/lib/woocommerce';
 import CategoryClient from '@/components/products/CategoryClient';
 import { localeFromHeaders, pageMetadata } from '@/lib/seo';
 import { collectionPageSchema, breadcrumbSchema } from '@/lib/schema';
+import { getCachedCategoryProducts } from '@/lib/products';
 import JsonLd from '@/components/JsonLd';
 
 export const revalidate = 300;
@@ -24,16 +23,11 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-async function getCachedProducts() {
-  return unstable_cache(
-    async () => woocommerce.getProducts({ category: 'peptides-x-supplements', perPage: 100 }),
-    ['products-peptides-x-supplements'],
-    { revalidate: 300 }
-  )();
-}
-
 export default async function PeptidesExSupplementsPage() {
-  const products = await getCachedProducts();
+  const products = await getCachedCategoryProducts(
+    'peptides-x-supplements',
+    'products-peptides-x-supplements'
+  );
   const locale = localeFromHeaders();
   const prefix = locale === 'ar' ? '/ar' : '';
 

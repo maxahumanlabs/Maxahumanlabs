@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
-import { unstable_cache } from 'next/cache';
-import { woocommerce } from '@/lib/woocommerce';
 import CategoryClient from '@/components/products/CategoryClient';
 import { localeFromHeaders, pageMetadata } from '@/lib/seo';
 import { collectionPageSchema, breadcrumbSchema } from '@/lib/schema';
+import { getCachedCategoryProducts } from '@/lib/products';
 import JsonLd from '@/components/JsonLd';
 
 export const revalidate = 300;
@@ -24,16 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-async function getCachedProducts() {
-  return unstable_cache(
-    async () => woocommerce.getProducts({ category: 'all', perPage: 100 }),
-    ['products-all'],
-    { revalidate: 300 }
-  )();
-}
-
 export default async function ProductsPage() {
-  const products = await getCachedProducts();
+  const products = await getCachedCategoryProducts('all', 'products-all');
   const locale = localeFromHeaders();
   const prefix = locale === 'ar' ? '/ar' : '';
 
