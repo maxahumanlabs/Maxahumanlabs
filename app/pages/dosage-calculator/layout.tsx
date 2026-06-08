@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { localeFromHeaders, pageMetadata } from '@/lib/seo';
+import { webApplicationSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = localeFromHeaders();
@@ -18,5 +20,16 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function DosageCalculatorLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <JsonLd
+        data={webApplicationSchema(
+          'Peptide Dosage Calculator',
+          'Free research tool to calculate peptide reconstitution and dosing for laboratory study.',
+          '/pages/dosage-calculator'
+        )}
+      />
+      {children}
+    </>
+  );
 }

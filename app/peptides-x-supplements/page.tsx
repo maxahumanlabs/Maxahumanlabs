@@ -3,6 +3,8 @@ import { unstable_cache } from 'next/cache';
 import { woocommerce } from '@/lib/woocommerce';
 import CategoryClient from '@/components/products/CategoryClient';
 import { localeFromHeaders, pageMetadata } from '@/lib/seo';
+import { collectionPageSchema, breadcrumbSchema } from '@/lib/schema';
+import JsonLd from '@/components/JsonLd';
 
 export const revalidate = 300;
 
@@ -32,12 +34,29 @@ async function getCachedProducts() {
 
 export default async function PeptidesExSupplementsPage() {
   const products = await getCachedProducts();
+  const locale = localeFromHeaders();
+  const prefix = locale === 'ar' ? '/ar' : '';
 
   return (
-    <CategoryClient 
-      products={products} 
-      categorySlug="peptides-x-supplements" 
-      translationKeyPrefix="peptides_ex_supplements" 
-    />
+    <>
+      <JsonLd
+        data={[
+          collectionPageSchema(
+            'Research Peptide Capsules & Supplements',
+            'Oral research peptide capsules and supplements, lab-verified, shipped across the UAE & GCC.',
+            `${prefix}/peptides-x-supplements`
+          ),
+          breadcrumbSchema([
+            { name: 'Home', path: `${prefix}/` },
+            { name: 'Supplements', path: `${prefix}/peptides-x-supplements` },
+          ]),
+        ]}
+      />
+      <CategoryClient
+        products={products}
+        categorySlug="peptides-x-supplements"
+        translationKeyPrefix="peptides_ex_supplements"
+      />
+    </>
   );
 }

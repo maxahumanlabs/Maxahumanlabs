@@ -98,6 +98,8 @@ export const translations = {
     products: {
       breadcrumb_home: "Home",
       title: "All Peptides",
+      h1: "Buy Research Peptides Online in the UAE",
+      intro: "Maxa Human supplies high-purity research peptides for laboratory and scientific study, each order backed by independent third-party lab verification and a batch-specific certificate of analysis (CoA). Our catalogue spans widely studied compounds — including GHK-Cu, BPC-157, MOTS-c, Epithalon and Reta — available as research vials, nasal sprays and oral capsules, and shipped across the UAE, Saudi Arabia and the wider GCC. All products are supplied strictly for in-vitro research and educational use by qualified professionals and are not intended for human or animal consumption.",
       loading: "Loading products...",
       showing: "Showing",
       product: "product",
@@ -108,6 +110,8 @@ export const translations = {
     },
     peptides_ex_supplements: {
       title: "All Peptides Infused Supplements",
+      h1: "Research Peptide Capsules & Oral Supplements",
+      intro: "Explore Maxa Human's range of oral research peptide capsules and supplements, formulated for laboratory study and backed by independent lab verification. This collection features oral formats of widely researched compounds such as BPC-157, GLP-1 blends, NAD+ and SLU-PP-332. Every product ships with a batch certificate of analysis (CoA) and is dispatched across the UAE, Saudi Arabia and the GCC. All items are supplied strictly for in-vitro research and educational purposes by qualified professionals and are not intended for human or animal consumption.",
       loading: "Loading Peptides X-Supplements...",
       showing: "Showing",
       product: "product",
@@ -418,6 +422,8 @@ export const translations = {
     products: {
       breadcrumb_home: "الرئيسية",
       title: "جميع الببتيدات",
+      h1: "اشترِ ببتيدات بحثية أونلاين في الإمارات",
+      intro: "توفّر ماكسا هيومن ببتيدات بحثية عالية النقاء للدراسات المخبرية والعلمية، مع تحقّق مستقل من مختبر طرف ثالث وشهادة تحليل (CoA) خاصة بكل دفعة. تشمل تشكيلتنا مركّبات مدروسة على نطاق واسع — منها GHK-Cu وBPC-157 وMOTS-c وإيبيثالون وريتا — متوفّرة كقوارير بحثية وبخاخات أنفية وكبسولات فموية، وتُشحن عبر الإمارات والسعودية ودول الخليج. جميع المنتجات تُورَّد حصريًا لأغراض البحث المخبري والتعليمي من قِبل مختصين مؤهّلين وليست مخصّصة للاستهلاك البشري أو الحيواني.",
       loading: "جاري تحميل المنتجات...",
       showing: "عرض",
       product: "منتج",
@@ -428,6 +434,8 @@ export const translations = {
     },
     peptides_ex_supplements: {
       title: "جميع المكملات المدعمة بالببتيدات",
+      h1: "كبسولات ببتيدات بحثية ومكملات فموية",
+      intro: "اكتشف تشكيلة ماكسا هيومن من كبسولات ومكمّلات الببتيدات البحثية الفموية، المُعدّة للدراسة المخبرية والمدعومة بتحقّق مختبري مستقل. تضم هذه المجموعة صيغًا فموية لمركّبات مدروسة على نطاق واسع مثل BPC-157 ومزائج GLP-1 وNAD+ وSLU-PP-332. يأتي كل منتج بشهادة تحليل (CoA) خاصة بالدفعة ويُشحن عبر الإمارات والسعودية ودول الخليج. تُورَّد جميع المنتجات حصريًا لأغراض البحث المخبري والتعليمي من قِبل مختصين مؤهّلين وليست مخصّصة للاستهلاك البشري أو الحيواني.",
       loading: "جاري تحميل المكملات...",
       showing: "عرض",
       product: "منتج",
