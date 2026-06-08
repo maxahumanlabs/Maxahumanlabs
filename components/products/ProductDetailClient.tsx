@@ -208,7 +208,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
     },
     offers: {
       '@type': 'Offer',
-      url: `https://maxahumanlabs.com/products/${product.slug}`,
+      url: `https://www.maxahumanlabs.com/products/${product.slug}`,
       priceCurrency: 'USD',
       price: product.price,
       availability: isOutOfStock ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
