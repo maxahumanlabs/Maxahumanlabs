@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import Link from 'next/link';
+import Link from '@/components/LocalizedLink';
 import { useCartStore } from '@/store/cartStore';
 import { formatPrice, getCartWhatsAppUrl } from '@/lib/utils';
 import CartItem from './CartItem';

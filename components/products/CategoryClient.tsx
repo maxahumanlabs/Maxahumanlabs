@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import Link from '@/components/LocalizedLink';
 import { Product } from '@/types';
 import ProductGrid from '@/components/products/ProductGrid';
 import { useLanguage } from '@/contexts/LanguageContext';

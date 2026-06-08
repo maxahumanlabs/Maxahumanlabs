@@ -1,48 +1,48 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useEffect, ReactNode } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { translations } from '@/lib/translations';
-
-type Language = 'en' | 'ar';
+import { getLocaleFromPathname, stripLocale, localizeHref, type Locale } from '@/lib/i18n';
 
 interface LanguageContextType {
-  language: Language;
-  setLanguage: (lang: Language) => void;
+  language: Locale;
+  setLanguage: (lang: Locale) => void;
   t: (path: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('en');
-  const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // The locale is driven entirely by the URL (`/ar` prefix), so refresh and
+  // direct links stay in sync and there is no hydration mismatch.
+  const language = getLocaleFromPathname(pathname);
 
   useEffect(() => {
-    // Load language from localStorage on mount
-    const savedLang = localStorage.getItem('language') as Language;
-    if (savedLang && (savedLang === 'en' || savedLang === 'ar')) {
-      setLanguageState(savedLang);
-    }
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (mounted) {
-      // Update HTML dir attribute for RTL
-      document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-      document.documentElement.lang = language;
+    document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = language;
+    try {
       localStorage.setItem('language', language);
+    } catch {
+      // ignore (e.g. private mode)
     }
-  }, [language, mounted]);
+  }, [language]);
 
-  const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
+  const setLanguage = (lang: Locale) => {
+    if (lang === language) return;
+    // Navigate to the same page under the target locale, preserving query + hash.
+    const bare = stripLocale(pathname);
+    const search = typeof window !== 'undefined' ? window.location.search + window.location.hash : '';
+    router.push(localizeHref(bare, lang) + search);
   };
 
   const t = (path: string) => {
     const keys = path.split('.');
     let value: any = translations[language];
-    
+
     for (const key of keys) {
       if (value && typeof value === 'object' && key in value) {
         value = value[key];
@@ -50,7 +50,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         return path; // Return the key if translation not found
       }
     }
-    
+
     return typeof value === 'string' ? value : path;
   };
 

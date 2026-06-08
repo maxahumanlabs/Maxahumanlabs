@@ -1,5 +1,5 @@
 import { getAcademyArticles } from '@/lib/academy-api';
-import Link from 'next/link';
+import Link from '@/components/LocalizedLink';
 import Image from 'next/image';
 
 export default async function AcademyPage() {

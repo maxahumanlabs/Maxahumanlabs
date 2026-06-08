@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 import Image from 'next/image';
 import { Product } from '@/types';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -14,7 +14,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { language, t } = useLanguage();
   const addItem = useCartStore((state) => state.addItem);
   const openCart = useCartStore((state) => state.openCart);
-  const router = useRouter();
+  const router = useLocalizedRouter();
 
   // Get localized product name
   const productName = language === 'ar' && (product as any).arabic_name

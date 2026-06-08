@@ -29,6 +29,10 @@ export async function generateMetadata(
 
   const previousImages = (await parent).openGraph?.images || [];
 
+  const baseUrl = 'https://maxahumanlabs.com';
+  const enUrl = `${baseUrl}/products/${params.slug}`;
+  const arUrl = `${baseUrl}/ar/products/${params.slug}`;
+
   return {
     title: product.name,
     description: product.shortDescription?.replace(/<[^>]+>/g, '') || product.description?.replace(/<[^>]+>/g, '').substring(0, 160),
@@ -38,6 +42,14 @@ export async function generateMetadata(
       images: [product.image, ...previousImages],
     },
     keywords: `${product.name}, research peptides, ${product.categories.join(', ')}, Maxa Human`,
+    alternates: {
+      canonical: enUrl,
+      languages: {
+        en: enUrl,
+        ar: arUrl,
+        'x-default': enUrl,
+      },
+    },
   };
 }
 

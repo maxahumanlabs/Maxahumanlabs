@@ -1,12 +1,13 @@
 'use client';
 
 import { useEffect, useState, Suspense } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
+import Link from '@/components/LocalizedLink';
 import { useCartStore } from '@/store/cartStore';
 
 function SuccessContent() {
-  const router = useRouter();
+  const router = useLocalizedRouter();
   const searchParams = useSearchParams();
   const { clearCart } = useCartStore();
   const [sessionId, setSessionId] = useState<string | null>(null);

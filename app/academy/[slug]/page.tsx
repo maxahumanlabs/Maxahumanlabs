@@ -1,6 +1,6 @@
 import { getAcademyArticleBySlug } from '@/lib/academy-api';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
+import Link from '@/components/LocalizedLink';
 import DosingCalculator from '@/components/academy/DosingCalculator';
 import AcademyTabs from '@/components/academy/AcademyTabs';
 

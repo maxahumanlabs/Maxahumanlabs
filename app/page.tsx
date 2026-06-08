@@ -1,8 +1,8 @@
 "use client";
 
-import Link from 'next/link';
+import Link from '@/components/LocalizedLink';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 import { useEffect, useState } from 'react';
 import Button from '@/components/ui/Button';
 import ProductGrid from '@/components/products/ProductGrid';
@@ -13,7 +13,7 @@ import { useCartStore } from '@/store/cartStore';
 
 export default function HomePage() {
   const { t, language } = useLanguage();
-  const router = useRouter();
+  const router = useLocalizedRouter();
   const addItem = useCartStore((state) => state.addItem);
   const openCart = useCartStore((state) => state.openCart);
 

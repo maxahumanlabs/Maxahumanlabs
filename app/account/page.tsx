@@ -1,13 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
+import Link from '@/components/LocalizedLink';
 import { authAPI } from '@/lib/auth';
 import { User } from '@/types';
 
 export default function AccountPage() {
-  const router = useRouter();
+  const router = useLocalizedRouter();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'profile' | 'orders' | 'addresses'>('profile');

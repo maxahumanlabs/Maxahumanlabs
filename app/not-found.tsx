@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/LocalizedLink';
 import Button from '@/components/ui/Button';
 
 export default function NotFound() {

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/LocalizedLink';
 import { Product } from '@/types';
 import { woocommerce } from '@/lib/woocommerce';
 import { useLanguage } from '@/contexts/LanguageContext';

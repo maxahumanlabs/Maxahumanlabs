@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import Link from '@/components/LocalizedLink';
 import { useCartStore } from '@/store/cartStore';
 import { formatPrice, getCartWhatsAppUrl } from '@/lib/utils';
 import CartItem from '@/components/cart/CartItem';

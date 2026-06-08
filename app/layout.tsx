@@ -53,6 +53,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://maxahumanlabs.com',
+    languages: {
+      en: 'https://maxahumanlabs.com',
+      ar: 'https://maxahumanlabs.com/ar',
+      'x-default': 'https://maxahumanlabs.com',
+    },
   },
   icons: {
     icon: '/favicon.png',
@@ -77,6 +82,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // `lang`/`dir` default to English for SSR and are corrected on the client by
+  // LanguageContext based on the `/ar` URL prefix. Kept static so product pages
+  // keep their ISR (revalidate) instead of being forced into dynamic rendering.
   return (
     <html lang="en">
       <body className={`${inter.className} ${inter.variable}`}>

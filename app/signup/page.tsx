@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
+import Link from '@/components/LocalizedLink';
 import { authAPI } from '@/lib/auth';
 
 export default function SignupPage() {
-  const router = useRouter();
+  const router = useLocalizedRouter();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
