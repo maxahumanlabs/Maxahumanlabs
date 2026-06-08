@@ -6,7 +6,7 @@ export const revalidate = 300;
 
 async function getCachedProducts() {
   return unstable_cache(
-    async () => woocommerce.getProducts({ category: 'peptides-x-supplements', perPage: 24 }),
+    async () => woocommerce.getProducts({ category: 'peptides-x-supplements', perPage: 100 }),
     ['products-peptides-x-supplements'],
     { revalidate: 300 }
   )();

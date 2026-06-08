@@ -1,10 +1,13 @@
 'use client';
 
+import { useState } from 'react';
 import Link from '@/components/LocalizedLink';
 import { Product } from '@/types';
 import ProductGrid from '@/components/products/ProductGrid';
 import { useLanguage } from '@/contexts/LanguageContext';
 import BuildYourStack from '@/components/products/BuildYourStack';
+
+const PAGE_SIZE = 12;
 
 interface CategoryClientProps {
   products: Product[];
@@ -14,6 +17,10 @@ interface CategoryClientProps {
 
 export default function CategoryClient({ products, categorySlug, translationKeyPrefix }: CategoryClientProps) {
   const { t } = useLanguage();
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  const visibleProducts = products.slice(0, visibleCount);
+  const hasMore = visibleCount < products.length;
 
   return (
     <div>
@@ -49,11 +56,24 @@ export default function CategoryClient({ products, categorySlug, translationKeyP
         {products.length > 0 ? (
           <>
             {/* Products Grid */}
-            <ProductGrid products={products} />
-            
+            <ProductGrid products={visibleProducts} />
+
+            {/* Show More */}
+            {hasMore && (
+              <div className="mt-12 flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+                  className="bg-[#0b182b] text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300"
+                >
+                  {t(`${translationKeyPrefix}.show_more`)}
+                </button>
+              </div>
+            )}
+
             {/* Results Count */}
-            <div className="mt-12 text-center text-gray-600">
-              {t(`${translationKeyPrefix}.showing`)} {products.length} {products.length === 1 ? t(`${translationKeyPrefix}.product`) : t(`${translationKeyPrefix}.products`)}
+            <div className="mt-8 text-center text-gray-600">
+              {t(`${translationKeyPrefix}.showing`)} {visibleProducts.length} / {products.length} {products.length === 1 ? t(`${translationKeyPrefix}.product`) : t(`${translationKeyPrefix}.products`)}
             </div>
           </>
         ) : (

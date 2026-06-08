@@ -102,6 +102,7 @@ export const translations = {
       showing: "Showing",
       product: "product",
       products: "products",
+      show_more: "Show More",
       no_products_title: "No Products Found",
       no_products_message: "Check back soon for new products."
     },
@@ -111,6 +112,7 @@ export const translations = {
       showing: "Showing",
       product: "product",
       products: "products",
+      show_more: "Show More",
       no_products_title: "No Peptides X-Supplements Found",
       no_products_message: "Check back soon for new Peptides X-Supplements products."
     },
@@ -419,6 +421,7 @@ export const translations = {
       showing: "عرض",
       product: "منتج",
       products: "منتجات",
+      show_more: "عرض المزيد",
       no_products_title: "لم يتم العثور على منتجات",
       no_products_message: "تحقق مرة أخرى قريبًا للمنتجات الجديدة."
     },
@@ -428,6 +431,7 @@ export const translations = {
       showing: "عرض",
       product: "منتج",
       products: "منتجات",
+      show_more: "عرض المزيد",
       no_products_title: "لم يتم العثور على Peptides X-Supplements",
       no_products_message: "تحقق مرة أخرى قريبًا لمنتجات Peptides X-Supplements الجديدة."
     },
