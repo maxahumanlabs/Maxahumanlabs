@@ -254,12 +254,14 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             </div>
           </div>
 
-          <div className="order-2 flex items-center gap-2">
-            <span className="text-yellow-400 text-lg">⭐</span>
-            <span className="text-sm md:text-base lg:text-base xl:text-base font-semibold text-gray-900">
-              4.9/5 (2869 {t('product_detail.reviews')})
-            </span>
-          </div>
+          {product.ratingCount > 0 && (
+            <div className="order-2 flex items-center gap-2">
+              <span className="text-yellow-400 text-lg">⭐</span>
+              <span className="text-sm md:text-base lg:text-base xl:text-base font-semibold text-gray-900">
+                {product.rating.toFixed(1)}/5 ({product.ratingCount} {t('product_detail.reviews')})
+              </span>
+            </div>
+          )}
 
           {product.tags && product.tags.length > 0 && (
             <div className="order-3 flex flex-wrap gap-3">
