@@ -56,13 +56,13 @@ export default function HomePage() {
       title: t('hero_slider.slide3.title'),
       description: t('hero_slider.slide3.description'),
       image: "/slupp.webp",
-      url: "/products/slu-pp-332-250-mcg-60-capsules"
+      url: "/products/slu-pp-332-250mcg-60-capsules"
     },
     {
       title: t('hero_slider.slide4.title'),
       description: t('hero_slider.slide4.description'),
       image: "/Tb500-bpc.webp",
-      url: "/products/tb-500-10mg-bpc-157-10mg-wolverine-stack"
+      url: "/products/wolverine-stack-injectable"
     }
   ];
 
