@@ -202,8 +202,11 @@ class WooCommerceAPI {
           featured: params?.featured,
           on_sale: params?.onSale,
           search: params?.search,
-          orderby: params?.orderby || 'menu_order',
-          order: params?.order || 'asc',
+          // Only send ordering when a caller explicitly asks for it. Otherwise let
+          // WooCommerce use its own default catalog order (matches the WP dashboard)
+          // instead of forcing menu_order (which fell back to alphabetical).
+          ...(params?.orderby ? { orderby: params.orderby } : {}),
+          ...(params?.order ? { order: params.order } : {}),
         },
       });
 
