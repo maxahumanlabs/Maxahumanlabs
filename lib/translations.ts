@@ -98,7 +98,7 @@ export const translations = {
     products: {
       breadcrumb_home: "Home",
       title: "All Peptides",
-      h1: "Buy Research Peptides Online in the UAE",
+      h1: "Buy Research Peptides Online",
       intro: "Maxa Human supplies high-purity research peptides for laboratory and scientific study, each order backed by independent third-party lab verification and a batch-specific certificate of analysis (CoA). Our catalogue spans widely studied compounds — including GHK-Cu, BPC-157, MOTS-c, Epithalon and Reta — available as research vials, nasal sprays and oral capsules, and shipped across the UAE, Saudi Arabia and the wider GCC. All products are supplied strictly for in-vitro research and educational use by qualified professionals and are not intended for human or animal consumption.",
       loading: "Loading products...",
       showing: "Showing",
