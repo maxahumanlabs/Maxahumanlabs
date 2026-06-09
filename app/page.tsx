@@ -1,8 +1,29 @@
 import type { Metadata } from 'next';
+import { unstable_cache } from 'next/cache';
 import { SITE_URL, localeFromHeaders, pageMetadata } from '@/lib/seo';
 import { organizationSchema, websiteSchema, faqSchema } from '@/lib/schema';
+import { woocommerce } from '@/lib/woocommerce';
 import JsonLd from '@/components/JsonLd';
 import HomeClient from '@/components/home/HomeClient';
+
+// Cache trending, but never persist an empty/failed result (it would leave the
+// section blank until revalidation — same bug that emptied the collection pages).
+async function getTrendingProducts() {
+  const fetcher = () => woocommerce.getProducts({ category: 'trending', perPage: 10 });
+  try {
+    return await unstable_cache(
+      async () => {
+        const products = await fetcher();
+        if (!products.length) throw new Error('empty-result:home-trending');
+        return products;
+      },
+      ['home-trending'],
+      { revalidate: 300 }
+    )();
+  } catch {
+    return fetcher();
+  }
+}
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = localeFromHeaders();
@@ -31,12 +52,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Page() {
+export default async function Page() {
   const locale = localeFromHeaders();
+  const trendingProducts = await getTrendingProducts();
   return (
     <>
       <JsonLd data={[organizationSchema(), websiteSchema(), faqSchema(locale)]} />
-      <HomeClient />
+      <HomeClient trendingProducts={trendingProducts} />
     </>
   );
 }

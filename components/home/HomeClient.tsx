@@ -11,7 +11,7 @@ import { wordpress } from '@/lib/wordpress';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCartStore } from '@/store/cartStore';
 
-export default function HomePage() {
+export default function HomePage({ trendingProducts = [] }: { trendingProducts?: Product[] }) {
   const { t, language } = useLanguage();
   const router = useLocalizedRouter();
   const addItem = useCartStore((state) => state.addItem);
@@ -34,8 +34,6 @@ export default function HomePage() {
   };
 
   const [scrollY, setScrollY] = useState(0);
-  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
-  const [trendingProducts, setTrendingProducts] = useState<Product[]>([]);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -83,24 +81,8 @@ export default function HomePage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    // Fetch products on client side to avoid build errors
-    async function loadProducts() {
-      try {
-        const { woocommerce } = await import('@/lib/woocommerce');
-        const products = await woocommerce.getFeaturedProducts(4);
-        setFeaturedProducts(products);
-
-        // Fetch trending products from "trending" category
-        const trending = await woocommerce.getProducts({ category: 'trending', perPage: 10 });
-        setTrendingProducts(trending);
-
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    }
-    loadProducts();
-  }, []);
+  // trendingProducts is now fetched server-side and passed as a prop (MXA-027)
+  // so it always renders and is present in the SSR HTML.
 
   const faqs = [
     {
