@@ -195,10 +195,16 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
     : product.shortDescription;
   const isOutOfStock = product.stockStatus === 'outofstock';
 
-  // Animate the low-stock urgency bar on mount.
-  const [stockBarFill, setStockBarFill] = useState(false);
+  // Low-stock urgency bar. Change these two constants to control it:
+  // STOCK_LEFT = the number shown in the text; STOCK_TOTAL = sets where the bar
+  // settles (STOCK_LEFT/STOCK_TOTAL, clamped 5%–95%). The bar starts full and
+  // "drains" down to that ratio on mount.
+  const STOCK_LEFT = 10;
+  const STOCK_TOTAL = 22;
+  const stockPct = Math.min(95, Math.max(5, Math.round((STOCK_LEFT / STOCK_TOTAL) * 100)));
+  const [stockDrained, setStockDrained] = useState(false);
   useEffect(() => {
-    const id = setTimeout(() => setStockBarFill(true), 150);
+    const id = setTimeout(() => setStockDrained(true), 150);
     return () => clearTimeout(id);
   }, []);
 
@@ -299,12 +305,12 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
           ) : (
             <div className="order-4 w-full max-w-sm">
               <p className="text-sm md:text-base font-medium text-gray-900 mb-2">
-                {t('product_detail.low_stock')}
+                {t('product_detail.hurry_only')} {STOCK_LEFT} {t('product_detail.items_left')}
               </p>
-              <div className="h-2 w-full rounded-full bg-gray-200 overflow-hidden">
+              <div className="h-1.5 w-full rounded-full bg-gray-200 overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-gray-900 transition-[width] duration-[1200ms] ease-out"
-                  style={{ width: stockBarFill ? '68%' : '0%' }}
+                  className="h-full rounded-full bg-gray-900 transition-[width] duration-[1400ms] ease-out"
+                  style={{ width: stockDrained ? `${stockPct}%` : '100%' }}
                 />
               </div>
             </div>
