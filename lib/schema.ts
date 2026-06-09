@@ -111,6 +111,33 @@ export function productSchema(product: Product, locale: Locale) {
   return schema;
 }
 
+/** CollectionPage schema for category/listing pages (MXA — page recs). */
+export function collectionPageSchema(name: string, description: string, urlPath: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name,
+    description,
+    url: `${SITE_URL}${urlPath}`,
+    isPartOf: { '@type': 'WebSite', name: ORG_NAME, url: SITE_URL },
+  };
+}
+
+/** WebApplication schema for the dosage calculator tool (page recs). */
+export function webApplicationSchema(name: string, description: string, urlPath: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name,
+    description,
+    url: `${SITE_URL}${urlPath}`,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'AED' },
+    provider: { '@type': 'Organization', name: ORG_NAME, url: SITE_URL },
+  };
+}
+
 type Crumb = { name: string; path: string };
 
 /** BreadcrumbList schema (MXA-017). `path` is locale-prefixed already. */

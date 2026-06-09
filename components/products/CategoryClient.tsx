@@ -44,9 +44,14 @@ export default function CategoryClient({ products, categorySlug, translationKeyP
             
             {/* Heading */}
             <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold text-gray-900">
-              {t(`${translationKeyPrefix}.title`)}
+              {t(`${translationKeyPrefix}.h1`)}
             </h1>
-            
+
+            {/* Intro / editorial copy (SEO content) */}
+            <p className="mt-6 max-w-3xl text-gray-600 text-sm md:text-base leading-relaxed">
+              {t(`${translationKeyPrefix}.intro`)}
+            </p>
+
           </div>
         </div>
       </section>
