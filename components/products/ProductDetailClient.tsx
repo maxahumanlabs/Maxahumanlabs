@@ -174,7 +174,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
     const bundle = bundleOptions.find((item) => item.id === selectedBundle);
     if (!bundle) return;
 
-    const message = `Hello, I'd like to order:\n\n• ${product.name} (${bundle.label}) — ${formatPrice(bundle.price)}`;
+    const message = `Hello, I'd like to order:\n\n• ${product.name} (${bundle.label}) — ${formatPrice(bundle.price)} + Tax`;
     window.open(buildWhatsAppUrl(message), '_blank');
   };
 
