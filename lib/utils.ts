@@ -104,7 +104,7 @@ export function getCartWhatsAppUrl(items: CartItem[]): string {
     return `• ${item.name}${label} x${item.quantity} — ${formatPrice(parseFloat(item.price) * item.quantity)}`;
   });
   const total = formatPrice(calculateCartTotal(items));
-  const message = `Hello, I'd like to place an order:\n\n${lines.join('\n')}\n\nTotal: ${total}`;
+  const message = `Hello, I'd like to place an order:\n\n${lines.join('\n')}\n\nTotal: ${total} + Tax`;
   return buildWhatsAppUrl(message);
 }
 
