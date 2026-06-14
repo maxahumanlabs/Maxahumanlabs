@@ -26,6 +26,7 @@ const PRODUCT_SLUG_REDIRECTS = {
   'kisspeptin-10mg-testosterone-boost': 'kisspeptin-10mg',
   'cjc-1295-ipamorelin-10mg-gh-signaling-muscle-recovery-support': 'cjc-1295-ipamorelin-10mg',
   'ret-15mg-retatrutide-peptide': 'retatrutide-15mg',
+  'ret-15mg-%d8%a8%d9%8a%d8%a8%d8%aa%d8%a7%d9%8a%d8%af-%d8%a7%d9%84%d8%b1%d9%8a%d8%aa%d8%a7': 'retatrutide-15mg',
   // vial variants of spray peptides
   'nad-500mg-cellular-energy-repair-support': 'nad-plus-500mg-vial',
   'semax-10mg-focus-cognitive-support': 'semax-10mg-vial',
@@ -44,6 +45,7 @@ const PRODUCT_SLUG_REDIRECTS = {
   'rapid-fat-loss-stack-ret-15mg-mots-c-10mg-cjc-5mg-ipa-5mg': 'retatrutide-motsc-cjc-ipamorelin-stack',
   'hollywood-celebrity-stack-ret-15mg-glow-70mg-mots-c-10mg': 'hollywood-stack-retatrutide-glow-motsc',
   'muscle-build-fat-loss-stack-ret-15mg-cjc-5mg-ipa-5mg-bpc-157-10mg-tb500-10mg': 'retatrutide-cjc-ipamorelin-bpc157-tb500-stack',
+  '%d8%b3%d8%aa%d8%a7%d9%83-%d8%a7%d9%84%d8%af%d9%87%d9%88%d9%86-%d8%a7%d9%84%d8%b9%d9%86%d9%8a%d8%af%d8%a9-stubborn-fat-stack-rt-15mg-aod9604-5mg-motsc-10mg': 'retatrutide-aod-9604-motsc-stack',
 };
 
 const nextConfig = {
