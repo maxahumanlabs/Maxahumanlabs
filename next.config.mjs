@@ -32,6 +32,7 @@ const PRODUCT_SLUG_REDIRECTS = {
   'semax-10mg-focus-cognitive-support': 'semax-10mg-vial',
   'selank-10mg-calm-focus-stress-support': 'selank-10mg-vial',
   'dsip10mg-sleep-quality-recovery-support': 'dsip-10mg-vial',
+  'dsip-10mg-sleep-quality-recovery-support': 'dsip-10mg-vial',
   // nasal sprays
   'dsip-10mg-sleep-depth-recovery-support-100mcg-puff': 'dsip-10mg-nasal-spray',
   'selank-10mg-nasal-spray-calm-focus-stress-support-100mcg-puff': 'selank-10mg-nasal-spray',
