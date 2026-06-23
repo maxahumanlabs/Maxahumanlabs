@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
 import NextImage from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfAhFwhiEQNOQqhKMYYsFfmi2eeh0nahSx1LDW9gR-dY8WbjA/formResponse';
+const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScTGaoeNM8lxvgnm0fo5VCJXbRL8DYt8ub8J2Naa6ev98V4yw/formResponse';
 const FORM_FIELD_IDS = {
-  name: 'entry.1555006274',
-  phone: 'entry.896086746',
-  country: 'entry.27555157',
-  timestamp: 'entry.1286999267',
+  name: 'entry.2005620554',
+  phone: 'entry.1166974658',
+  country: 'entry.346256966',
+  email: 'entry.1045781291',
 };
 
 const STORAGE_KEY = 'entryGateCompleted';
@@ -129,7 +129,7 @@ export default function WelcomePopup() {
         [FORM_FIELD_IDS.name]: formData.name,
         [FORM_FIELD_IDS.phone]: formData.phone,
         [FORM_FIELD_IDS.country]: formData.country,
-        [FORM_FIELD_IDS.timestamp]: formData.timestamp,
+        [FORM_FIELD_IDS.email]: formData.email,
         submit: 'Submit',
       });
 
@@ -189,7 +189,7 @@ export default function WelcomePopup() {
         name: name.trim(),
         phone: fullPhone,
         country: countryName,
-        timestamp: email.trim(),
+        email: email.trim(),
       };
 
       await submitToGoogleForms(formData);
