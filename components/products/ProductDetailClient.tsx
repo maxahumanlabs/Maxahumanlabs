@@ -114,13 +114,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       isPopular: true,
       tag: t('bundle.tag_three_months'),
       bottles: 3,
-      freeGifts: [
-        { id: 'shipping', label: t('bundle.gift_free_shipping'), price: 200 },
-        { id: 'bac', label: t('bundle.gift_bac_water'), price: 450 },
-        { id: 'ebook', label: t('bundle.gift_ebook'), price: 299 },
-        { id: 'ai', label: t('bundle.gift_ai_coach'), price: 99 },
-        { id: 'mystery', label: t('bundle.gift_mystery'), price: 999 },
-      ],
+      freeGifts: [],
     },
     {
       id: 'two-months',
@@ -131,12 +125,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       savingsPercent: Math.round(twoMonthSavingsPercent),
       tag: t('bundle.tag_two_months'),
       bottles: 2,
-      freeGifts: [
-        { id: 'shipping', label: t('bundle.gift_free_shipping'), price: 200 },
-        { id: 'bac', label: t('bundle.gift_bac_water'), price: 300 },
-        { id: 'ebook', label: t('bundle.gift_ebook'), price: 299 },
-        { id: 'ai', label: t('bundle.gift_ai_coach'), price: 99 },
-      ],
+      freeGifts: [],
     },
     {
       id: 'one-month',
@@ -147,10 +136,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       savingsPercent: Math.round(savingsPercentPerItem),
       tag: t('bundle.tag_one_month'),
       bottles: 1,
-      freeGifts: [
-        { id: 'shipping', label: t('bundle.gift_free_shipping'), price: 200 },
-        { id: 'bac', label: t('bundle.gift_bac_water'), price: 150 },
-      ],
+      freeGifts: [],
     },
   ];
 
@@ -199,7 +185,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
   // STOCK_LEFT = the number shown in the text; STOCK_TOTAL = sets where the bar
   // settles (STOCK_LEFT/STOCK_TOTAL, clamped 5%–95%). The bar starts full and
   // "drains" down to that ratio on mount.
-  const STOCK_LEFT = 10;
+  const STOCK_LEFT = 3;
   const STOCK_TOTAL = 22;
   const stockPct = Math.min(95, Math.max(5, Math.round((STOCK_LEFT / STOCK_TOTAL) * 100)));
   const [stockDrained, setStockDrained] = useState(false);
@@ -232,10 +218,11 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`relative aspect-square bg-white rounded-2xl overflow-hidden border-2 transition-all duration-200 ${selectedImage === index
-                      ? 'border-gray-900 shadow-lg scale-105'
-                      : 'border-gray-200 hover:border-gray-400'
-                    }`}
+                  className={`relative aspect-square bg-white rounded-2xl overflow-hidden border-2 transition-all duration-200 ${
+                    selectedImage === index
+                      ? "border-gray-900 shadow-lg scale-105"
+                      : "border-gray-200 hover:border-gray-400"
+                  }`}
                 >
                   <Image
                     src={product.imageThumbnails?.[index] || image}
@@ -271,25 +258,33 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             <div className="order-2 flex items-center gap-2">
               <span className="text-yellow-400 text-lg">⭐</span>
               <span className="text-sm md:text-base lg:text-base xl:text-base font-semibold text-gray-900">
-                {product.rating.toFixed(1)}/5 ({product.ratingCount} {t('product_detail.reviews')})
+                {product.rating.toFixed(1)}/5 ({product.ratingCount}{" "}
+                {t("product_detail.reviews")})
               </span>
             </div>
           )}
 
           {product.tags && product.tags.length > 0 && (
             <div className="order-3 flex flex-wrap gap-3">
-              {((language === 'ar' && (product as any).arabic_tags) ? (product as any).arabic_tags.split(',').map((tag: string) => tag.trim()) : product.tags).map((tag: string, index: number) => (
+              {(language === "ar" && (product as any).arabic_tags
+                ? (product as any).arabic_tags
+                    .split(",")
+                    .map((tag: string) => tag.trim())
+                : product.tags
+              ).map((tag: string, index: number) => (
                 <div
                   key={index}
                   className="inline-flex items-center justify-center rounded-[25px] px-6 py-3 border border-[rgba(120,90,20,0.4)] shadow-[inset_0_0_6px_rgba(255,255,255,0.3),0_3px_10px_rgba(0,0,0,0.25)] transition-all duration-200 hover:translate-y-[-2px] hover:shadow-[inset_0_0_8px_rgba(255,255,255,0.4),0_6px_14px_rgba(0,0,0,0.3)] max-sm:rounded-[18px] max-sm:px-[14px] max-sm:py-2 max-md:rounded-[20px] max-md:px-4 max-md:py-[10px]"
                   style={{
-                    background: 'linear-gradient(135deg, #b88900 0%, #f0c76e 20%, #fff3b0 40%, #d1a140 55%, #8c6c1a 70%, #f9d976 85%, #b88900 100%)',
-                    backgroundSize: '200% 200%'
+                    background:
+                      "linear-gradient(135deg, #b88900 0%, #f0c76e 20%, #fff3b0 40%, #d1a140 55%, #8c6c1a 70%, #f9d976 85%, #b88900 100%)",
+                    backgroundSize: "200% 200%",
                   }}
                 >
-                  <span className="text-[15px] font-semibold text-black leading-[1.4] max-sm:text-[13px] max-sm:font-medium max-md:text-[14px]">
-                    {tag}
-                  </span>
+                  <span 
+                    className="text-[15px] font-semibold text-black leading-[1.4] max-sm:text-[13px] max-sm:font-medium max-md:text-[14px]"
+                    dangerouslySetInnerHTML={{ __html: tag }}
+                  />
                 </div>
               ))}
             </div>
@@ -299,18 +294,18 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             <div className="order-4 flex items-center gap-2">
               <span className="w-2 h-2 bg-red-500 rounded-full"></span>
               <span className="text-xs md:text-sm lg:text-sm xl:text-sm font-semibold text-red-600">
-                {t('product_detail.out_of_stock')}
+                {t("product_detail.out_of_stock")}
               </span>
             </div>
           ) : (
             <div className="order-4 w-full max-w-sm">
               <p className="text-sm md:text-base font-medium text-gray-900 mb-2">
-                {t('product_detail.hurry_only')} {STOCK_LEFT} {t('product_detail.items_left')}
+                {t("product_detail.hurry_offer_ends")}
               </p>
               <div className="h-1.5 w-full rounded-full bg-gray-200 overflow-hidden">
                 <div
                   className="h-full rounded-full bg-gray-900 transition-[width] duration-[1400ms] ease-out"
-                  style={{ width: stockDrained ? `${stockPct}%` : '100%' }}
+                  style={{ width: stockDrained ? `${stockPct}%` : "100%" }}
                 />
               </div>
             </div>
@@ -323,7 +318,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
               </div>
               <div className="relative inline-block bg-gray-50 px-4">
                 <h3 className="text-sm md:text-base lg:text-base xl:text-base font-bold text-gray-900 tracking-wider">
-                  {t('product_detail.bundle_save')}
+                  {t("product_detail.bundle_save")}
                 </h3>
               </div>
             </div>
@@ -336,10 +331,11 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 return (
                   <label
                     key={bundle.id}
-                    className={`relative block rounded-2xl border-2 cursor-pointer transition-all ${isSelected
-                        ? 'border-gray-900 shadow-md'
-                        : 'border-gray-300 hover:border-gray-400'
-                      }`}
+                    className={`relative block rounded-2xl border-2 cursor-pointer transition-all ${
+                      isSelected
+                        ? "border-gray-900 shadow-md"
+                        : "border-gray-300 hover:border-gray-400"
+                    }`}
                   >
                     <div className="absolute -top-3 right-4 z-10">
                       <span className="inline-block px-3 py-1 rounded-full text-[10px] md:text-xs font-bold tracking-wide shadow-sm bg-black text-white">
@@ -348,71 +344,79 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                     </div>
 
                     <div className="overflow-hidden rounded-[14px]">
-                    <div
-                      className={`flex items-center gap-3 p-3 lg:p-3 xl:p-3 2xl:p-4 ${isSelected ? 'bg-gray-50' : 'bg-white'}`}
-                    >
-                      <input
-                        type="radio"
-                        name="bundle"
-                        value={bundle.id}
-                        checked={isSelected}
-                        onChange={(e) => setSelectedBundle(e.target.value)}
-                        className="w-4 h-4 text-gray-900 focus:ring-gray-900 flex-shrink-0"
-                      />
-                      <div className="relative w-14 h-14 2xl:w-16 2xl:h-16 flex-shrink-0 rounded-xl overflow-hidden bg-[#f3f3f3] border border-gray-200">
-                        <Image
-                          src={product.image}
-                          alt={productName}
-                          fill
-                          className="object-contain p-1"
-                          sizes="64px"
+                      <div
+                        className={`flex items-center gap-3 p-3 lg:p-3 xl:p-3 2xl:p-4 ${isSelected ? "bg-gray-50" : "bg-white"}`}
+                      >
+                        <input
+                          type="radio"
+                          name="bundle"
+                          value={bundle.id}
+                          checked={isSelected}
+                          onChange={(e) => setSelectedBundle(e.target.value)}
+                          className="w-4 h-4 text-gray-900 focus:ring-gray-900 flex-shrink-0"
                         />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-sm md:text-base lg:text-base xl:text-base font-bold text-gray-900">
-                            {bundle.label}
-                          </span>
-                          {hasSavings && (
-                            <span className="bg-[#ecfccb] text-[#4d7c0f] text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-md">
-                              {bundle.savingsPercent}% {t('bundle.off')}
+                        <div className="relative w-14 h-14 2xl:w-16 2xl:h-16 flex-shrink-0 rounded-xl overflow-hidden bg-[#f3f3f3] border border-gray-200">
+                          <Image
+                            src={product.image}
+                            alt={productName}
+                            fill
+                            className="object-contain p-1"
+                            sizes="64px"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-sm md:text-base lg:text-base xl:text-base font-bold text-gray-900">
+                              {bundle.label}
                             </span>
+                            {hasSavings && (
+                              <span className="bg-[#ecfccb] text-[#4d7c0f] text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-md">
+                                {bundle.savingsPercent}% {t("bundle.off")}
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-gray-500 mt-0.5">
+                            {bundle.bottles}{" "}
+                            {bundle.bottles === 1
+                              ? t("bundle.bottle")
+                              : t("bundle.bottles")}
+                            {hasGifts &&
+                              ` + ${bundle.freeGifts.length} ${t("bundle.free_gifts")}`}
+                          </div>
+                        </div>
+                        <div className="text-right flex-shrink-0">
+                          <div className="text-base md:text-lg lg:text-lg xl:text-lg font-bold text-gray-900">
+                            {formatPrice(bundle.price)}
+                          </div>
+                          {hasSavings && (
+                            <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-gray-400 line-through">
+                              {formatPrice(originalPrice * bundle.months)}
+                            </div>
                           )}
                         </div>
-                        <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-gray-500 mt-0.5">
-                          {bundle.bottles}{' '}
-                          {bundle.bottles === 1 ? t('bundle.bottle') : t('bundle.bottles')}
-                          {hasGifts && ` + ${bundle.freeGifts.length} ${t('bundle.free_gifts')}`}
-                        </div>
                       </div>
-                      <div className="text-right flex-shrink-0">
-                        <div className="text-base md:text-lg lg:text-lg xl:text-lg font-bold text-gray-900">
-                          {formatPrice(bundle.price)}
-                        </div>
-                        {hasSavings && (
-                          <div className="text-xs md:text-xs lg:text-xs xl:text-xs text-gray-400 line-through">
-                            {formatPrice(originalPrice * bundle.months)}
-                          </div>
-                        )}
-                      </div>
-                    </div>
 
-                    {hasGifts && (
-                      <div
-                        className={`border-t border-black/10 divide-y ${isSelected ? 'divide-white/15' : 'divide-black/10'
+                      {hasGifts && (
+                        <div
+                          className={`border-t border-black/10 divide-y ${
+                            isSelected ? "divide-white/15" : "divide-black/10"
                           }`}
-                      >
-                        {bundle.freeGifts.map((gift) => (
-                          <div
-                            key={gift.id}
-                            className={`flex items-center justify-between gap-2 px-3 lg:px-4 py-1 ${isSelected ? 'bg-black' : 'bg-[#f6faff]'
+                        >
+                          {bundle.freeGifts.map((gift) => (
+                            <div
+                              key={gift.id}
+                              className={`flex items-center justify-between gap-2 px-3 lg:px-4 py-1 ${
+                                isSelected ? "bg-black" : "bg-[#f6faff]"
                               }`}
-                          >
-                            <div className="flex items-center gap-2 min-w-0">
-                                {gift.id === 'mystery' ? (
+                            >
+                              <div className="flex items-center gap-2 min-w-0">
+                                {gift.id === "mystery" ? (
                                   <span className="flex items-center flex-shrink-0">
                                     {MYSTERY_IMAGES.map((src, i) => (
-                                      <span key={i} className="relative w-5 h-5">
+                                      <span
+                                        key={i}
+                                        className="relative w-5 h-5"
+                                      >
                                         <Image
                                           src={src}
                                           alt={gift.label}
@@ -427,39 +431,123 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                                   <span className="flex items-center justify-center w-5 h-5 flex-shrink-0">
                                     <GiftIcon
                                       id={gift.id}
-                                      className={`w-[18px] h-[18px] ${isSelected ? 'text-white' : 'text-black'}`}
+                                      className={`w-[18px] h-[18px] ${isSelected ? "text-white" : "text-black"}`}
                                     />
                                   </span>
                                 )}
                                 <span
-                                  className={`text-xs md:text-sm truncate ${isSelected ? 'text-white' : 'text-gray-700'
-                                    }`}
+                                  className={`text-xs md:text-sm truncate ${
+                                    isSelected ? "text-white" : "text-gray-700"
+                                  }`}
                                 >
                                   {gift.label}
                                 </span>
                               </div>
                               <span className="flex items-center gap-1.5 flex-shrink-0">
                                 <span
-                                  className={`text-[10px] md:text-xs font-bold ${isSelected ? 'text-white' : 'text-[#4d7c0f]'
-                                    }`}
+                                  className={`text-[10px] md:text-xs font-bold ${
+                                    isSelected ? "text-white" : "text-[#4d7c0f]"
+                                  }`}
                                 >
-                                  {t('bundle.free')}
+                                  {t("bundle.free")}
                                 </span>
                                 <span
-                                  className={`text-[10px] md:text-xs line-through ${isSelected ? 'text-white/50' : 'text-gray-400'
-                                    }`}
+                                  className={`text-[10px] md:text-xs line-through ${
+                                    isSelected
+                                      ? "text-white/50"
+                                      : "text-gray-400"
+                                  }`}
                                 >
-                                  {gift.price} {t('bundle.currency')}
+                                  {gift.price} {t("bundle.currency")}
                                 </span>
                               </span>
                             </div>
-                        ))}
-                      </div>
-                    )}
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </label>
                 );
               })}
+            </div>
+          </div>
+
+          <div className="order-5 w-full mt-1 mb-4 bg-[#fff] rounded-2xl p-5 md:p-6 pt-0 md:pt-0 pb-0 md:pb-4">
+            <h3 className="text-[#0b182b] text-center text-lg md:text-xl font-black mb-6 uppercase tracking-wider">
+              YOUR FREE GIFTS
+            </h3>
+            <div className="grid grid-cols-4 gap-2 md:gap-4 lg:gap-5">
+              {/* Gift 1: Shipping */}
+              <div className="bg-[#f7faff] rounded-lg md:rounded-xl p-1.5 md:p-3 flex flex-col items-center justify-start pt-6 md:pt-2 relative shadow-sm min-h-[100px] md:h-[135px] border border-[#e5e0d8] hover:shadow-md transition-shadow">
+                <div className="absolute -top-2.5 md:-top-3.5 bg-white px-1.5 md:px-2.5 py-0.5 md:py-1 rounded md:rounded-md shadow border border-gray-200 flex items-center gap-1 md:gap-1.5 whitespace-nowrap z-10">
+                  <span className="text-[#0b182b] font-extrabold text-[8px] md:text-xs">
+                    FREE
+                  </span>
+                  <span className="text-[#0b182b] text-[8px] md:text-[10px] line-through opacity-80 font-bold">
+                    200 AED
+                  </span>
+                </div>
+                <div className="w-8 h-8 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center mb-1.5 md:mb-3 mt-1 md:mt-4 shadow-sm shrink-0">
+                  <GiftIcon id="shipping" className="w-4 h-4 md:w-7 md:h-7 text-[#0b182b]" />
+                </div>
+                <span className="text-[#0b182b] font-bold text-[8px] md:text-xs text-center leading-[1.2] md:leading-snug px-0.5">
+                  {t("bundle.gift_free_shipping")}
+                </span>
+              </div>
+
+              {/* Gift 2: BAC Water */}
+              <div className="bg-[#f7faff] rounded-lg md:rounded-xl p-1.5 md:p-3 flex flex-col items-center justify-start pt-6 md:pt-2 relative shadow-sm min-h-[100px] md:h-[135px] border border-[#e5e0d8] hover:shadow-md transition-shadow">
+                <div className="absolute -top-2.5 md:-top-3.5 bg-white px-1.5 md:px-2.5 py-0.5 md:py-1 rounded md:rounded-md shadow border border-gray-200 flex items-center gap-1 md:gap-1.5 whitespace-nowrap z-10">
+                  <span className="text-[#0b182b] font-extrabold text-[8px] md:text-xs">
+                    FREE
+                  </span>
+                  <span className="text-[#0b182b] text-[8px] md:text-[10px] line-through opacity-80 font-bold">
+                    450 AED
+                  </span>
+                </div>
+                <div className="w-8 h-8 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center mb-1.5 md:mb-3 mt-1 md:mt-4 shadow-sm shrink-0">
+                  <GiftIcon id="bac" className="w-4 h-4 md:w-7 md:h-7 text-[#0b182b]" />
+                </div>
+                <span className="text-[#0b182b] font-bold text-[8px] md:text-xs text-center leading-[1.2] md:leading-snug px-0.5">
+                  {t("bundle.gift_bac_water")}
+                </span>
+              </div>
+
+              {/* Gift 3: E-Book */}
+              <div className="bg-[#f7faff] rounded-lg md:rounded-xl p-1.5 md:p-3 flex flex-col items-center justify-start pt-6 md:pt-2 relative shadow-sm min-h-[100px] md:h-[135px] border border-[#e5e0d8] hover:shadow-md transition-shadow">
+                <div className="absolute -top-2.5 md:-top-3.5 bg-white px-1.5 md:px-2.5 py-0.5 md:py-1 rounded md:rounded-md shadow border border-gray-200 flex items-center gap-1 md:gap-1.5 whitespace-nowrap z-10">
+                  <span className="text-[#0b182b] font-extrabold text-[8px] md:text-xs">
+                    FREE
+                  </span>
+                  <span className="text-[#0b182b] text-[8px] md:text-[10px] line-through opacity-80 font-bold">
+                    299 AED
+                  </span>
+                </div>
+                <div className="w-8 h-8 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center mb-1.5 md:mb-3 mt-1 md:mt-4 shadow-sm shrink-0">
+                  <GiftIcon id="ebook" className="w-4 h-4 md:w-7 md:h-7 text-[#0b182b]" />
+                </div>
+                <span className="text-[#0b182b] font-bold text-[8px] md:text-xs text-center leading-[1.2] md:leading-snug px-0.5">
+                  {t("bundle.gift_ebook")}
+                </span>
+              </div>
+
+              {/* Gift 4: AI Coach */}
+              <div className="bg-[#f7faff] rounded-lg md:rounded-xl p-1.5 md:p-3 flex flex-col items-center justify-start pt-6 md:pt-2 relative shadow-sm min-h-[100px] md:h-[135px] border border-[#e5e0d8] hover:shadow-md transition-shadow">
+                <div className="absolute -top-2.5 md:-top-3.5 bg-white px-1.5 md:px-2.5 py-0.5 md:py-1 rounded md:rounded-md shadow border border-gray-200 flex items-center gap-1 md:gap-1.5 whitespace-nowrap z-10">
+                  <span className="text-[#0b182b] font-extrabold text-[8px] md:text-xs">
+                    FREE
+                  </span>
+                  <span className="text-[#0b182b] text-[8px] md:text-[10px] line-through opacity-80 font-bold">
+                    99 AED
+                  </span>
+                </div>
+                <div className="w-8 h-8 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center mb-1.5 md:mb-3 mt-1 md:mt-4 shadow-sm shrink-0">
+                  <GiftIcon id="ai" className="w-4 h-4 md:w-7 md:h-7 text-[#0b182b]" />
+                </div>
+                <span className="text-[#0b182b] font-bold text-[8px] md:text-xs text-center leading-[1.2] md:leading-snug px-0.5">
+                  {t("bundle.gift_ai_coach")}
+                </span>
+              </div>
             </div>
           </div>
 
@@ -469,7 +557,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 onClick={handleNotifyMe}
                 className="w-full bg-black text-white text-sm md:text-base lg:text-base xl:text-base py-4 lg:py-4 xl:py-4 2xl:py-5 px-6 rounded-full hover:bg-gray-800 transition-all duration-200"
               >
-                {t('product_detail.sold_out_notify')}
+                {t("product_detail.sold_out_notify")}
               </button>
             ) : (
               <button
@@ -477,7 +565,9 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 className="w-full relative overflow-hidden bg-black text-white text-sm md:text-base lg:text-base xl:text-base py-4 lg:py-4 xl:py-4 2xl:py-5 px-6 rounded-full group border-2 border-black"
               >
                 <span className="absolute inset-0 bg-white origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] rounded-full z-0"></span>
-                <span className="relative z-10 group-hover:text-black transition-colors duration-400">{t('product_detail.add_to_cart')}</span>
+                <span className="relative z-10 group-hover:text-black transition-colors duration-400">
+                  {t("product_detail.add_to_cart")}
+                </span>
               </button>
             )}
 
@@ -487,15 +577,19 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
               className="w-full flex items-center justify-center bg-black text-white text-sm md:text-base py-4 lg:py-4 xl:py-4 2xl:py-5 px-6 rounded-full mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span className="flex items-center">
-                <span>{t('bundle.buy_now')}</span>
+                <span>{t("bundle.buy_now")}</span>
               </span>
             </button>
           </div>
 
           <div className="order-7 pt-4 border-t border-gray-100">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">{t('product_detail.description_title')}</h3>
-            
-            <div className={`relative transition-all duration-500 overflow-hidden ${isDescriptionExpanded ? 'max-h-[5000px]' : 'max-h-[120px]'}`}>
+            <h3 className="text-lg font-bold text-gray-900 mb-4">
+              {t("product_detail.description_title")}
+            </h3>
+
+            <div
+              className={`relative transition-all duration-500 overflow-hidden ${isDescriptionExpanded ? "max-h-[5000px]" : "max-h-[120px]"}`}
+            >
               {productShortDescription && (
                 <div
                   className="text-sm md:text-sm text-gray-900 mb-2"
@@ -503,29 +597,49 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                 />
               )}
 
-              {productDescription && (
+              {productDescription &&
                 (() => {
-                  const hasStructuredContent = productDescription.includes('Contains:') || productDescription.includes('Instructions:');
+                  const hasStructuredContent =
+                    productDescription.includes("Contains:") ||
+                    productDescription.includes("Instructions:");
 
                   if (hasStructuredContent) {
-                    const containsMatch = productDescription.match(/Contains:([\s\S]*?)(Instructions:|$)/i);
-                    const instructionsMatch = productDescription.match(/Instructions:([\s\S]*?)(<\/p>|$)/i);
-                    const contains = containsMatch ? containsMatch[1].replace(/<[^>]+>/g, '').trim() : '';
-                    const instructions = instructionsMatch ? instructionsMatch[1].replace(/<[^>]+>/g, '').trim() : '';
+                    const containsMatch = productDescription.match(
+                      /Contains:([\s\S]*?)(Instructions:|$)/i,
+                    );
+                    const instructionsMatch = productDescription.match(
+                      /Instructions:([\s\S]*?)(<\/p>|$)/i,
+                    );
+                    const contains = containsMatch
+                      ? containsMatch[1].replace(/<[^>]+>/g, "").trim()
+                      : "";
+                    const instructions = instructionsMatch
+                      ? instructionsMatch[1].replace(/<[^>]+>/g, "").trim()
+                      : "";
 
                     return (
                       <div className="mt-4 space-y-4">
                         {contains && (
                           <div>
-                            <div className="font-bold text-sm md:text-sm text-gray-900 mb-1">{t('product_detail.contains')}</div>
-                            <div className="text-sm md:text-sm text-gray-800 whitespace-pre-line">{contains}</div>
+                            <div className="font-bold text-sm md:text-sm text-gray-900 mb-1">
+                              {t("product_detail.contains")}
+                            </div>
+                            <div className="text-sm md:text-sm text-gray-800 whitespace-pre-line">
+                              {contains}
+                            </div>
                           </div>
                         )}
                         {instructions && (
                           <div>
-                            <div className="font-bold text-sm md:text-sm text-gray-900 mb-1">{t('product_detail.instructions')}</div>
-                            <div className="text-sm md:text-sm text-gray-800 whitespace-pre-line mb-6">{instructions}</div>
-                            <div className="text-sm md:text-sm italic text-gray-800 whitespace-pre-line">{t('product_detail.research_use')}</div>
+                            <div className="font-bold text-sm md:text-sm text-gray-900 mb-1">
+                              {t("product_detail.instructions")}
+                            </div>
+                            <div className="text-sm md:text-sm text-gray-800 whitespace-pre-line mb-6">
+                              {instructions}
+                            </div>
+                            <div className="text-sm md:text-sm italic text-gray-800 whitespace-pre-line">
+                              {t("product_detail.research_use")}
+                            </div>
                           </div>
                         )}
                       </div>
@@ -538,26 +652,34 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                       dangerouslySetInnerHTML={{ __html: productDescription }}
                     />
                   );
-                })()
-              )}
-              
+                })()}
+
               {!isDescriptionExpanded && (
                 <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-gray-50 to-transparent pointer-events-none"></div>
               )}
             </div>
-            
-            <button 
+
+            <button
               onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
               className="mt-4 text-gray-900 font-bold text-sm flex items-center gap-1 hover:text-gray-700 transition-colors"
             >
-              <span>{isDescriptionExpanded ? t('product_detail.read_less') : t('product_detail.read_more')}</span>
-              <svg 
-                className={`w-4 h-4 transition-transform duration-300 ${isDescriptionExpanded ? 'rotate-180' : ''}`} 
-                fill="none" 
-                stroke="currentColor" 
+              <span>
+                {isDescriptionExpanded
+                  ? t("product_detail.read_less")
+                  : t("product_detail.read_more")}
+              </span>
+              <svg
+                className={`w-4 h-4 transition-transform duration-300 ${isDescriptionExpanded ? "rotate-180" : ""}`}
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </button>
           </div>
@@ -567,7 +689,10 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
       {/* Related Products Section */}
       {product.relatedIds && product.relatedIds.length > 0 && (
         <div className="mt-24 pt-12 border-t border-gray-200">
-          <RelatedProducts productIds={product.relatedIds} currentProductId={product.id} />
+          <RelatedProducts
+            productIds={product.relatedIds}
+            currentProductId={product.id}
+          />
         </div>
       )}
     </div>
