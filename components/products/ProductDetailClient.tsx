@@ -487,8 +487,10 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                     200 AED
                   </span>
                 </div>
-                <div className="w-8 h-8 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center mb-1.5 md:mb-3 mt-1 md:mt-4 shadow-sm shrink-0">
-                  <GiftIcon id="shipping" className="w-4 h-4 md:w-7 md:h-7 text-[#0b182b]" />
+                <div className="w-8 h-8 md:w-14 md:h-14 bg-white flex items-center justify-center mb-1.5 md:mb-3 mt-1 md:mt-4 shadow-sm shrink-0">
+                  <div className="relative w-8 h-8 md:w-14 md:h-14 overflow-hidden rounded-sm mix-blend-multiply">
+                    <Image src="/Free Shipping.jpeg" alt="Free Shipping" fill className="object-contain" sizes="(max-width: 768px) 20px, 32px" />
+                  </div>
                 </div>
                 <span className="text-[#0b182b] font-bold text-[8px] md:text-xs text-center leading-[1.2] md:leading-snug px-0.5">
                   {t("bundle.gift_free_shipping")}
@@ -505,8 +507,10 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                     450 AED
                   </span>
                 </div>
-                <div className="w-8 h-8 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center mb-1.5 md:mb-3 mt-1 md:mt-4 shadow-sm shrink-0">
-                  <GiftIcon id="bac" className="w-4 h-4 md:w-7 md:h-7 text-[#0b182b]" />
+                <div className="w-8 h-8 md:w-14 md:h-14 bg-white flex items-center justify-center mb-1.5 md:mb-3 mt-1 md:mt-4 shadow-sm shrink-0">
+                  <div className="relative w-8 h-8 md:w-14 md:h-14 overflow-hidden rounded-sm mix-blend-multiply">
+                    <Image src="/Bacteriostatic Water Volume.webp" alt="BAC Water" fill className="object-contain" sizes="(max-width: 768px) 20px, 32px" />
+                  </div>
                 </div>
                 <span className="text-[#0b182b] font-bold text-[8px] md:text-xs text-center leading-[1.2] md:leading-snug px-0.5">
                   {t("bundle.gift_bac_water")}
@@ -523,8 +527,10 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                     299 AED
                   </span>
                 </div>
-                <div className="w-8 h-8 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center mb-1.5 md:mb-3 mt-1 md:mt-4 shadow-sm shrink-0">
-                  <GiftIcon id="ebook" className="w-4 h-4 md:w-7 md:h-7 text-[#0b182b]" />
+                <div className="w-8 h-8 md:w-14 md:h-14 bg-white flex items-center justify-center mb-1.5 md:mb-3 mt-1 md:mt-4 shadow-sm shrink-0">
+                  <div className="relative w-8 h-8 md:w-14 md:h-14 overflow-hidden rounded-sm mix-blend-multiply">
+                    <Image src="/Peptides E-book.webp" alt="E-Book" fill className="object-contain" sizes="(max-width: 768px) 20px, 32px" />
+                  </div>
                 </div>
                 <span className="text-[#0b182b] font-bold text-[8px] md:text-xs text-center leading-[1.2] md:leading-snug px-0.5">
                   {t("bundle.gift_ebook")}
@@ -541,8 +547,10 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
                     99 AED
                   </span>
                 </div>
-                <div className="w-8 h-8 md:w-14 md:h-14 bg-white rounded-full flex items-center justify-center mb-1.5 md:mb-3 mt-1 md:mt-4 shadow-sm shrink-0">
-                  <GiftIcon id="ai" className="w-4 h-4 md:w-7 md:h-7 text-[#0b182b]" />
+                <div className="w-8 h-8 md:w-14 md:h-14 bg-white flex items-center justify-center mb-1.5 md:mb-3 mt-1 md:mt-4 shadow-sm shrink-0">
+                  <div className="relative w-8 h-8 md:w-14 md:h-14 overflow-hidden rounded-sm mix-blend-multiply">
+                    <Image src="/AI Peptide Coach.webp" alt="AI Coach" fill className="object-contain" sizes="(max-width: 768px) 20px, 32px" />
+                  </div>
                 </div>
                 <span className="text-[#0b182b] font-bold text-[8px] md:text-xs text-center leading-[1.2] md:leading-snug px-0.5">
                   {t("bundle.gift_ai_coach")}
