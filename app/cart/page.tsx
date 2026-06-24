@@ -5,9 +5,11 @@ import { useCartStore } from '@/store/cartStore';
 import { formatPrice, getCartWhatsAppUrl } from '@/lib/utils';
 import CartItem from '@/components/cart/CartItem';
 import Button from '@/components/ui/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function CartPage() {
   const { items, clearCart, getSubtotal } = useCartStore();
+  const { t, language } = useLanguage();
   const subtotal = getSubtotal();
   const estimatedTax = subtotal * 0.1; // 10% tax estimate
   const estimatedTotal = subtotal + estimatedTax;
@@ -116,7 +118,7 @@ export default function CartPage() {
             </div>
 
             <button
-              onClick={() => window.open(getCartWhatsAppUrl(items), '_blank')}
+              onClick={() => window.open(getCartWhatsAppUrl(items, language), '_blank')}
               className="w-full bg-gray-900 text-white text-lg md:text-xl lg:text-xl xl:text-xl 2xl:text-2xl font-semibold py-5 lg:py-5 xl:py-5 2xl:py-6 px-6 rounded-full hover:bg-gray-800 transform hover:scale-[1.02] transition-all duration-200 shadow-lg mb-6"
             >
               Proceed to Checkout

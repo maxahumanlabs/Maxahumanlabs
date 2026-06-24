@@ -11,7 +11,7 @@ import UpsellProducts from './UpsellProducts';
 
 export default function CartSidebar() {
   const { items, isOpen, closeCart, getSubtotal } = useCartStore();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   // Prevent body scroll when cart is open
   useEffect(() => {
@@ -99,7 +99,7 @@ export default function CartSidebar() {
             <div className="space-y-2">
               <button
                 onClick={() => {
-                  window.open(getCartWhatsAppUrl(items), '_blank');
+                  window.open(getCartWhatsAppUrl(items, language), '_blank');
                   closeCart();
                 }}
                 className="w-full bg-gray-900 text-white font-normal py-3 text-sm rounded-full hover:bg-gray-800 transition-colors"

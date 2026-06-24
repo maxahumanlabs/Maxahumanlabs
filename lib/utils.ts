@@ -98,13 +98,25 @@ export function buildWhatsAppUrl(message: string): string {
 }
 
 // WhatsApp link for ordering a whole cart
-export function getCartWhatsAppUrl(items: CartItem[]): string {
+export function getCartWhatsAppUrl(items: CartItem[], language: 'en' | 'ar' = 'en'): string {
+  const L = language === 'ar' ? {
+    intro: "مرحباً، أود طلب:",
+    total: "الإجمالي:",
+    tax: "+ ضريبة",
+  } : {
+    intro: "Hello, I'd like to place an order:",
+    total: "Total:",
+    tax: "+ Tax",
+  };
+
   const lines = items.map((item) => {
+    const displayName = language === 'ar' && item.arabicName ? item.arabicName : item.name;
     const label = item.bundleLabel ? ` (${item.bundleLabel})` : '';
-    return `• ${item.name}${label} x${item.quantity} — ${formatPrice(parseFloat(item.price) * item.quantity)}`;
+    const qtyStr = item.quantity > 1 ? `${item.quantity} × ` : '';
+    return `• ${qtyStr}${displayName}${label} — ${formatPrice(parseFloat(item.price) * item.quantity)} ${L.tax}`;
   });
   const total = formatPrice(calculateCartTotal(items));
-  const message = `Hello, I'd like to place an order:\n\n${lines.join('\n')}\n\nTotal: ${total} + Tax`;
+  const message = `${L.intro}\n\n${lines.join('\n')}\n\n${L.total} ${total} ${L.tax}`;
   return buildWhatsAppUrl(message);
 }
 

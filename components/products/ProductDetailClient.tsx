@@ -160,7 +160,16 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
     const bundle = bundleOptions.find((item) => item.id === selectedBundle);
     if (!bundle) return;
 
-    const message = `Hello, I'd like to order:\n\n• ${product.name} (${bundle.label}) — ${formatPrice(bundle.price)} + Tax`;
+    const L = language === 'ar' ? {
+      intro: "مرحباً، أود طلب:",
+      tax: "+ ضريبة",
+    } : {
+      intro: "Hello, I'd like to order:",
+      tax: "+ Tax",
+    };
+
+    const displayName = language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name;
+    const message = `${L.intro}\n\n• ${displayName} (${bundle.label}) — ${formatPrice(bundle.price)} ${L.tax}`;
     window.open(buildWhatsAppUrl(message), '_blank');
   };
 
