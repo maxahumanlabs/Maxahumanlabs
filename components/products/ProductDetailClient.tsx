@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Product } from '@/types';
 import { useCartStore } from '@/store/cartStore';
-import { formatPrice, buildWhatsAppUrl } from '@/lib/utils';
+import { formatPrice, buildWhatsAppUrl, decodeHtmlEntities } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 import RelatedProducts from './RelatedProducts';
 
@@ -179,9 +179,10 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
     setEmail('');
   };
 
-  const productName = language === 'ar' && (product as any).arabic_name
+  const rawProductName = language === 'ar' && (product as any).arabic_name
     ? (product as any).arabic_name
     : product.name;
+  const productName = decodeHtmlEntities(rawProductName);
   const productDescription = language === 'ar' && (product as any).arabic_description
     ? (product as any).arabic_description
     : product.description;

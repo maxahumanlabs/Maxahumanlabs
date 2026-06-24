@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Product } from '@/types';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { decodeHtmlEntities } from '@/lib/utils';
 
 export default function BuildYourStack({ categorySlug }: { categorySlug: string }) {
   const { t, language } = useLanguage();
@@ -157,7 +158,7 @@ export default function BuildYourStack({ categorySlug }: { categorySlug: string 
                       {product.images && product.images.length > 0 ? (
                         <Image
                           src={product.images[0] || product.imageThumbnails?.[0] || '/placeholder.jpg'}
-                          alt={product.name}
+                          alt={decodeHtmlEntities(product.name)}
                           fill
                           sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
                           className="w-full h-full object-cover"
@@ -199,7 +200,7 @@ export default function BuildYourStack({ categorySlug }: { categorySlug: string 
                       <p className="text-gray-500 text-xs lg:text-xs xl:text-sm 2xl:text-sm mb-1 uppercase tracking-wide">
                         Maxa Human
                       </p>
-                      <h3 className="text-gray-900 text-base lg:text-base xl:text-lg 2xl:text-xl font-medium">{language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name}</h3>
+                      <h3 className="text-gray-900 text-base lg:text-base xl:text-lg 2xl:text-xl font-medium">{decodeHtmlEntities(language === 'ar' && (product as any).arabic_name ? (product as any).arabic_name : product.name)}</h3>
 
                       {/* Price below the product name */}
                       <div className="mt-2 flex items-baseline gap-2 flex-wrap">
@@ -259,7 +260,7 @@ export default function BuildYourStack({ categorySlug }: { categorySlug: string 
                           {item.image || (item.images && item.images.length > 0) ? (
                             <Image
                               src={(item as any).imageThumbnails?.[0] || item.image || item.images[0]}
-                              alt={item.name}
+                              alt={decodeHtmlEntities(item.name)}
                               width={64}
                               height={64}
                               className="w-full h-full object-cover"
@@ -271,7 +272,7 @@ export default function BuildYourStack({ categorySlug }: { categorySlug: string 
 
                         {/* Product Info */}
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-gray-900 line-clamp-1">{item.name}</p>
+                          <p className="text-sm font-medium text-gray-900 line-clamp-1">{decodeHtmlEntities(language === 'ar' && (item as any).arabic_name ? (item as any).arabic_name : item.name)}</p>
                           <p className="text-xs text-gray-500">Dhs. {parseFloat(item.price).toFixed(2)}</p>
                         </div>
 

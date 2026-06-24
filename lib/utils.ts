@@ -129,3 +129,11 @@ export function getStockStatusColor(status: string): string {
   };
   return colors[status] || 'text-gray-600';
 }
+
+// Decode HTML entities
+export function decodeHtmlEntities(str: string): string {
+  if (!str) return str;
+  return str.replace(/&#(\d+);/g, (match, dec) => {
+    return String.fromCharCode(dec);
+  }).replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#038;/g, '&');
+}

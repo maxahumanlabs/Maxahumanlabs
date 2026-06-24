@@ -3,6 +3,7 @@
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 import Image from 'next/image';
 import { Product } from '@/types';
+import { decodeHtmlEntities } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCartStore } from '@/store/cartStore';
 
@@ -17,9 +18,10 @@ export default function ProductCard({ product }: ProductCardProps) {
   const router = useLocalizedRouter();
 
   // Get localized product name
-  const productName = language === 'ar' && (product as any).arabic_name
+  const rawProductName = language === 'ar' && (product as any).arabic_name
     ? (product as any).arabic_name
     : product.name;
+  const productName = decodeHtmlEntities(rawProductName);
 
   // Calculate discount percentage if on sale
   const discountPercent = product.onSale && product.regularPrice && product.salePrice
