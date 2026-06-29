@@ -149,12 +149,14 @@ export const translations = {
       mcg: "mcg"
     },
     product_detail: {
+      static_rating: "4.98/5 — 8,247 reviews",
+      delivered_stats: "15,000+ packages delivered worldwide",
       reviews: "reviews",
       out_of_stock: "Out of stock",
       in_stock: "In stock, ready to ship",
       hurry_only: "Hurry, only",
       items_left: "items left in stock!",
-      hurry_offer_ends: "Hurry, Offer ends in 2 days!",
+      hurry_offer_ends: "Hurry, Offer ends in ",
       bundle_save: "ORDER NOW",
       save: "SAVE",
       you_save: "You save",
@@ -476,12 +478,14 @@ export const translations = {
       mcg: "ميكروغرام"
     },
     product_detail: {
+      static_rating: "4.98/5 — 8,247 تقييم",
+      delivered_stats: "15,000+ طلب تم توصيله في الخليج",
       reviews: "تقييمات",
       out_of_stock: "نفذت الكمية",
       in_stock: "متوفر في المخزون، جاهز للشحن",
       hurry_only: "بسرعة، باقي",
       items_left: "قطع فقط في المخزون!",
-      hurry_offer_ends: "بسرعة، ينتهي العرض خلال يومين!",
+      hurry_offer_ends: "بسرعة، ينتهي العرض خلال ",
       bundle_save: "اطلب الآن",
       save: "وفر",
       you_save: "توفر",

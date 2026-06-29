@@ -191,18 +191,24 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
     : product.shortDescription;
   const isOutOfStock = product.stockStatus === 'outofstock';
 
-  // Low-stock urgency bar. Change these two constants to control it:
-  // STOCK_LEFT = the number shown in the text; STOCK_TOTAL = sets where the bar
-  // settles (STOCK_LEFT/STOCK_TOTAL, clamped 5%–95%). The bar starts full and
-  // "drains" down to that ratio on mount.
-  const STOCK_LEFT = 3;
-  const STOCK_TOTAL = 22;
-  const stockPct = Math.min(95, Math.max(5, Math.round((STOCK_LEFT / STOCK_TOTAL) * 100)));
-  const [stockDrained, setStockDrained] = useState(false);
+  // 2 hour countdown timer
+  const [timeLeft, setTimeLeft] = useState(7200);
+
   useEffect(() => {
-    const id = setTimeout(() => setStockDrained(true), 150);
-    return () => clearTimeout(id);
+    const interval = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) return 7200;
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
+
+  const timerHours = Math.floor(timeLeft / 3600);
+  const timerMinutes = Math.floor((timeLeft % 3600) / 60);
+  const timerSeconds = timeLeft % 60;
+  const timeString = `${timerHours.toString().padStart(2, '0')}:${timerMinutes.toString().padStart(2, '0')}:${timerSeconds.toString().padStart(2, '0')}`;
+
 
   // NOTE: Product/Offer/Breadcrumb JSON-LD is emitted server-side from real
   // WooCommerce data in app/products/[slug]/page.tsx (see lib/schema.ts).
@@ -264,15 +270,12 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             </div>
           </div>
 
-          {product.ratingCount > 0 && (
-            <div className="order-2 flex items-center gap-2">
-              <span className="text-yellow-400 text-lg">⭐</span>
-              <span className="text-sm md:text-base lg:text-base xl:text-base font-semibold text-gray-900">
-                {product.rating.toFixed(1)}/5 ({product.ratingCount}{" "}
-                {t("product_detail.reviews")})
-              </span>
-            </div>
-          )}
+          <div className="order-2 flex items-center gap-2">
+            <span className="text-yellow-400 text-lg">⭐</span>
+            <span className="text-sm md:text-base lg:text-base xl:text-base font-semibold text-gray-900">
+              {t("product_detail.static_rating")}
+            </span>
+          </div>
 
           {product.tags && product.tags.length > 0 && (
             <div className="order-3 flex flex-wrap gap-3">
@@ -310,14 +313,17 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
           ) : (
             <div className="order-4 w-full max-w-sm">
               <p className="text-sm md:text-base font-medium text-gray-900 mb-2">
-                {t("product_detail.hurry_offer_ends")}
+                {t("product_detail.hurry_offer_ends")} <span className="font-bold text-red-600">{timeString}</span>
               </p>
-              <div className="h-1.5 w-full rounded-full bg-gray-200 overflow-hidden">
+              <div className="h-1.5 w-full rounded-full bg-gray-200 overflow-hidden mb-2">
                 <div
-                  className="h-full rounded-full bg-gray-900 transition-[width] duration-[1400ms] ease-out"
-                  style={{ width: stockDrained ? `${stockPct}%` : "100%" }}
+                  className="h-full rounded-full bg-gray-900 transition-[width] duration-1000 ease-linear"
+                  style={{ width: `${(timeLeft / 36000) * 100}%` }}
                 />
               </div>
+              <p className="text-xs text-gray-500 font-medium">
+                🔥 {t("product_detail.delivered_stats")}
+              </p>
             </div>
           )}
 
