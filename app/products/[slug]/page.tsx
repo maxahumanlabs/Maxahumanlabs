@@ -18,6 +18,14 @@ async function getCachedProduct(slug: string) {
   )();
 }
 
+async function getCachedReviews(productId: number) {
+  return unstable_cache(
+    async () => woocommerce.getProductReviews(productId),
+    ['product-reviews', productId.toString()],
+    { revalidate: 300 }
+  )();
+}
+
 export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata
@@ -66,6 +74,9 @@ export default async function ProductDetailPage({
     notFound();
   }
 
+  // Fetch reviews for this product
+  const reviews = await getCachedReviews(product.id);
+
   const locale = localeFromHeaders();
   const prefix = locale === 'ar' ? '/ar' : '';
   const breadcrumb = breadcrumbSchema([
@@ -77,7 +88,7 @@ export default async function ProductDetailPage({
   return (
     <>
       <JsonLd data={[productSchema(product, locale), breadcrumb]} />
-      <ProductDetailClient product={product} />
+      <ProductDetailClient product={product} reviews={reviews} />
     </>
   );
 }

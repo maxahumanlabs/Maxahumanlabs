@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Product } from '@/types';
+import { Product, ProductReview } from '@/types';
 import { useCartStore } from '@/store/cartStore';
 import { formatPrice, buildWhatsAppUrl, decodeHtmlEntities } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 import RelatedProducts from './RelatedProducts';
+import ProductReviews from './ProductReviews';
 
 type BundleOption = {
   id: string;
@@ -68,9 +69,10 @@ function GiftIcon({ id, className }: { id: string; className?: string }) {
 
 interface ProductDetailClientProps {
   product: Product;
+  reviews?: ProductReview[];
 }
 
-export default function ProductDetailClient({ product }: ProductDetailClientProps) {
+export default function ProductDetailClient({ product, reviews = [] }: ProductDetailClientProps) {
   const { t, language } = useLanguage();
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedBundle, setSelectedBundle] = useState('three-months');
@@ -710,9 +712,14 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
         </div>
       </div>
 
+      {/* Product Reviews Section */}
+      <div className="mt-16 border-t border-gray-200">
+        <ProductReviews productId={product.id} reviews={reviews} />
+      </div>
+
       {/* Related Products Section */}
       {product.relatedIds && product.relatedIds.length > 0 && (
-        <div className="mt-24 pt-12 border-t border-gray-200">
+        <div className="mt-16 pt-8 border-t border-gray-200">
           <RelatedProducts
             productIds={product.relatedIds}
             currentProductId={product.id}
