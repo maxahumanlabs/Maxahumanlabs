@@ -1,12 +1,22 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ProductReview } from '@/types';
 import WriteReviewForm from './WriteReviewForm';
 
 interface ProductReviewsProps {
   productId: number;
   reviews: ProductReview[];
+}
+
+interface CombinedReview {
+  id: string;
+  name: string;
+  date: string;
+  rating: number;
+  text: string;
+  verified: boolean;
+  images: string[];
 }
 
 function classNames(...classes: string[]) {
@@ -28,15 +38,53 @@ const StarIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const VerifiedBadge = () => (
+  <svg className="w-4 h-4 text-black inline-block ml-1" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+  </svg>
+);
+
 export default function ProductReviews({ productId, reviews }: ProductReviewsProps) {
   const [showForm, setShowForm] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [visibleReviews, setVisibleReviews] = useState(8);
+  const [visibleReviews, setVisibleReviews] = useState(24);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [staticReviews, setStaticReviews] = useState<CombinedReview[]>([]);
+
+  useEffect(() => {
+    fetch('/data/static-reviews.json')
+      .then((res) => res.json())
+      .then((data) => setStaticReviews(data))
+      .catch((err) => console.error('Failed to load static reviews', err));
+  }, []);
 
   const loadMore = () => {
-    setVisibleReviews((prev) => prev + 8);
+    setVisibleReviews((prev) => prev + 24);
   };
+
+  const combinedReviews: CombinedReview[] = [
+    ...(reviews || []).map((r) => ({
+      id: `real-${r.id}`,
+      name: r.reviewer,
+      date: r.date_created ? (() => {
+        const d = new Date(r.date_created);
+        return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
+      })() : '',
+      rating: r.rating || 5,
+      text: r.review, // Can be HTML
+      verified: r.verified || true, 
+      images: (r as any).cusrev_images || []
+    })),
+    ...staticReviews.map((r: any) => ({
+      id: `static-${r.id}`,
+      name: r.name,
+      date: r.date,
+      rating: r.rating,
+      text: r.text,
+      verified: r.verified,
+      images: []
+    }))
+  ];
 
   return (
     <div className="bg-white">
@@ -81,80 +129,75 @@ export default function ProductReviews({ productId, reviews }: ProductReviewsPro
           />
         )}
         
-        {(!reviews || reviews.length === 0) ? (
-          <p className="mt-4 text-gray-500">No reviews yet. Be the first to review this product!</p>
-        ) : (
-          <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 lg:gap-x-8 border-t border-gray-200 pt-10">
-            {reviews.slice(0, visibleReviews).map((review) => (
-              <div key={review.id} className="flex flex-col bg-gray-50 p-4 sm:p-6 rounded-lg">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    {[0, 1, 2, 3, 4].map((rating) => (
-                      <StarIcon
-                        key={rating}
-                        className={classNames(
-                          review.rating > rating ? 'text-yellow-400' : 'text-gray-200',
-                          'h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0'
-                        )}
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-4 flex flex-col sm:flex-row sm:items-center">
-                  <div className="flex items-center">
-                    <img
-                      src={review.reviewer_avatar_urls?.['48'] || '/placeholder-avatar.png'}
-                      alt={`${review.reviewer}`}
-                      className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-gray-100 flex-shrink-0"
-                    />
-                    <div className="ml-3">
-                      <p className="text-sm font-medium text-gray-900">{review.reviewer}</p>
-                      <span className="inline-flex items-center rounded-md bg-green-50 px-1.5 py-0.5 sm:px-2 sm:py-1 text-[10px] sm:text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 mt-0.5 sm:mt-1">
-                        Verified
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-4 flex-grow">
-                  <div
-                    className="space-y-6 text-xs sm:text-sm text-gray-500"
-                    dangerouslySetInnerHTML={{ __html: review.review }}
-                  />
-                  
-                  {/* Render CusRev Images if they exist in the API response */}
-                  {Array.isArray((review as any).cusrev_images) && (review as any).cusrev_images.length > 0 && (
-                    <div className="mt-4 flex gap-2 sm:gap-4 overflow-x-auto pb-2">
-                      {(review as any).cusrev_images.map((imgUrl: string, index: number) => (
-                        <button 
-                          key={index} 
-                          onClick={() => setSelectedImage(imgUrl)}
-                          className="relative h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0 rounded-lg border-2 border-gray-200 overflow-hidden cursor-pointer hover:border-primary focus:outline-none focus:border-primary transition-colors"
-                        >
-                          <img
-                            src={imgUrl}
-                            alt={`Review image ${index + 1}`}
-                            className="object-cover w-full h-full"
-                          />
-                        </button>
-                      ))}
-                    </div>
+        {combinedReviews && combinedReviews.length > 0 && (
+          <div className="mt-8 columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+            {combinedReviews.slice(0, visibleReviews).map((review) => (
+              <div 
+                key={review.id} 
+                className="break-inside-avoid bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col"
+              >
+                <div className="flex items-center text-sm">
+                  <span className="font-semibold text-gray-900">{review.name}</span>
+                  {review.verified && (
+                    <span className="flex items-center ml-1 text-gray-900 font-medium">
+                      <VerifiedBadge />
+                      <span className="ml-1 text-xs">Verified</span>
+                    </span>
                   )}
                 </div>
+                {review.date && (
+                  <div className="text-xs text-gray-400 mt-0.5 mb-3">
+                    {review.date}
+                  </div>
+                )}
+                
+                <div className="flex items-center mb-3">
+                  {[0, 1, 2, 3, 4].map((rating) => (
+                    <StarIcon
+                      key={rating}
+                      className={classNames(
+                        review.rating > rating ? 'text-yellow-400' : 'text-gray-200',
+                        'h-4 w-4 flex-shrink-0'
+                      )}
+                    />
+                  ))}
+                </div>
+                
+                <div 
+                  className="text-gray-700 text-sm leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: review.text }}
+                />
+
+                {review.images.length > 0 && (
+                  <div className="mt-4 flex gap-2 sm:gap-4 overflow-x-auto pb-2">
+                    {review.images.map((imgUrl: string, index: number) => (
+                      <button 
+                        key={index} 
+                        onClick={() => setSelectedImage(imgUrl)}
+                        className="relative h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0 rounded-lg border-2 border-gray-200 overflow-hidden cursor-pointer hover:border-primary focus:outline-none focus:border-primary transition-colors"
+                      >
+                        <img
+                          src={imgUrl}
+                          alt={`Review image ${index + 1}`}
+                          className="object-cover w-full h-full"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
-            
-            {reviews.length > visibleReviews && (
-              <div className="pt-10 flex justify-center border-t border-gray-200 mt-10">
-                <button
-                  onClick={loadMore}
-                  className="rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                >
-                  Load More
-                </button>
-              </div>
-            )}
+          </div>
+        )}
+        
+        {visibleReviews < combinedReviews.length && (
+          <div className="mt-12 flex justify-center">
+            <button
+              onClick={loadMore}
+              className="rounded-full bg-white px-8 py-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 transition-colors"
+            >
+              Load More Reviews
+            </button>
           </div>
         )}
       </div>

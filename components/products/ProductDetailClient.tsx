@@ -275,7 +275,7 @@ export default function ProductDetailClient({ product, reviews = [] }: ProductDe
           <div className="order-2 flex items-center gap-2">
             <span className="text-yellow-400 text-lg">⭐</span>
             <span className="text-sm md:text-base lg:text-base xl:text-base font-semibold text-gray-900">
-              {t("product_detail.static_rating")}
+              4.98/5 — {(1034 + (reviews?.length || 0)).toLocaleString()} {language === 'ar' ? 'تقييم' : 'reviews'}
             </span>
           </div>
 
