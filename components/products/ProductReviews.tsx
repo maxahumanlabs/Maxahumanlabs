@@ -47,7 +47,7 @@ const VerifiedBadge = () => (
 export default function ProductReviews({ productId, reviews }: ProductReviewsProps) {
   const [showForm, setShowForm] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [visibleReviews, setVisibleReviews] = useState(24);
+  const [visibleReviews, setVisibleReviews] = useState(6);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [staticReviews, setStaticReviews] = useState<CombinedReview[]>([]);
 
@@ -59,7 +59,7 @@ export default function ProductReviews({ productId, reviews }: ProductReviewsPro
   }, []);
 
   const loadMore = () => {
-    setVisibleReviews((prev) => prev + 24);
+    setVisibleReviews((prev) => prev + 6);
   };
 
   const combinedReviews: CombinedReview[] = [
