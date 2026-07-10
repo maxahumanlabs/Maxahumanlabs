@@ -7,6 +7,7 @@ import { useCartStore } from '@/store/cartStore';
 import { formatPrice, buildWhatsAppUrl, decodeHtmlEntities } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 import RelatedProducts from './RelatedProducts';
+import FloatingAddToCart from './FloatingAddToCart';
 import ProductReviews from './ProductReviews';
 
 type BundleOption = {
@@ -716,6 +717,8 @@ export default function ProductDetailClient({ product, reviews = [] }: ProductDe
       <div className="mt-16 border-t border-gray-200">
         <ProductReviews productId={product.id} reviews={reviews} />
       </div>
+
+      <FloatingAddToCart product={product} />
 
       {/* Related Products Section */}
       {product.relatedIds && product.relatedIds.length > 0 && (

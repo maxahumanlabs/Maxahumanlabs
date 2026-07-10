@@ -5,6 +5,7 @@ import Link from '@/components/LocalizedLink';
 import { useCartStore } from '@/store/cartStore';
 import { formatPrice, getCartWhatsAppUrl } from '@/lib/utils';
 import CartItem from './CartItem';
+import CartTimer from './CartTimer';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import UpsellProducts from './UpsellProducts';
@@ -13,17 +14,7 @@ export default function CartSidebar() {
   const { items, isOpen, closeCart, getSubtotal } = useCartStore();
   const { t, language } = useLanguage();
 
-  // Prevent body scroll when cart is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
+  // Removed body scroll lock to allow users to interact with the website while the cart is open
 
   const subtotal = getSubtotal();
 
@@ -77,6 +68,7 @@ export default function CartSidebar() {
               ))}
               
               {/* Upsell Products in Cart */}
+              <CartTimer />
               <UpsellProducts />
             </div>
           )}

@@ -118,10 +118,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <WelcomePopup />
             {/* WhatsApp Button - global */}
             <a
+              id="whatsapp-btn"
               href="https://wa.me/971528107166"
               target="_blank"
               rel="noopener noreferrer"
-              className="fixed bottom-4 left-4 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors z-50"
+              className="fixed bottom-4 left-4 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-all duration-500 z-50"
               aria-label="Chat on WhatsApp"
             >
               <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
