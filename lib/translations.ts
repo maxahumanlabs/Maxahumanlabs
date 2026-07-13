@@ -308,6 +308,29 @@ export const translations = {
       free_ebook: "Peptide Program",
       free: "FREE"
     },
+    hero_static: {
+      title_1: "High-Purity",
+      title_2: "Peptides",
+      subtitle: "French lab-tested research compounds with 99%+ purity standards for superior quality.",
+      co_developed: "Co-developed with 600+ researchers",
+      features: {
+        f1: "French Lab Tested",
+        f2: "99%+ Purity Target",
+        f3: "HPLC & HRMS Verified",
+        f4: "QR Batch Reports",
+        f5: "Secure Checkout",
+        f6: "Fast International Shipping (3-5 days)",
+        f7: "Cold-Chain Handling 2-8°C"
+      },
+      packages_delivered: "90,000+ packages delivered worldwide",
+      need_guidance: "Need guidance choosing a peptide?",
+      chat_directly: "Chat directly with our research specialists",
+      ask_whatsapp: "Ask on WhatsApp",
+      whatsapp_message: "Hi, I have a question about your peptides",
+      discover: "Discover Our Products",
+      footer_real: "Real lab reports. Real batch records. Real transparency.",
+      footer_research: "For research use only. Not for medical, therapeutic, or diagnostic use."
+    },
     hero_slider: {
       buy_now: "BUY NOW →",
       slide1: {
@@ -636,6 +659,29 @@ export const translations = {
       free_shipping: "شحن مجاني",
       free_ebook: "برنامج الببتيدات",
       free: "مجانا"
+    },
+    hero_static: {
+      title_1: "ببتيدات",
+      title_2: "عالية النقاء",
+      subtitle: "مركبات بحثية مختبرة فرنسياً بمعايير نقاء +99% لجودة فائقة.",
+      co_developed: "تم تطويرها بالتعاون مع أكثر من 600 باحث",
+      features: {
+        f1: "مختبرة في فرنسا",
+        f2: "هدف النقاء +99%",
+        f3: "موثقة بـ HPLC & HRMS",
+        f4: "تقارير دفعات عبر QR",
+        f5: "دفع آمن",
+        f6: "شحن دولي سريع (3-5 أيام)",
+        f7: "حفظ مبرد بدرجة 2-8 مئوية"
+      },
+      packages_delivered: "تم تسليم أكثر من 90,000 شحنة عالمياً",
+      need_guidance: "تحتاج مساعدة في اختيار الببتيد؟",
+      chat_directly: "تحدث مباشرة مع أخصائيي الأبحاث لدينا",
+      ask_whatsapp: "اسأل عبر واتساب",
+      whatsapp_message: "مرحباً، لدي سؤال حول الببتيدات الخاصة بكم",
+      discover: "اكتشف منتجاتنا",
+      footer_real: "تقارير مختبر حقيقية. سجلات دفعات حقيقية. شفافية تامة.",
+      footer_research: "للاستخدام البحثي فقط. غير مخصص للاستخدام الطبي أو العلاجي أو التشخيصي."
     },
     hero_slider: {
       buy_now: "اشترِ الآن ←",

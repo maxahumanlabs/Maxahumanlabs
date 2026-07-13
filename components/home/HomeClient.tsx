@@ -35,41 +35,7 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
 
   const [scrollY, setScrollY] = useState(0);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const heroSlides = [
-    {
-      title: t('hero_slider.slide1.title'),
-      description: t('hero_slider.slide1.description'),
-      image: "/ghkcu.webp",
-      url: "/products/ghk-cu-50mg"
-    },
-    {
-      title: t('hero_slider.slide2.title'),
-      description: t('hero_slider.slide2.description'),
-      image: "/motsc.webp",
-      url: "/products/mots-c-10mg"
-    },
-    {
-      title: t('hero_slider.slide3.title'),
-      description: t('hero_slider.slide3.description'),
-      image: "/slupp.webp",
-      url: "/products/slu-pp-332-250mcg-60-capsules"
-    },
-    {
-      title: t('hero_slider.slide4.title'),
-      description: t('hero_slider.slide4.description'),
-      image: "/Tb500-bpc.webp",
-      url: "/products/wolverine-stack-injectable"
-    }
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [heroSlides.length]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -137,79 +103,92 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
           ? 'اشترِ ببتيدات بحثية في الإمارات والخليج — جودة معتمدة مختبريًا | مكسا هيومن'
           : 'Buy Research Peptides in the UAE & GCC — Lab-Verified Quality | Maxa Human'}
       </h1>
-      {/* Hero Section Slider */}
-      <section className="relative w-full bg-gradient-to-br from-[#eef2f9] to-[#ffffff] overflow-hidden min-h-[680px] md:min-h-[600px] flex items-center pt-16 pb-32 md:py-20 md:pb-24">
-        
-        {/* Soft Bubbles Background */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-[#dde6f3]/40 blur-3xl" />
-          <div className="absolute top-[20%] -right-[5%] w-[40%] h-[40%] rounded-full bg-white/60 blur-3xl" />
-          <div className="absolute -bottom-[20%] left-[20%] w-[60%] h-[60%] rounded-full bg-[#dde6f3]/60 blur-3xl" />
-        </div>
+      {/* Static Hero Section */}
+      <section className="relative w-full bg-gradient-to-br from-[#f4f7fa] to-[#ffffff] overflow-hidden min-h-[600px] flex items-center pt-24 pb-20 md:py-32">
+        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 max-w-[1400px] mx-auto w-full flex flex-col-reverse md:flex-row items-center gap-12 relative z-20">
+          
+          {/* Left Content */}
+          <div className={`w-full md:w-[55%] flex flex-col items-center md:items-start text-center ${language === 'ar' ? 'md:text-right md:items-end' : 'md:text-left'}`}>
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-[#11112b] mb-4 leading-[1.1] tracking-tight">
+              {t('hero_static.title_1')}<br />{t('hero_static.title_2')}
+            </h1>
+            <p className="text-gray-600 text-sm md:text-base lg:text-lg mb-6 leading-relaxed max-w-lg font-medium flex items-center justify-center md:justify-start gap-2">
+              <span className="text-xl shrink-0">🇫🇷</span> {t('hero_static.subtitle')}
+            </p>
+            
+            {/* Avatars */}
+            <div className="flex items-center gap-3 mb-8">
+              <div className="flex -space-x-3">
+                 <div className="w-9 h-9 rounded-full border-2 border-white bg-blue-100 flex items-center justify-center text-blue-500 overflow-hidden shadow-sm"><svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" /></svg></div>
+                 <div className="w-9 h-9 rounded-full border-2 border-white bg-indigo-100 flex items-center justify-center text-indigo-500 overflow-hidden shadow-sm"><svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" /></svg></div>
+                 <div className="w-9 h-9 rounded-full border-2 border-white bg-purple-100 flex items-center justify-center text-purple-500 overflow-hidden shadow-sm"><svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" /></svg></div>
+              </div>
+              <span className="text-sm font-medium text-gray-700">{t('hero_static.co_developed')}</span>
+            </div>
 
-        {/* Logo Background with low opacity */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none z-0">
-          <Image
-            src="/logo.svg"
-            alt="Maxa Human Logo Background"
-            width={800}
-            height={800}
-            className="w-[120%] md:w-full object-contain"
-          />
-        </div>
-
-        {heroSlides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out flex items-center ${currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-              }`}
-          >
-            <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-8 pb-8 md:pb-0 relative z-20">
-              {/* Product Image */}
-              <div className="w-full md:w-1/2 flex justify-center">
-                <div className="relative w-56 h-80 md:w-80 md:h-[500px] lg:w-[400px] lg:h-[600px] transition-all duration-500">
-                  <Image
-                    src={slide.image}
-                    alt={slide.title}
-                    fill
-                    priority={index === 0}
-                    sizes="(max-width: 768px) 224px, (max-width: 1024px) 320px, 400px"
-                    className="object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700"
-                  />
+            {/* Grid Features */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-8 text-xs sm:text-sm text-gray-500 mb-8 font-medium">
+              {[1,2,3,4,5,6,7].map(i => (
+                <div key={i} className="flex items-center gap-2">
+                  <svg className="w-4 h-4 shrink-0 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  {t(`hero_static.features.f${i}`)}
                 </div>
-              </div>
+              ))}
+            </div>
 
-              {/* Product Info */}
-              <div className={`w-full md:w-1/2 text-center ${language === 'ar' ? 'md:text-right' : 'md:text-left'}`}>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#0b182b] mb-4 leading-tight">
-                  {slide.title}
-                </h2>
-                <p className="text-[#0b182b]/80 text-sm md:text-base lg:text-lg mb-6 leading-relaxed max-w-lg mx-auto md:mx-0 font-medium">
-                  {slide.description}
-                </p>
-                <Link href={slide.url}>
-                  <button className="bg-transparent border-2 border-[#0b182b] text-[#0b182b] px-6 py-2.5 text-xs md:text-sm font-bold tracking-widest uppercase transition-all duration-300 hover:bg-[#0b182b] hover:text-white shadow-sm inline-block">
-                    {t('hero_slider.buy_now') || 'BUY NOW →'}
-                  </button>
-                </Link>
+            {/* Pill */}
+            <div className="bg-[#eef2fa] rounded-full px-5 py-2.5 flex items-center gap-2 mb-8 border border-blue-100 shadow-sm">
+              <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shrink-0"></span>
+              <span className="font-bold text-[#11112b] text-sm">{t('hero_static.packages_delivered')}</span>
+            </div>
+
+            {/* WhatsApp Box */}
+            <div className={`bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] p-4 flex flex-col sm:flex-row items-center gap-4 mb-8 border border-green-100 w-full max-w-lg ${language === 'ar' ? 'border-r-4 border-r-green-500' : 'border-l-4 border-l-green-500'}`}>
+              <div className="w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center text-white shrink-0 shadow-sm">
+                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+                </svg>
               </div>
+              <div className={`flex-1 text-center ${language === 'ar' ? 'sm:text-right' : 'sm:text-left'}`}>
+                 <p className="font-bold text-[#11112b] text-sm">{t('hero_static.need_guidance')}</p>
+                 <p className="text-xs text-gray-500 mt-0.5">{t('hero_static.chat_directly')}</p>
+              </div>
+              <a href={`https://wa.me/971506869550?text=${encodeURIComponent(t('hero_static.whatsapp_message'))}`} target="_blank" rel="noopener noreferrer" className="bg-[#11112b] text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-[#1a2336] transition-colors shrink-0 shadow-md">
+                {t('hero_static.ask_whatsapp')}
+              </a>
+            </div>
+
+            {/* Main CTA */}
+            <Link href="/products" className="w-full sm:w-auto">
+              <button className="bg-[#11112b] text-white px-8 py-4 rounded-full text-sm md:text-base font-bold tracking-wide uppercase transition-all hover:bg-black w-full sm:w-auto shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                {t('hero_static.discover')}
+              </button>
+            </Link>
+
+            {/* Footer text */}
+            <div className={`mt-8 flex flex-col items-center md:items-start ${language === 'ar' ? 'md:items-end' : ''}`}>
+               <p className="text-sm text-gray-500 font-medium">{t('hero_static.footer_real')}</p>
+               <p className="mt-2 text-xs text-gray-400 flex items-center justify-center md:justify-start gap-1.5">
+                  <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> 
+                  {t('hero_static.footer_research')}
+               </p>
             </div>
           </div>
-        ))}
 
-        {/* Dots Navigation */}
-        <div className="absolute bottom-8 md:bottom-10 left-0 right-0 flex justify-center gap-3 z-30 px-4">
-          {heroSlides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index
-                ? 'bg-[#0b182b] scale-110 shadow-md ring-2 ring-[#0b182b]/15'
-                : 'bg-[#0b182b]/25 hover:bg-[#0b182b]/45 ring-1 ring-[#0b182b]/10'
-                }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
+          {/* Right Image */}
+          <div className="w-full md:w-[45%] flex justify-center md:justify-end">
+            <div className="relative w-full max-w-[600px] aspect-square transition-transform duration-700 hover:scale-105">
+               <Image 
+                 src="/Hero-Products.png" 
+                 alt="Maxa Human Peptides" 
+                 fill 
+                 className="object-contain drop-shadow-2xl" 
+                 priority 
+                 sizes="(max-width: 768px) 100vw, 50vw" 
+               />
+            </div>
+          </div>
+
         </div>
       </section>
 
