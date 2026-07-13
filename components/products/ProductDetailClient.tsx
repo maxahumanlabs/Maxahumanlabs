@@ -324,9 +324,10 @@ export default function ProductDetailClient({ product, reviews = [] }: ProductDe
                   style={{ width: `${(timeLeft / 36000) * 100}%` }}
                 />
               </div>
-              <p className="text-xs text-gray-500 font-medium">
-                🔥 {t("product_detail.delivered_stats")}
-              </p>
+              <div className="bg-[#eef2fa] rounded-full px-4 py-2.5 mt-3 inline-flex items-center gap-2 border border-blue-100 shadow-sm">
+                <span className="text-[13px] sm:text-sm shrink-0 leading-none">✅ 🚗</span>
+                <span className="font-bold text-[#11112b] text-xs sm:text-sm">{t("product_detail.delivered_stats")}</span>
+              </div>
             </div>
           )}
 
