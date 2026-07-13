@@ -206,11 +206,6 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
           </div>
 
         </div>
-      </section>100vw" 
-             />
-          </div>
-
-        </div>
       </section>
 
       {/* Brand Statement Section */}
