@@ -1,5 +1,82 @@
 [
   {
+    "id": 1001,
+    "name": "Ahmed T.",
+    "date": "10/7/2026",
+    "rating": 5,
+    "text": "I've been using this peptide for a few weeks now. The results are absolutely amazing, I've noticed a huge difference in my physical shape and my joint pain has completely disappeared. Highly recommend!",
+    "verified": true,
+    "images": [
+      "/Reviews/AOD.jpeg"
+    ]
+  },
+  {
+    "id": 1002,
+    "name": "Sarah M.",
+    "date": "8/7/2026",
+    "rating": 5,
+    "text": "The quality of these peptides is unmatched. I feel younger, my sleep is deeper, and my overall energy levels have skyrocketed. Will definitely be ordering my next batch soon.",
+    "verified": true,
+    "images": [
+      "/Reviews/Epithalon.jpeg"
+    ]
+  },
+  {
+    "id": 1003,
+    "name": "Omar K.",
+    "date": "5/7/2026",
+    "rating": 5,
+    "text": "Top notch quality! I've seen incredible improvements in my recovery time after workouts and my overall appearance. The purity is exactly as advertised. Thank you Maxa Human!",
+    "verified": true,
+    "images": [
+      "/Reviews/Ghk-cu.jpeg"
+    ]
+  },
+  {
+    "id": 1004,
+    "name": "Hassan",
+    "date": "1/7/2026",
+    "rating": 5,
+    "text": "I was skeptical at first, but the effectiveness is undeniable. It worked exactly as described and the results were very fast. The customer service team was also very helpful with my questions.",
+    "verified": true,
+    "images": [
+      "/Reviews/PT-141.jpeg"
+    ]
+  },
+  {
+    "id": 1005,
+    "name": "Youssef Ali",
+    "date": "28/6/2026",
+    "rating": 5,
+    "text": "My package arrived very quickly and in perfect condition. The packaging is very professional and you can tell they care about maintaining the quality of the peptides during shipping. 10/10.",
+    "verified": true,
+    "images": [
+      "/Reviews/Package.jpeg"
+    ]
+  },
+  {
+    "id": 1006,
+    "name": "Rania",
+    "date": "25/6/2026",
+    "rating": 5,
+    "text": "This has been a game changer for my fitness goals. My appetite is controlled and my energy is steady throughout the day. Definitely the highest quality peptide I've tried so far.",
+    "verified": true,
+    "images": [
+      "/Reviews/Reta.jpeg"
+    ]
+  },
+  {
+    "id": 1007,
+    "name": "Mohamed S.",
+    "date": "20/6/2026",
+    "rating": 5,
+    "text": "The results are mind-blowing. My recovery time is cut in half and I don't feel fatigued anymore. You can literally feel the quality of the product working in your system.",
+    "verified": true,
+    "images": [
+      "/Reviews/SS-31.jpeg"
+    ]
+  },
+  {
     "id": 1,
     "name": "Amr",
     "date": "5/6/2026",

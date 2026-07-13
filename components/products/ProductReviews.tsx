@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Masonry from 'react-masonry-css';
 import { ProductReview } from '@/types';
 import WriteReviewForm from './WriteReviewForm';
 
@@ -82,7 +83,7 @@ export default function ProductReviews({ productId, reviews }: ProductReviewsPro
       rating: r.rating,
       text: r.text,
       verified: r.verified,
-      images: []
+      images: r.images || []
     }))
   ];
 
@@ -94,7 +95,7 @@ export default function ProductReviews({ productId, reviews }: ProductReviewsPro
           {!showForm && !submitSuccess && (
             <button
               onClick={() => setShowForm(true)}
-              className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              className="hidden rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
             >
               Write a Review
             </button>
@@ -130,11 +131,16 @@ export default function ProductReviews({ productId, reviews }: ProductReviewsPro
         )}
         
         {combinedReviews && combinedReviews.length > 0 && (
-          <div className="mt-8 columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-            {combinedReviews.slice(0, visibleReviews).map((review) => (
-              <div 
+          <div className="mt-8">
+            <Masonry
+              breakpointCols={{ default: 3, 1024: 3, 768: 2, 640: 1 }}
+              className="flex w-auto -ml-6"
+              columnClassName="pl-6 bg-clip-padding flex flex-col space-y-6"
+            >
+              {combinedReviews.slice(0, visibleReviews).map((review) => (
+                <div 
                 key={review.id} 
-                className="break-inside-avoid bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col"
+                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col"
               >
                 <div className="flex items-center text-sm">
                   <span className="font-semibold text-gray-900">{review.name}</span>
@@ -187,6 +193,7 @@ export default function ProductReviews({ productId, reviews }: ProductReviewsPro
                 )}
               </div>
             ))}
+            </Masonry>
           </div>
         )}
         
