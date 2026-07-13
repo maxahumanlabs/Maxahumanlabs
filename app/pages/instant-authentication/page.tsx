@@ -6,18 +6,62 @@ export default function InstantAuthenticationPage() {
   const { t } = useLanguage();
 
   return (
-    <div className=" bg-white flex items-center justify-center px-6 py-12">
-      <div className="text-center max-w-4xl mx-auto">
+    <div className=" bg-white flex flex-col items-center justify-center px-6 py-12 min-h-[60vh]">
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes revealUp {
+          0% {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes drawCheck {
+          0% {
+            stroke-dasharray: 50;
+            stroke-dashoffset: 50;
+          }
+          100% {
+            stroke-dasharray: 50;
+            stroke-dashoffset: 0;
+          }
+        }
+
+        .animate-reveal {
+          animation: revealUp 0.8s ease-out forwards;
+        }
+
+        .animate-reveal-delayed {
+          opacity: 0;
+          animation: revealUp 0.8s ease-out 0.3s forwards;
+        }
+
+        .animate-check {
+          stroke-dasharray: 50;
+          stroke-dashoffset: 50;
+          animation: drawCheck 0.6s ease-out 0.8s forwards;
+        }
+      `}} />
+
+      <div className="text-center max-w-4xl mx-auto w-full">
         {/* Main Heading */}
-        <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-gray-900 text-center mb-8 sm:mb-12">
-          {t('instant_authentication.title')}
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-gray-900 text-center mb-6 animate-reveal">
+          Instant Authentication
         </h1>
+        
+        {/* Sub Heading */}
+        <p className="text-xl sm:text-2xl text-gray-700 font-medium mb-12 animate-reveal-delayed">
+          Your product is authenticated and approved
+        </p>
 
         {/* Checkmark Icon */}
-        <div className="flex justify-center mb-8 mt-24">
+        <div className="flex justify-center mb-8 mt-16 animate-reveal-delayed" style={{ animationDelay: '0.6s' }}>
           <div className="w-20 h-20 md:w-24 md:h-24 bg-black rounded-full flex items-center justify-center">
             <svg 
-              className="w-10 h-10 md:w-12 md:h-12 text-green-500" 
+              className="w-10 h-10 md:w-12 md:h-12 text-green-500 animate-check" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -32,9 +76,9 @@ export default function InstantAuthenticationPage() {
           </div>
         </div>
 
-        {/* Subtitle */}
-        <p className="text-xl md:text-3xl  text-black">
-          {t('instant_authentication.subtitle')}
+        {/* Subtitle / Mark */}
+        <p className="text-xl md:text-3xl font-bold text-black animate-reveal-delayed" style={{ animationDelay: '1.2s' }}>
+          The Mark of True Maxa Human.
         </p>
       </div>
     </div>
