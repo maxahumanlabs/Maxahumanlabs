@@ -13,7 +13,7 @@ export const revalidate = 300;
 async function getCachedProduct(slug: string) {
   return unstable_cache(
     async () => woocommerce.getProductBySlug(slug),
-    ['product-by-slug', slug],
+    ['product-by-slug-v2', slug],
     { revalidate: 300 }
   )();
 }
