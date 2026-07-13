@@ -187,7 +187,7 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
                   </svg>
                 </div>
                 <div className={`flex-1 text-left ${language === 'ar' ? 'text-right' : ''}`}>
-                   <p className="font-bold text-[#09031c] text-[16px] sm:text-[16px] md:text-[17px] tracking-tight mb-0.5 leading-tight">{t('hero_static.need_guidance')}</p>
+                   <p className="font-bold text-[#09031c] text-[16px] sm:text-[16px] md:text-[16px] tracking-tight mb-0.5 leading-tight">{t('hero_static.need_guidance')}</p>
                    <p className="text-[11.5px] sm:text-[13px] text-gray-500 leading-tight">{t('hero_static.chat_directly')}</p>
                 </div>
               </div>
