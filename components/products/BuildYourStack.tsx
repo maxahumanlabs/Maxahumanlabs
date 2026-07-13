@@ -107,8 +107,8 @@ export default function BuildYourStack({ categorySlug }: { categorySlug: string 
   };
 
   return (
-    <section className="py-16 bg-white border-t border-gray-100 mt-12">
-      <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48">
+    <section className="py-16 bg-white border-t border-gray-100 mt-12 w-full max-w-[1600px] mx-auto">
+      <div className="max-w-[1400px] mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12">
         {/* Section Header */}
         <div className="mb-8">
           <h2 className="text-4xl md:text-5xl lg:text-5xl xl:text-5xl 2xl:text-7xl font-bold text-gray-900 mb-4">

@@ -210,8 +210,8 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
       </section>
 
       {/* Brand Statement Section */}
-      <section className="py-12 bg-white">
-        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 text-center">
+      <section className="py-12 bg-white w-full max-w-[1600px] mx-auto">
+        <div className="max-w-[1400px] mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 text-center">
           <h2 className="text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold text-gray-900 inline-flex items-center justify-center flex-wrap gap-x-3">
             <span>{t('brand.research')}</span>
             <span className="inline-flex items-center justify-center w-14 h-14 lg:w-24 xl:w-24 2xl:w-24 lg:h-24 xl:h-24 2xl:h-24">
@@ -234,8 +234,8 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
 
 
       {/* Trending Research Section */}
-      <section className="py-8 bg-white">
-        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48">
+      <section className="py-8 bg-white w-full max-w-[1600px] mx-auto">
+        <div className="max-w-[1400px] mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12">
           {/* Section Header */}
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-4xl md:text-5xl lg:text-5xl xl:text-5xl 2xl:text-7xl text-gray-900">
@@ -278,7 +278,7 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
 
         {/* Product Carousel - Full Width */}
         <div id="trending-carousel" className="overflow-x-auto scrollbar-hide scroll-smooth">
-          <div className="flex gap-6 px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pb-6">
+          <div className="flex gap-6 max-w-[1400px] mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 pb-6">
             {trendingProducts.length > 0 ? (
               trendingProducts.map((product) => (
                 <div
@@ -391,8 +391,8 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
 
 
       {/* Why Maxa Human Section */}
-      <section className="py-16 bg-white">
-        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48">
+      <section className="py-16 bg-white w-full max-w-[1600px] mx-auto">
+        <div className="max-w-[1400px] mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12">
           {/* Section Title */}
           <h2 className="text-4xl md:text-5xl lg:text-5xl xl:text-5xl 2xl:text-7xl font-bold text-center text-gray-900 mb-12">
             {t('why_maxa.title')}
@@ -507,8 +507,8 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
       </section>
 
       {/* FAQs Section */}
-      <section className="pt-6 pb-8 bg-white">
-        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48">
+      <section className="pt-6 pb-8 bg-white w-full max-w-[1600px] mx-auto">
+        <div className="max-w-[1400px] mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12">
           <div className="max-w-4xl mx-auto space-y-3">
             <h2 className="text-5xl lg:text-5xl xl:text-5xl 2xl:text-7xl font-bold text-gray-900 mb-8">
               {t('faqs.title')}

@@ -18,10 +18,10 @@ export default function CategoryClient({ products, categorySlug, translationKeyP
   return (
     <div>
       {/* Banner Section */}
-      <section className="pb-0">
+      <section className="pb-0 w-full max-w-[1600px] mx-auto">
         <div className="relative bg-white text-gray-900 overflow-hidden rounded-t-3xl">
           {/* Content */}
-          <div className="relative px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-12 md:pt-16 pb-8 md:pb-10 w-full">
+          <div className="relative max-w-[1400px] mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 pt-12 md:pt-16 pb-8 md:pb-10 w-full">
             {/* Breadcrumb */}
             <nav className="mb-6">
               <ol className="flex items-center gap-2 text-sm">
@@ -50,7 +50,8 @@ export default function CategoryClient({ products, categorySlug, translationKeyP
       </section>
 
       {/* Products Grid Section */}
-      <section className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 py-12">
+      <section className="py-12 w-full max-w-[1600px] mx-auto">
+        <div className="max-w-[1400px] mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12">
         {products.length > 0 ? (
           <>
             {/* Products Grid — all products shown at once */}
@@ -82,6 +83,7 @@ export default function CategoryClient({ products, categorySlug, translationKeyP
             </p>
           </div>
         )}
+        </div>
       </section>
 
       {/* Build Your Stack Section */}
