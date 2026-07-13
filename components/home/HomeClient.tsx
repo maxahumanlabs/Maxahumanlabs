@@ -276,16 +276,17 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
           </div>
         </div>
 
-        {/* Product Carousel - Full Width */}
-        <div id="trending-carousel" className="overflow-x-auto scrollbar-hide scroll-smooth">
-          <div className="flex gap-6 max-w-[1400px] mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 pb-6">
-            {trendingProducts.length > 0 ? (
-              trendingProducts.map((product) => (
-                <div
-                  key={product.id}
-                  onClick={(e) => { if (!(e.target as HTMLElement).closest('button')) router.push(`/products/${product.slug}`); }}
-                  className="flex-none w-64 md:w-72 lg:w-80 xl:w-[340px] 2xl:w-[360px] cursor-pointer"
-                >
+        {/* Product Carousel */}
+        <div className="max-w-[1400px] mx-auto w-full px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12">
+          <div id="trending-carousel" className="overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory pb-6">
+            <div className="grid grid-flow-col auto-cols-[85%] sm:auto-cols-[calc((100%-1.5rem)/2)] lg:auto-cols-[calc((100%-3rem)/3)] xl:auto-cols-[calc((100%-4.5rem)/4)] gap-6">
+              {trendingProducts.length > 0 ? (
+                trendingProducts.map((product) => (
+                  <div
+                    key={product.id}
+                    onClick={(e) => { if (!(e.target as HTMLElement).closest('button')) router.push(`/products/${product.slug}`); }}
+                    className="w-full cursor-pointer snap-start"
+                  >
                   <div className="relative bg-gray-50 rounded-xl overflow-hidden shadow-sm group h-full">
                     {/* Badges */}
                     <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
@@ -385,7 +386,8 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
             )}
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
 
 
