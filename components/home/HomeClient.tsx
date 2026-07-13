@@ -104,7 +104,7 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
           : 'Buy Research Peptides in the UAE & GCC — Lab-Verified Quality | Maxa Human'}
       </h1>
       {/* Static Hero Section */}
-      <section className="relative w-full bg-[#f4f7fa] overflow-hidden min-h-[600px] flex flex-col md:flex-row items-center md:py-32 pt-0 pb-20">
+      <section className="relative w-full bg-[#f4f7fa] overflow-hidden min-h-0 md:min-h-[600px] flex flex-col md:flex-row items-center md:py-32 pt-0 pb-10 md:pb-20">
         
         {/* Mobile Background Image & Gradient */}
         <div className="absolute top-0 left-0 right-0 h-[480px] md:hidden z-0">
@@ -140,8 +140,9 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
               </button>
             </Link>
 
-            <p className="text-gray-600 text-[13px] sm:text-sm md:text-base lg:text-lg mb-4 md:mb-6 leading-relaxed max-w-lg font-medium flex items-center justify-center md:justify-start gap-1.5 md:gap-2 order-3 md:order-2">
-              <span className="text-base md:text-xl shrink-0">🇫🇷</span> {t('hero_static.subtitle')}
+            <p className="text-gray-600 text-[13px] sm:text-sm md:text-base lg:text-lg mb-4 md:mb-6 leading-relaxed max-w-lg font-medium order-3 md:order-2 inline-block">
+              <span className="text-base md:text-xl mx-1.5 align-middle">🇫🇷</span>
+              {t('hero_static.subtitle')}
             </p>
             
             {/* Avatars */}
