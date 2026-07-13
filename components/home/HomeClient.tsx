@@ -105,10 +105,22 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
       </h1>
       {/* Static Hero Section */}
       <section className="relative w-full bg-gradient-to-br from-[#f4f7fa] to-[#ffffff] overflow-hidden min-h-[600px] flex items-center pt-24 pb-20 md:py-32">
-        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 max-w-[1400px] mx-auto w-full flex flex-col-reverse md:flex-row items-center gap-12 relative z-20">
+        {/* Split Screen Image (Desktop) */}
+        <div className={`absolute top-0 bottom-0 w-[50%] hidden md:block ${language === 'ar' ? 'left-0' : 'right-0'}`}>
+           <Image 
+             src="/Hero-Products.png" 
+             alt="Maxa Human Peptides" 
+             fill 
+             className={`object-cover ${language === 'ar' ? 'object-right' : 'object-left'}`}
+             priority 
+             sizes="50vw" 
+           />
+        </div>
+
+        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 max-w-[1400px] mx-auto w-full flex flex-col md:flex-row relative z-20">
           
           {/* Left Content */}
-          <div className={`w-full md:w-[55%] flex flex-col items-center md:items-start text-center ${language === 'ar' ? 'md:text-right md:items-end' : 'md:text-left'}`}>
+          <div className={`w-full md:w-[48%] flex flex-col items-center md:items-start text-center ${language === 'ar' ? 'md:text-right md:items-end md:ml-auto' : 'md:text-left'}`}>
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-[#11112b] mb-4 leading-[1.1] tracking-tight">
               {t('hero_static.title_1')}<br />{t('hero_static.title_2')}
             </h1>
@@ -175,18 +187,16 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
             </div>
           </div>
 
-          {/* Right Image */}
-          <div className="w-full md:w-[45%] flex justify-center md:justify-end">
-            <div className="relative w-full max-w-[600px] aspect-square transition-transform duration-700 hover:scale-105">
-               <Image 
-                 src="/Hero-Products.png" 
-                 alt="Maxa Human Peptides" 
-                 fill 
-                 className="object-contain drop-shadow-2xl" 
-                 priority 
-                 sizes="(max-width: 768px) 100vw, 50vw" 
-               />
-            </div>
+          {/* Mobile Image */}
+          <div className="w-full md:hidden flex justify-center mt-12 relative aspect-[4/3]">
+             <Image 
+               src="/Hero-Products.png" 
+               alt="Maxa Human Peptides" 
+               fill 
+               className="object-contain" 
+               priority 
+               sizes="100vw" 
+             />
           </div>
 
         </div>

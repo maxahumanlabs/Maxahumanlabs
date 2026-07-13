@@ -322,7 +322,7 @@ export const translations = {
         f6: "Fast International Shipping (3-5 days)",
         f7: "Cold-Chain Handling 2-8°C"
       },
-      packages_delivered: "90,000+ packages delivered worldwide",
+      packages_delivered: "15,000+ packages delivered worldwide",
       need_guidance: "Need guidance choosing a peptide?",
       chat_directly: "Chat directly with our research specialists",
       ask_whatsapp: "Ask on WhatsApp",
@@ -674,7 +674,7 @@ export const translations = {
         f6: "شحن دولي سريع (3-5 أيام)",
         f7: "حفظ مبرد بدرجة 2-8 مئوية"
       },
-      packages_delivered: "تم تسليم أكثر من 90,000 شحنة عالمياً",
+      packages_delivered: "تم تسليم أكثر من 15,000 شحنة عالمياً",
       need_guidance: "تحتاج مساعدة في اختيار الببتيد؟",
       chat_directly: "تحدث مباشرة مع أخصائيي الأبحاث لدينا",
       ask_whatsapp: "اسأل عبر واتساب",
