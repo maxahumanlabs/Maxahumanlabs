@@ -104,7 +104,7 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
           : 'Buy Research Peptides in the UAE & GCC — Lab-Verified Quality | Maxa Human'}
       </h1>
       {/* Static Hero Section */}
-      <section className="relative w-full bg-[#f4f7fa] overflow-hidden min-h-0 md:min-h-[600px] flex flex-col md:flex-row items-center md:py-32 pt-0 pb-10 md:pb-20">
+      <section className="relative w-full max-w-[1600px] mx-auto bg-[#f4f7fa] overflow-hidden min-h-0 md:min-h-[600px] flex flex-col md:flex-row items-center md:py-32 pt-0 pb-10 md:pb-20">
         
         {/* Mobile Background Image & Gradient */}
         <div className="absolute top-0 left-0 right-0 h-[480px] md:hidden z-0">
@@ -187,7 +187,7 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
                   </svg>
                 </div>
                 <div className={`flex-1 text-left ${language === 'ar' ? 'text-right' : ''}`}>
-                   <p className="font-bold text-[#09031c] text-[15px] sm:text-[16px] md:text-[17px] tracking-tight mb-0.5 leading-tight">{t('hero_static.need_guidance')}</p>
+                   <p className="font-bold text-[#09031c] text-[16px] sm:text-[16px] md:text-[17px] tracking-tight mb-0.5 leading-tight">{t('hero_static.need_guidance')}</p>
                    <p className="text-[11.5px] sm:text-[13px] text-gray-500 leading-tight">{t('hero_static.chat_directly')}</p>
                 </div>
               </div>
