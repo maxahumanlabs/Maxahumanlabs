@@ -9,6 +9,7 @@ import { formatPrice } from '@/lib/utils';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { openWhatsAppOrder } from '@/lib/whatsapp';
 
 // Countries we operate in (from CountrySelector)
 const AVAILABLE_COUNTRIES = [
