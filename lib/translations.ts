@@ -311,7 +311,7 @@ export const translations = {
     hero_static: {
       title_1: "High-Purity",
       title_2: "Peptides",
-      subtitle: "USA Made Research Compounds with 99% Purity",
+      subtitle: "USA Made Research Compounds with 99%+ purity standards for superior quality.",
       co_developed: "Co-developed with 100+ Researchers",
       features: {
         f1: "USA Made Research Compounds",
@@ -665,7 +665,7 @@ export const translations = {
     hero_static: {
       title_1: "ببتيدات",
       title_2: "عالية النقاء",
-      subtitle: "مركبات بحثية أمريكية الصنع بنقاء 99%",
+      subtitle: "مركبات بحثية أمريكية الصنع بمعايير نقاء +99% لجودة فائقة.",
       co_developed: "تم تطويرها بالتعاون مع أكثر من 100 باحث",
       features: {
         f1: "مركبات بحثية أمريكية الصنع",
