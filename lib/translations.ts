@@ -311,15 +311,17 @@ export const translations = {
     hero_static: {
       title_1: "High-Purity",
       title_2: "Peptides",
-      subtitle: "French lab-tested research compounds with 99%+ purity standards for superior quality.",
-      co_developed: "Co-developed with 600+ researchers",
+      subtitle: "USA Made Research Compounds with 99% Purity",
+      co_developed: "Co-developed with 100+ Researchers",
       features: {
-        f1: "French Lab Tested",
+        f1: "USA Made Research Compounds",
         f2: "99%+ Purity Target",
         f3: "HPLC & HRMS Verified",
         f4: "QR Batch Reports",
         f5: "Secure Checkout",
-        f6: "Fast International Shipping (3-5 days)",
+        ship_uae: "UAE Shipping 1-2 Days",
+        ship_ksa: "Saudi Arabia Shipping 3 Days",
+        ship_others: "Qatar, Kuwait & Bahrain 3-5 Days",
         f7: "Cold-Chain Handling 2-8°C"
       },
       packages_delivered: "15,000+ packages delivered worldwide",
@@ -663,15 +665,17 @@ export const translations = {
     hero_static: {
       title_1: "ببتيدات",
       title_2: "عالية النقاء",
-      subtitle: "مركبات بحثية مختبرة فرنسياً بمعايير نقاء +99% لجودة فائقة.",
-      co_developed: "تم تطويرها بالتعاون مع أكثر من 600 باحث",
+      subtitle: "مركبات بحثية أمريكية الصنع بنقاء 99%",
+      co_developed: "تم تطويرها بالتعاون مع أكثر من 100 باحث",
       features: {
-        f1: "مختبرة في فرنسا",
+        f1: "مركبات بحثية أمريكية الصنع",
         f2: "هدف النقاء +99%",
         f3: "موثقة بـ HPLC & HRMS",
         f4: "تقارير دفعات عبر QR",
         f5: "دفع آمن",
-        f6: "شحن دولي سريع (3-5 أيام)",
+        ship_uae: "شحن للإمارات خلال 1-2 يوم",
+        ship_ksa: "شحن للسعودية خلال 3 أيام",
+        ship_others: "شحن لقطر والكويت والبحرين خلال 3-5 أيام",
         f7: "حفظ مبرد بدرجة 2-8 مئوية"
       },
       packages_delivered: "تم تسليم أكثر من 15,000 شحنة عالمياً",
