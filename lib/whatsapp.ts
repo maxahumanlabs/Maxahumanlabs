@@ -1,7 +1,7 @@
 import { formatPrice } from './utils';
 
 // WhatsApp number for orders (international format, no '+' or spaces — required by wa.me)
-export const WHATSAPP_NUMBER = '971558225919';
+export const WHATSAPP_NUMBER = '971528107166';
 
 export interface OrderLine {
   name: string;
