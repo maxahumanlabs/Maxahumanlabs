@@ -9,8 +9,8 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-white text-gray-900 border-t border-gray-100 max-w-[1600px] mx-auto">
-        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-24 pb-12">
+      <footer className="bg-white text-gray-900 border-t border-gray-100 w-full">
+        <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 2xl:px-48 pt-24 pb-12 max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
             {/* Quick Links */}
             <div>
