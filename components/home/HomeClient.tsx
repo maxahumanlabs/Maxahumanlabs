@@ -129,8 +129,8 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
         <div className="px-6 sm:px-8 md:px-12 lg:px-12 xl:px-12 max-w-[1400px] mx-auto w-full flex flex-col md:flex-row relative z-20 pt-[270px] md:pt-0">
           
           {/* Left Content */}
-          <div className={`w-full md:w-[48%] flex flex-col items-center md:items-start text-center ${language === 'ar' ? 'md:text-right md:items-end md:ml-auto' : 'md:text-left'}`}>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-[#09031c] mb-6 md:mb-4 leading-[1.1] tracking-tight order-1">
+          <div className={`w-full md:w-[48%] flex flex-col items-center md:items-start text-center ${language === 'ar' ? 'md:text-right md:ml-auto' : 'md:text-left'}`}>
+            <h1 className={`text-4xl md:text-5xl lg:text-7xl font-extrabold text-[#09031c] mb-6 md:mb-4 tracking-tight order-1 ${language === 'ar' ? 'leading-[1.7]' : 'leading-[1.1]'}`}>
               {t('hero_static.title_1')}<br />{t('hero_static.title_2')}
             </h1>
             
@@ -215,7 +215,7 @@ export default function HomePage({ trendingProducts = [] }: { trendingProducts?:
             </div>
 
             {/* Footer text */}
-            <div className={`mt-2 md:mt-8 flex flex-col items-center md:items-start order-8 md:order-9 ${language === 'ar' ? 'md:items-end' : ''}`}>
+            <div className={`mt-2 md:mt-8 flex flex-col items-center md:items-start order-8 md:order-9`}>
                <p className="text-[13px] md:text-sm text-gray-500 font-medium">{t('hero_static.footer_real')}</p>
                <p className="mt-2 text-[11px] md:text-xs text-gray-400 flex items-center justify-center md:justify-start gap-1.5">
                   <svg className="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> 
