@@ -649,8 +649,6 @@ export const translations = {
       bottle: "عبوة",
       bottles: "عبوات",
       free_gifts: "هدايا مجانية",
-      tag_two_months: "الأكثر طلباً",
-      tag_one_month: "للتجربة فقط",
       gift_free_shipping: "شحن مجاني",
       gift_bac_water: "ماء BAC ",
       gift_ebook: "كتاب الببتيدات ",
