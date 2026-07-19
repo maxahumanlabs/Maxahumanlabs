@@ -6,7 +6,7 @@ export const translations = {
       all_peptides: "All Peptides",
       peptides_x_supplements: "Peptides X-Supplements",
       dosage_calculator: "Dosage Calculator",
-      peptive_ai: "Peptive Ai",
+      peptive_ai: "Maxa AI",
       maxa_ai: "Maxa Ai",
       login: "Login",
       account: "Account",
