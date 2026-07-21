@@ -6,6 +6,7 @@ import { Product } from '@/types';
 import { decodeHtmlEntities } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCartStore } from '@/store/cartStore';
+import { useState } from 'react';
 
 interface ProductCardProps {
   product: Product;
@@ -16,6 +17,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const addItem = useCartStore((state) => state.addItem);
   const openCart = useCartStore((state) => state.openCart);
   const router = useLocalizedRouter();
+  const [isAdded, setIsAdded] = useState(false);
 
   // Get localized product name
   const rawProductName = language === 'ar' && (product as any).arabic_name
@@ -42,6 +44,8 @@ export default function ProductCard({ product }: ProductCardProps) {
       bundleLabel: t('bundle.one_month'),
       arabicName: (product as any).arabic_name || '',
     });
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 1500);
     openCart();
   };
 
@@ -107,11 +111,20 @@ export default function ProductCard({ product }: ProductCardProps) {
           <button
             onClick={handleAddToCart}
             disabled={!inStock}
-            className={`w-full py-3 rounded-full font-semibold text-white text-sm lg:text-base transition-colors ${
+            className={`w-full py-3 rounded-full font-semibold text-white text-sm lg:text-base transition-colors flex items-center justify-center gap-2 ${
               inStock ? 'bg-gray-900 hover:bg-gray-800' : 'bg-gray-600 cursor-not-allowed'
             }`}
           >
-            {addToCartLabel}
+            {isAdded ? (
+              <>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                {t('stack.added_button') || 'Added!'}
+              </>
+            ) : (
+              addToCartLabel
+            )}
           </button>
         </div>
 
@@ -124,9 +137,15 @@ export default function ProductCard({ product }: ProductCardProps) {
             inStock ? 'bg-gray-900 text-white' : 'bg-gray-600 text-white cursor-not-allowed'
           }`}
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-          </svg>
+          {isAdded ? (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+          ) : (
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+          )}
         </button>
       </div>
 
