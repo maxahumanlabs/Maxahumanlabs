@@ -14,6 +14,7 @@ export default function BuildYourStack({ categorySlug }: { categorySlug: string 
   const [hasMoreStack, setHasMoreStack] = useState(true);
   const [isLoadingMoreStack, setIsLoadingMoreStack] = useState(false);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const [addedId, setAddedId] = useState<number | null>(null);
 
   // Load stack from localStorage on mount
   useEffect(() => {
@@ -67,6 +68,10 @@ export default function BuildYourStack({ categorySlug }: { categorySlug: string 
     const updatedStack = [...stackItems, product];
     setStackItems(updatedStack);
     localStorage.setItem('maxa-stack', JSON.stringify(updatedStack));
+    setAddedId(product.id);
+    setTimeout(() => {
+      setAddedId((current) => (current === product.id ? null : current));
+    }, 1500);
   };
 
   const removeFromStack = (productId: number) => {
@@ -123,7 +128,7 @@ export default function BuildYourStack({ categorySlug }: { categorySlug: string 
         <div className="grid lg:grid-cols-4 gap-6">
           {/* Stack Cards Container */}
           <div className="lg:col-span-3">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
               {isInitialLoading ? (
                 // Show placeholder cards while loading
                 [1, 2, 3].map((i) => (
@@ -172,11 +177,20 @@ export default function BuildYourStack({ categorySlug }: { categorySlug: string 
                         <button
                           onClick={() => addToStack(product)}
                           disabled={product.stockStatus !== 'instock'}
-                          className={`w-full py-3 rounded-full font-semibold text-white text-sm lg:text-base transition-colors ${
+                          className={`w-full py-3 rounded-full font-semibold text-white text-sm lg:text-base transition-colors flex items-center justify-center gap-2 ${
                             product.stockStatus === 'instock' ? 'bg-gray-900 hover:bg-gray-800' : 'bg-gray-600 cursor-not-allowed'
                           }`}
                         >
-                          {product.stockStatus === 'instock' ? t('stack.add_button') : t('stack.sold_out')}
+                          {addedId === product.id ? (
+                            <>
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                              </svg>
+                              {t('stack.added_button') || 'Added!'}
+                            </>
+                          ) : (
+                            product.stockStatus === 'instock' ? t('stack.add_button') : t('stack.sold_out')
+                          )}
                         </button>
                       </div>
 
@@ -189,9 +203,15 @@ export default function BuildYourStack({ categorySlug }: { categorySlug: string 
                           product.stockStatus === 'instock' ? 'bg-gray-900 text-white' : 'bg-gray-600 text-white cursor-not-allowed'
                         }`}
                       >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        </svg>
+                        {addedId === product.id ? (
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                          </svg>
+                        ) : (
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                          </svg>
+                        )}
                       </button>
                     </div>
 
