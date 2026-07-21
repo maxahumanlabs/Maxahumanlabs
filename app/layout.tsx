@@ -119,7 +119,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             {/* WhatsApp Button - global */}
             <div className="fixed bottom-4 left-4 z-50 flex items-center justify-center">
               {/* Ping effect */}
-              <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
+              <div className="absolute inset-0 bg-green-500 rounded-full animate-ping-slow opacity-75"></div>
               {/* Button */}
               <a
                 id="whatsapp-btn"

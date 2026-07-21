@@ -28,6 +28,14 @@ const config: Config = {
           950: '#082f49',
         },
       },
+      keyframes: {
+        'ping-slow': {
+          '75%, 100%': { transform: 'scale(1.4)', opacity: '0' },
+        },
+      },
+      animation: {
+        'ping-slow': 'ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite',
+      },
     },
   },
   plugins: [],
