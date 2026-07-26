@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import NextImage from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { CheckCircle } from 'lucide-react';
 
 const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScTGaoeNM8lxvgnm0fo5VCJXbRL8DYt8ub8J2Naa6ev98V4yw/formResponse';
 const FORM_FIELD_IDS = {
@@ -85,6 +86,81 @@ const countries: Country[] = [
   { code: 'UA', name: 'Ukraine', dial: '+380', flag: '🇺🇦' },
   { code: 'GR', name: 'Greece', dial: '+30', flag: '🇬🇷' },
   { code: 'PT', name: 'Portugal', dial: '+351', flag: '🇵🇹' },
+};
+
+const STORAGE_KEY = 'entryGateCompleted';
+const DISPLAY_DELAY = 2000;
+
+interface Country {
+  code: string;
+  name: string;
+  dial: string;
+  flag: string;
+}
+
+const countries: Country[] = [
+  { code: 'US', name: 'United States', dial: '+1', flag: '🇺🇸' },
+  { code: 'GB', name: 'United Kingdom', dial: '+44', flag: '🇬🇧' },
+  { code: 'CA', name: 'Canada', dial: '+1', flag: '🇨🇦' },
+  { code: 'AU', name: 'Australia', dial: '+61', flag: '🇦🇺' },
+  { code: 'AE', name: 'United Arab Emirates', dial: '+971', flag: '🇦🇪' },
+  { code: 'SA', name: 'Saudi Arabia', dial: '+966', flag: '🇸🇦' },
+  { code: 'EG', name: 'Egypt', dial: '+20', flag: '🇪🇬' },
+  { code: 'JO', name: 'Jordan', dial: '+962', flag: '🇯🇴' },
+  { code: 'KW', name: 'Kuwait', dial: '+965', flag: '🇰🇼' },
+  { code: 'QA', name: 'Qatar', dial: '+974', flag: '🇶🇦' },
+  { code: 'BH', name: 'Bahrain', dial: '+973', flag: '🇧🇭' },
+  { code: 'OM', name: 'Oman', dial: '+968', flag: '🇴🇲' },
+  { code: 'LB', name: 'Lebanon', dial: '+961', flag: '🇱🇧' },
+  { code: 'PS', name: 'Palestine', dial: '+970', flag: '🇵🇸' },
+  { code: 'IQ', name: 'Iraq', dial: '+964', flag: '🇮🇶' },
+  { code: 'SY', name: 'Syria', dial: '+963', flag: '🇸🇾' },
+  { code: 'YE', name: 'Yemen', dial: '+967', flag: '🇾🇪' },
+  { code: 'MA', name: 'Morocco', dial: '+212', flag: '🇲🇦' },
+  { code: 'DZ', name: 'Algeria', dial: '+213', flag: '🇩🇿' },
+  { code: 'TN', name: 'Tunisia', dial: '+216', flag: '🇹🇳' },
+  { code: 'LY', name: 'Libya', dial: '+218', flag: '🇱🇾' },
+  { code: 'SD', name: 'Sudan', dial: '+249', flag: '🇸🇩' },
+  { code: 'DE', name: 'Germany', dial: '+49', flag: '🇩🇪' },
+  { code: 'FR', name: 'France', dial: '+33', flag: '🇫🇷' },
+  { code: 'ES', name: 'Spain', dial: '+34', flag: '🇪🇸' },
+  { code: 'IT', name: 'Italy', dial: '+39', flag: '🇮🇹' },
+  { code: 'NL', name: 'Netherlands', dial: '+31', flag: '🇳🇱' },
+  { code: 'BE', name: 'Belgium', dial: '+32', flag: '🇧🇪' },
+  { code: 'CH', name: 'Switzerland', dial: '+41', flag: '🇨🇭' },
+  { code: 'AT', name: 'Austria', dial: '+43', flag: '🇦🇹' },
+  { code: 'SE', name: 'Sweden', dial: '+46', flag: '🇸🇪' },
+  { code: 'NO', name: 'Norway', dial: '+47', flag: '🇳🇴' },
+  { code: 'DK', name: 'Denmark', dial: '+45', flag: '🇩🇰' },
+  { code: 'FI', name: 'Finland', dial: '+358', flag: '🇫🇮' },
+  { code: 'PL', name: 'Poland', dial: '+48', flag: '🇵🇱' },
+  { code: 'IN', name: 'India', dial: '+91', flag: '🇮🇳' },
+  { code: 'PK', name: 'Pakistan', dial: '+92', flag: '🇵🇰' },
+  { code: 'BD', name: 'Bangladesh', dial: '+880', flag: '🇧🇩' },
+  { code: 'CN', name: 'China', dial: '+86', flag: '🇨🇳' },
+  { code: 'JP', name: 'Japan', dial: '+81', flag: '🇯🇵' },
+  { code: 'KR', name: 'South Korea', dial: '+82', flag: '🇰🇷' },
+  { code: 'ID', name: 'Indonesia', dial: '+62', flag: '🇮🇩' },
+  { code: 'MY', name: 'Malaysia', dial: '+60', flag: '🇲🇾' },
+  { code: 'SG', name: 'Singapore', dial: '+65', flag: '🇸🇬' },
+  { code: 'TH', name: 'Thailand', dial: '+66', flag: '🇹🇭' },
+  { code: 'VN', name: 'Vietnam', dial: '+84', flag: '🇻🇳' },
+  { code: 'PH', name: 'Philippines', dial: '+63', flag: '🇵🇭' },
+  { code: 'TR', name: 'Turkey', dial: '+90', flag: '🇹🇷' },
+  { code: 'IL', name: 'Israel', dial: '+972', flag: '🇮🇱' },
+  { code: 'ZA', name: 'South Africa', dial: '+27', flag: '🇿🇦' },
+  { code: 'NG', name: 'Nigeria', dial: '+234', flag: '🇳🇬' },
+  { code: 'KE', name: 'Kenya', dial: '+254', flag: '🇰🇪' },
+  { code: 'BR', name: 'Brazil', dial: '+55', flag: '🇧🇷' },
+  { code: 'MX', name: 'Mexico', dial: '+52', flag: '🇲🇽' },
+  { code: 'AR', name: 'Argentina', dial: '+54', flag: '🇦🇷' },
+  { code: 'CL', name: 'Chile', dial: '+56', flag: '🇨🇱' },
+  { code: 'CO', name: 'Colombia', dial: '+57', flag: '🇨🇴' },
+  { code: 'PE', name: 'Peru', dial: '+51', flag: '🇵🇪' },
+  { code: 'RU', name: 'Russia', dial: '+7', flag: '🇷🇺' },
+  { code: 'UA', name: 'Ukraine', dial: '+380', flag: '🇺🇦' },
+  { code: 'GR', name: 'Greece', dial: '+30', flag: '🇬🇷' },
+  { code: 'PT', name: 'Portugal', dial: '+351', flag: '🇵🇹' },
   { code: 'RO', name: 'Romania', dial: '+40', flag: '🇷🇴' },
   { code: 'CZ', name: 'Czech Republic', dial: '+420', flag: '🇨🇿' },
   { code: 'NZ', name: 'New Zealand', dial: '+64', flag: '🇳🇿' },
@@ -92,10 +168,15 @@ const countries: Country[] = [
 ];
 
 export default function WelcomePopup() {
-  const { t, language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
+  const brandName = process.env.NEXT_PUBLIC_SITE_NAME?.includes('Maxa') ? 'Maxa' : 'Peptive';
+
+  const [step, setStep] = useState<'disclaimer' | 'form' | null>(null);
+  const [isDisclaimerChecked, setIsDisclaimerChecked] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  
   const [name, setName] = useState('');
-  const [countryCode, setCountryCode] = useState('');
+  const [countryCode, setCountryCode] = useState(countries[0].dial);
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [nameError, setNameError] = useState('');
@@ -105,18 +186,38 @@ export default function WelcomePopup() {
 
   // Show popup after delay
   useEffect(() => {
-    const hasCompleted = localStorage.getItem(STORAGE_KEY);
-    if (hasCompleted === 'true') {
-      return;
-    }
+    const isDisclaimerAccepted = localStorage.getItem('disclaimerAccepted') === 'true';
+    const isFormCompleted = localStorage.getItem(STORAGE_KEY) === 'true';
 
+    // Wait a bit before showing to allow initial render
     const timer = setTimeout(() => {
-      setIsOpen(true);
-      document.body.style.overflow = 'hidden';
+      if (!isDisclaimerAccepted) {
+        setStep('disclaimer');
+        setIsOpen(true);
+        document.body.style.overflow = 'hidden';
+      } else if (!isFormCompleted) {
+        setStep('form');
+        setIsOpen(true);
+        document.body.style.overflow = 'hidden';
+      }
     }, DISPLAY_DELAY);
 
     return () => clearTimeout(timer);
   }, []);
+
+  const handleAcceptDisclaimer = () => {
+    localStorage.setItem('disclaimerAccepted', 'true');
+    const isFormCompleted = localStorage.getItem(STORAGE_KEY) === 'true';
+    if (!isFormCompleted) {
+      setStep('form');
+    } else {
+      handleClose();
+    }
+  };
+
+  const handleLeaveSite = () => {
+    window.location.href = 'https://google.com';
+  };
 
   const isValidPhone = (phone: string) => {
     const cleaned = phone.replace(/\D/g, '');
@@ -256,104 +357,181 @@ export default function WelcomePopup() {
           </button>
         </div>
 
-        {/* Title */}
-        <h2 className="text-3xl font-bold text-black mt-10 mb-3 leading-snug">
-          {t('welcome_popup.title')}{' '}
-          <span className="inline-block ml-2 align-middle">
-            🎉
-            <NextImage
-              src="https://cdn.shopify.com/s/files/1/0772/8748/9774/files/Screenshot_2025-11-19_at_17.57.08.png?v=1763557038"
-              alt="WhatsApp"
-              width={40}
-              height={40}
-              className="inline-block align-top"
-            />
-          </span>
-        </h2>
-
-        <p className="text-gray-600 mb-9">{t('welcome_popup.subtitle')}</p>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          {/* Name Input */}
-          <div>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-                setNameError('');
-              }}
-              placeholder={t('welcome_popup.name_placeholder')}
-              className={`w-full px-4 py-4 border-2 rounded-xl text-base transition-all bg-gray-50 focus:outline-none focus:border-black focus:bg-white ${
-                nameError ? 'border-red-500 bg-red-50' : 'border-gray-200'
-              }`}
-            />
-            {nameError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{nameError}</div>}
-          </div>
-
-          {/* Phone Input Group */}
-          <div>
-            <div className={`flex gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <div className="min-w-[75px]">
-                <select
-                  value={countryCode}
-                  onChange={(e) => setCountryCode(e.target.value)}
-                  className={`w-auto border-2 rounded-xl text-base bg-gray-50 cursor-pointer font-medium px-4 py-4 text-center transition-all focus:outline-none focus:border-black focus:bg-white ${
-                    phoneError ? 'border-red-500 bg-red-50' : 'border-gray-200'
-                  }`}
-                >
-                  {countries.map((country) => (
-                    <option key={country.code} value={country.dial}>
-                      {country.flag} {country.dial}
-                    </option>
-                  ))}
-                </select>
+        {step === 'disclaimer' && (
+          <div className={`text-${isRTL ? 'right' : 'left'}`}>
+            <div className={`flex items-center gap-2 mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                <CheckCircle className="w-5 h-5" />
               </div>
-              <div className="flex-1">
-                <input
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => {
-                    setPhone(e.target.value);
-                    setPhoneError('');
-                  }}
-                  placeholder={t('welcome_popup.phone_placeholder')}
-                  className={`w-full px-4 py-4 border-2 rounded-xl text-base transition-all bg-gray-50 focus:outline-none focus:border-black focus:bg-white ${
-                    phoneError ? 'border-red-500 bg-red-50' : 'border-gray-200'
-                  }`}
+              <span className="text-sm font-bold tracking-widest text-blue-600 uppercase">
+                {t('disclaimer_popup.notice')}
+              </span>
+            </div>
+
+            <h2 className={`text-3xl sm:text-4xl font-bold text-gray-900 mb-6 ${isRTL ? 'text-right' : 'text-left'}`}>
+              {t('disclaimer_popup.title')}
+            </h2>
+
+            <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+              {t('disclaimer_popup.desc').replace('{brand}', brandName)}
+            </p>
+
+            <ul className="space-y-4 mb-8 text-gray-700 text-base">
+              <li className={`flex gap-3 items-start ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <span className="text-blue-500 mt-1.5 text-xs">●</span>
+                <span>
+                  <strong>{t('disclaimer_popup.li1_strong')}</strong>
+                  {t('disclaimer_popup.li1')}
+                </span>
+              </li>
+              <li className={`flex gap-3 items-start ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <span className="text-blue-500 mt-1.5 text-xs">●</span>
+                <span>
+                  <strong>{t('disclaimer_popup.li2_strong')}</strong>
+                  {t('disclaimer_popup.li2')}
+                </span>
+              </li>
+              <li className={`flex gap-3 items-start ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <span className="text-blue-500 mt-1.5 text-xs">●</span>
+                <span>
+                  {t('disclaimer_popup.li3')}
+                </span>
+              </li>
+            </ul>
+
+            <label className={`flex items-start gap-4 p-4 border rounded-xl cursor-pointer hover:bg-gray-50 transition-colors ${isDisclaimerChecked ? 'border-blue-500 bg-blue-50/30' : 'border-gray-200'} ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
+              <div className="pt-1">
+                <div className={`w-5 h-5 border-2 rounded flex items-center justify-center transition-colors ${isDisclaimerChecked ? 'border-blue-600 bg-blue-600 text-white' : 'border-gray-300'}`}>
+                  {isDisclaimerChecked && <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>}
+                </div>
+                <input 
+                  type="checkbox" 
+                  className="sr-only" 
+                  checked={isDisclaimerChecked} 
+                  onChange={(e) => setIsDisclaimerChecked(e.target.checked)} 
                 />
               </div>
+              <span className="text-sm text-gray-700 leading-relaxed">
+                {t('disclaimer_popup.checkbox_pre')}
+                <strong>{t('disclaimer_popup.checkbox_strong')}</strong>
+                {t('disclaimer_popup.checkbox_post')}
+              </span>
+            </label>
+
+            <div className={`mt-8 flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <button
+                onClick={handleAcceptDisclaimer}
+                disabled={!isDisclaimerChecked}
+                className="flex-1 bg-gray-400 text-white py-3 px-6 rounded-full font-bold tracking-widest uppercase transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-900"
+              >
+                {t('disclaimer_popup.understand')}
+              </button>
+              <button
+                onClick={handleLeaveSite}
+                className="text-gray-600 font-medium hover:text-gray-900 px-4"
+              >
+                {t('disclaimer_popup.leave')}
+              </button>
             </div>
-            {phoneError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{phoneError}</div>}
           </div>
+        )}
 
-          {/* Email Input */}
-          <div>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setEmailError('');
-              }}
-              placeholder={t('welcome_popup.email_placeholder')}
-              className={`w-full px-4 py-4 border-2 rounded-xl text-base transition-all bg-gray-50 focus:outline-none focus:border-black focus:bg-white ${
-                emailError ? 'border-red-500 bg-red-50' : 'border-gray-200'
-              }`}
-            />
-            {emailError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{emailError}</div>}
-          </div>
+        {step === 'form' && (
+          <>
+            <h2 className="text-3xl font-bold text-black mt-10 mb-3 leading-snug">
+              {t('welcome_popup.title')}{' '}
+              <span className="inline-block ml-2 align-middle">
+                🎉
+                <NextImage
+                  src="https://cdn.shopify.com/s/files/1/0772/8748/9774/files/Screenshot_2025-11-19_at_17.57.08.png?v=1763557038"
+                  alt="WhatsApp"
+                  width={40}
+                  height={40}
+                  className="inline-block align-top"
+                />
+              </span>
+            </h2>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full px-6 py-4 bg-black text-white rounded-xl text-base font-semibold cursor-pointer transition-all mt-3 hover:bg-gray-900 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
-          >
-            {isSubmitting ? t('welcome_popup.please_wait') : t('welcome_popup.submit_button')}
-          </button>
-        </form>
+            <p className="text-gray-600 mb-9">{t('welcome_popup.subtitle')}</p>
+
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <div>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    setNameError('');
+                  }}
+                  placeholder={t('welcome_popup.name_placeholder')}
+                  className={`w-full px-4 py-4 border-2 rounded-xl text-base transition-all bg-gray-50 focus:outline-none focus:border-black focus:bg-white ${
+                    nameError ? 'border-red-500 bg-red-50' : 'border-gray-200'
+                  }`}
+                />
+                {nameError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{nameError}</div>}
+              </div>
+
+              <div>
+                <div className={`flex gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                  <div className="min-w-[75px]">
+                    <select
+                      value={countryCode}
+                      onChange={(e) => setCountryCode(e.target.value)}
+                      className={`w-auto border-2 rounded-xl text-base bg-gray-50 cursor-pointer font-medium px-4 py-4 text-center transition-all focus:outline-none focus:border-black focus:bg-white ${
+                        phoneError ? 'border-red-500 bg-red-50' : 'border-gray-200'
+                      }`}
+                    >
+                      {countries.map((country) => (
+                        <option key={country.code} value={country.dial}>
+                          {country.flag} {country.dial}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="flex-1">
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => {
+                        setPhone(e.target.value);
+                        setPhoneError('');
+                      }}
+                      placeholder={t('welcome_popup.phone_placeholder')}
+                      className={`w-full px-4 py-4 border-2 rounded-xl text-base transition-all bg-gray-50 focus:outline-none focus:border-black focus:bg-white ${
+                        phoneError ? 'border-red-500 bg-red-50' : 'border-gray-200'
+                      }`}
+                    />
+                  </div>
+                </div>
+                {phoneError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{phoneError}</div>}
+              </div>
+
+              <div>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setEmailError('');
+                  }}
+                  placeholder={t('welcome_popup.email_placeholder')}
+                  className={`w-full px-4 py-4 border-2 rounded-xl text-base transition-all bg-gray-50 focus:outline-none focus:border-black focus:bg-white ${
+                    emailError ? 'border-red-500 bg-red-50' : 'border-gray-200'
+                  }`}
+                />
+                {emailError && <div className={`text-red-500 text-sm mt-2 ${isRTL ? 'text-right' : 'text-left'}`}>{emailError}</div>}
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full px-6 py-4 bg-black text-white rounded-xl text-base font-semibold cursor-pointer transition-all mt-3 hover:bg-gray-900 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none"
+              >
+                {isSubmitting ? t('welcome_popup.please_wait') : t('welcome_popup.submit_button')}
+              </button>
+            </form>
+          </>
+        )}
       </div>
     </div>
   );
