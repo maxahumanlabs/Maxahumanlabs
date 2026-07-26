@@ -255,6 +255,15 @@ export default function WelcomePopup() {
       }`}
     >
       <div className={`relative bg-white rounded-2xl shadow-2xl max-w-[480px] w-[90%] p-10 sm:p-12 text-center ${isRTL ? 'rtl' : ''}`}>
+        {step === 'form' && (
+          <button
+            onClick={handleClose}
+            className="absolute top-4 end-4 text-3xl text-gray-500 hover:text-black transition-colors z-10"
+          >
+            &times;
+          </button>
+        )}
+
         {/* Close Button */}
         
 
