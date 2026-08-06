@@ -346,7 +346,7 @@ export const translations = {
       need_guidance: "Need guidance choosing a peptide?",
       chat_directly: "Chat directly with our research specialists",
       ask_whatsapp: "Ask on WhatsApp",
-      whatsapp_message: "Hi, I have a question about your peptides",
+      whatsapp_message: "Hello, I would like to order your products.",
       discover: "Discover Our Products",
       footer_real: "Real lab reports. Real batch records. Real transparency.",
       footer_research: "For research use only. Not for medical, therapeutic, or diagnostic use."
@@ -716,7 +716,7 @@ export const translations = {
       need_guidance: "تحتاج مساعدة في اختيار الببتيد؟",
       chat_directly: "تحدث مباشرة مع أخصائيي الأبحاث لدينا",
       ask_whatsapp: "اسأل عبر واتساب",
-      whatsapp_message: "مرحباً، لدي سؤال حول الببتيدات الخاصة بكم",
+      whatsapp_message: "مرحبا، حابب أطلب البيبتايد الخاص فيكم",
       discover: "اكتشف منتجاتنا",
       footer_real: "تقارير مختبر حقيقية. سجلات دفعات حقيقية. شفافية تامة.",
       footer_research: "للاستخدام البحثي فقط. غير مخصص للاستخدام الطبي أو العلاجي أو التشخيصي."

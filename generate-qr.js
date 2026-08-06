@@ -7,7 +7,7 @@ async function generate() {
   });
   console.log("Maxa QR generated");
 
-  await QRCode.toFile('/Users/Seif/Desktop/Peptive_Authentication_QR.png', 'https://www.peptivepeptides.com/pages/instant-authentication', {
+  await QRCode.toFile('/Users/Seif/Desktop/Peptive_Authentication_QR.png', 'https://www.peptivepept.com/pages/instant-authentication', {
     width: 500,
     margin: 2
   });
