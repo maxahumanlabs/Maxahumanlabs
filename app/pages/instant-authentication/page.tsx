@@ -6,7 +6,7 @@ export default function InstantAuthenticationPage() {
   const { t } = useLanguage();
 
   return (
-    <div className=" bg-white flex flex-col items-center justify-center px-6 py-12 min-h-[60vh]">
+    <div className="bg-white flex flex-col items-center justify-center px-6 pt-16 pb-12 min-h-[85vh]">
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes revealUp {
           0% {
@@ -81,6 +81,25 @@ export default function InstantAuthenticationPage() {
           The Mark of True Maxa Human.
         </p>
       </div>
+
+      {/* How-to-use video — kept on this same page so the QR stays a dead end. */}
+      <section className="w-full max-w-[320px] mx-auto mt-20 animate-reveal-delayed" style={{ animationDelay: '1.6s' }}>
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-8">
+          How to Use
+        </h2>
+        <div className="rounded-2xl overflow-hidden bg-black shadow-lg">
+          <video
+            className="w-full h-auto block"
+            src="/How%20to%20use.mp4"
+            controls
+            playsInline
+            preload="metadata"
+            controlsList="nodownload"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </section>
     </div>
   );
 }

@@ -2,12 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import CartSidebar from '@/components/cart/CartSidebar';
-import AnnouncementBar from '@/components/layout/AnnouncementBar';
-import WelcomePopup from '@/components/WelcomePopup';
-import WhatsAppButton from '@/components/layout/WhatsAppButton';
+import SiteShell from '@/components/layout/SiteShell';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
 const inter = Inter({
@@ -108,17 +103,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </noscript>
         {/* End Google Tag Manager (noscript) */}
         <LanguageProvider>
-          <div className="flex flex-col min-h-screen">
-            <AnnouncementBar />
-            <Header />
-            <main className="flex-1">
-              {children}
-            </main>
-            <Footer />
-            <CartSidebar />
-            <WelcomePopup />
-            <WhatsAppButton />
-          </div>
+          <SiteShell>{children}</SiteShell>
         </LanguageProvider>
       </body>
     </html>

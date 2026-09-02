@@ -39,3 +39,4 @@ next-env.d.ts
 
 # verification codes Excel file (contains sensitive data)
 STRIPE-WOOCOMMERCE-SETUP-GUIDE.md
+.env*
