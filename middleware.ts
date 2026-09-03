@@ -15,8 +15,8 @@ import { NextRequest, NextResponse } from 'next/server';
  */
 const STOREFRONT_DISABLED = process.env.STOREFRONT_DISABLED === 'true';
 
-/** Routes that stay reachable while the storefront is disabled. */
-const ALWAYS_ON = ['/pages/instant-authentication'];
+/** The only route that stays reachable while the storefront is disabled. */
+const AUTH_PAGE = '/pages/instant-authentication';
 
 /** `/ar/...` is a visible prefix handled by rewrite below; match on the bare path. */
 function stripLocale(pathname: string) {
@@ -36,10 +36,26 @@ export function middleware(request: NextRequest) {
 
   if (STOREFRONT_DISABLED) {
     const bare = stripLocale(pathname).replace(/\/+$/, '') || '/';
-    if (!ALWAYS_ON.includes(bare)) {
-      const url = request.nextUrl.clone();
-      url.pathname = '/_not-found';
-      return NextResponse.rewrite(url, { status: 404 });
+
+    if (bare !== AUTH_PAGE) {
+      // API routes still 404: bouncing a programmatic caller to an HTML page
+      // would hand it a 200 page instead of a clear error.
+      if (bare.startsWith('/api/')) {
+        const notFound = request.nextUrl.clone();
+        notFound.pathname = '/_not-found';
+        return NextResponse.rewrite(notFound, { status: 404 });
+      }
+
+      // Everything else bounces back to the authentication page, so a customer
+      // who scanned the QR has nowhere else to land.
+      //
+      // 307, NOT 301: browsers cache permanent redirects aggressively, and a
+      // cached 301 would keep bouncing visitors here even after the storefront
+      // is switched back on — a state the server could no longer correct.
+      const target = request.nextUrl.clone();
+      target.pathname = AUTH_PAGE;
+      target.search = '';
+      return NextResponse.redirect(target, 307);
     }
   }
 
